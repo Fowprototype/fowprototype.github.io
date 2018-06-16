@@ -397,3 +397,34 @@ th.tdSummaryActive {
     text-align: right;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
+.icoMenuOverflow {
+    float: right;
+    position: relative;
+    top: 10px;
+    color: #0063B1;
+    font-family: 'Segoe MDL2 Assets';
+    font-weight: bold;
+}
+
+.icoMenuOverflowCir {
+    left: 17.5px;
+    font-size:22px;
+    top: 5px !important;
+    font-weight: 100;
+    cursor: pointer;
+}
+
+.menuOverflowList {
+    display: none;
+    position: absolute;
+    background-color: #FFF;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    padding: 16px;
+}
+
+.menuOverflowList p {
+    line-height:30px;
+}
