@@ -253,6 +253,10 @@
                 o.style.display = "none";
             }
 
+            function showAddRoleModal() {
+                document.getElementById('modalAddRole').style.display = "";
+            }
+
             function showEditRoleModal() {
                 document.getElementById('modalEditRole').style.display = "";
             }
@@ -263,6 +267,10 @@
 
             function showBulkUpdateModal() {
                 document.getElementById('modalBulkUpdate').style.display = "";
+            }
+
+            function showResourceDetailsModal() {
+                document.getElementById('modalResourceDetails').style.display = "";
             }
 
             function hideModals() {
@@ -276,18 +284,19 @@
         </script>
     </head>
     <body>
+        <div id="divTooltipHelp" class="menuTooltipHelp">
+            <p>This is some helpful text that defines what this data represents. Please consult the requirements for the final text.</p>
+        </div>
+
         <div id="divMenuOverflowList" class="menuOverflowList">
             <p><a onclick="showEditRoleModal();" href="#">Edit role</a></p>
             <p><a onclick="showSplitRoleModal();" href="#">Split role</a></p>
             <div style="background:#f0f0f0;height:1px;width:100%;margin-top:10px;margin-bottom:10px;"></div>
             <p><a onclick="showBulkUpdateModal();" href="#">Bulk plan...</a></p>
-            <p><a href="#">Resource details</a></p>
+            <p><a onclick="showResourceDetailsModal();" href="#">Resource details</a></p>
             <div style="background:#f0f0f0;height:1px;width:100%;margin-top:10px;margin-bottom:10px;"></div>
             <p><a href="#">Copy row values</a></p>
             <p><a href="#">Paste row values</a></p>
-        </div>
-        <div id="divTooltipHelp" class="menuTooltipHelp">
-            <p>This is some helpful text that defines what this data represents. Please consult the requirements for the final text.</p>
         </div>
         <div id="modalEditRole" class="modalbg" style="display:none;">
             <div class="modalbox">
@@ -399,6 +408,104 @@
                 </div>
             </div>
         </div>
+        <div id="modalAddRole" class="modalbg" style="display:none;">
+            <div class="modalbox">
+                <div class="modalheader">
+                    <div class="Xbutton" onclick="hideModals();">&#xE10A;</div>
+                    <div class="subtitle">Add Role</div>
+                </div>
+                <div id="modalAddRolebody" class="modalbody">
+                    <div class="formrow">
+                        <div class="fieldlabel">EBS Item</div>
+                        <div>
+                            <select id="frmEBS" class="fieldinput" style="width:100%">
+                                <option></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="formrow" style="width: 47%; float: right;">
+                        <div class="fieldlabel">Billing Role ID</div>
+                        <div>
+                            <input id="frmBillingRole" class="fieldinput" style="width:100%" value="" />
+                        </div>
+                    </div>
+                    <div class="formrow" style="width: 47%;">
+                        <div class="fieldlabel">GRM Demand ID</div>
+                        <div>
+                            <input type="text" id="frmGRMDemand" class="fieldinput" style="width:100%" value="" />
+                        </div>
+                    </div>
+                    <div class="formrow" style="width: 47%; float: right;">
+                        <div class="fieldlabel">Total Planned Hours</div>
+                        <div>
+                            <input type="text" id="frmHours" class="fieldinput" style="width:100%" value="" />
+                        </div>
+                    </div>
+                    <div class="formrow" style="width: 47%;">
+                        <div class="fieldlabel">Resource Type</div>
+                        <div>
+                            <select id="frmType" class="fieldinput" style="width:100%">
+                                <option></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="formrow">
+                        <div class="fieldlabel">Requested Resource Name</div>
+                        <div>
+                            <input id="frmResource" class="fieldinput" style="width:100%" value="" />
+                        </div>
+                    </div>
+                    <div class="formrow">
+                        <div class="fieldlabel">Role</div>
+                        <div>
+                            <select id="frmRole" class="fieldinput" style="width:100%">
+                                <option></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="formrow">
+                        <div class="fieldlabel">Domain</div>
+                        <div>
+                            <select id="frmDomain" class="fieldinput" style="width:100%">
+                                <option></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="formrow">
+                        <div class="fieldlabel">Purchase Order</div>
+                        <div>
+                            <select id="frmPO" class="fieldinput" style="width:100%"></select>
+                        </div>
+                    </div>
+                    <div class="formrow">
+                        <div class="fieldlabel">Purchase Order Item</div>
+                        <div>
+                            <select id="frmPOItem" class="fieldinput" style="width:100%"></select>
+                        </div>
+                    </div>
+                    <div class="formrow">
+                        <div class="fieldlabel">Delivery Location</div>
+                        <div>
+                            <select id="frmDLoc" class="fieldinput" style="width:100%">
+                                <option></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="formrow">
+                        <div class="fieldlabel">Resource Location</div>
+                        <div>
+                            <select id="frmRLoc" class="fieldinput" style="width:100%">
+                                <option></option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modalfooter" style="text-align:right;">
+                    <button class="secondarybutton" onclick="hideModals();">Cancel</button>
+                    <button class="primarybutton" onclick="hideModals();">Add</button>
+                </div>
+            </div>
+        </div>
         <div id="modalSplitRole" class="modalbg" style="display:none;">
             <div class="modalbox">
                 <div class="modalheader">
@@ -442,7 +549,6 @@
                 </div>
             </div>
         </div>
-
         <div id="modalBulkUpdate" class="modalbg" style="display:none;">
             <div class="modalbox">
                 <div class="modalheader">
@@ -570,6 +676,100 @@
                 </div>
             </div>
         </div>
+        <div id="modalResourceDetails" class="modalbg" style="display:none;">
+            <div class="modalbox">
+                <div class="modalheader">
+                    <div class="Xbutton" onclick="hideModals();">&#xE10A;</div>
+                    <div class="subtitle">Resource Details</div>
+                </div>
+                <div id="modalSplitRole" class="modalbody">
+                    <div class="formrow" style="width: 47%; float: right;">
+                        <div class="fieldlabel">Resource Type</div>
+                        <div>Full Time</div>
+                    </div>
+                    <div class="formrow" style="width: 47%;">
+                        <div class="fieldlabel">Role</div>
+                        <div>Senior Project Manager</div>
+                    </div>
+                    <div class="formrow" style="width: 47%; float: right;">
+                        <div class="fieldlabel">Business Partner ID</div>
+                        <div>123456789</div>
+                    </div>
+                    <div class="formrow" style="width: 47%;">
+                        <div class="fieldlabel">GRM Demand ID</div>
+                        <div>123456789</div>
+                    </div>
+                    <div class="formrow" style="width: 47%; float: right;">
+                        <div class="fieldlabel">Bill Rate</div>
+                        <div>220 USD/hr</div>
+                    </div>
+                    <div class="formrow" style="width: 47%;">
+                        <div class="fieldlabel">Cost Rate (since 01-Mar-2018)</div>
+                        <div>180 USD/hr</div>
+                    </div>
+                    <div class="formrow" style="width: 47%; float: right;">
+                        <div class="fieldlabel">Billing Role ID</div>
+                        <div>123456</div>
+                    </div>
+                    <div class="formrow" style="width: 47%;">
+                        <div class="fieldlabel">Domain</div>
+                        <div>Business Applications</div>
+                    </div>
+                    <div class="formrow" style="width: 47%; float: right;">
+                        <div class="fieldlabel">Resource Location</div>
+                        <div>Toronto, Canada</div>
+                    </div>
+                    <div class="formrow" style="width: 47%;">
+                        <div class="fieldlabel">Delivery Location</div>
+                        <div>Toronto, Canada</div>
+                    </div>
+                    <div class="formrow" style="width: 47%; float: right;">
+                        <div class="fieldlabel">PO Line Item</div>
+                        <div>10</div>
+                    </div>
+                    <div class="formrow" style="width: 47%;">
+                        <div class="fieldlabel">Purchase Order</div>
+                        <div>90001266</div>
+                    </div>
+                    <div class="formrow">
+                        <table class="datatable">
+                            <thead>
+                                <tr>
+                                    <th>Category</th>
+                                    <th class="tdright">Planned</th>
+                                    <th class="tdright">Proposed</th>
+                                    <th class="tdright">Staffed</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Labor (hours)</td>
+                                    <td class="tdright">250</td>
+                                    <td class="tdright">250</td>
+                                    <td class="tdright">210</td>
+                                </tr>
+                                <tr>
+                                    <td>Cost (USD)</td>
+                                    <td class="tdright">45,278</td>
+                                    <td class="tdright">45,278</td>
+                                    <td class="tdright">42,991</td>
+                                </tr>
+                                <tr>
+                                    <td>Revenue (USD)</td>
+                                    <td class="tdright">52,053</td>
+                                    <td class="tdright">52,053</td>
+                                    <td class="tdright">49,226</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modalfooter" style="text-align:right;">
+                    <button class="primarybutton" onclick="hideModals();">Close</button>
+                </div>
+            </div>
+        </div>
+
         <div id="divHeader"><div class="middleitem">ESXP &nbsp;|&nbsp; Project Management</div></div>
         <div id="divBody">
             <!-- BEGIN LEFT NAV  -->
@@ -778,7 +978,7 @@
                         <div id="secForecast">
                             <div id="divCommandBar">
                                 <button onclick="editForecast();" id="btnEditForecast"><span style="font-family:'Segoe MDL2 Assets';color:rgb(0,108,193);font-size:16px;margin-right:8px;">&#xE70F;</span>Edit plan</button>
-                                <button onclick="addRole();" id="btnAddRole" disabled><span style="font-family:'Segoe MDL2 Assets';color:rgb(0,108,193);font-size:16px;margin-right:8px;">&#xE109;</span>Add role</button>
+                                <button onclick="showAddRoleModal();" id="btnAddRole" disabled><span style="font-family:'Segoe MDL2 Assets';color:rgb(0,108,193);font-size:16px;margin-right:8px;">&#xE109;</span>Add role</button>
                                 <button onclick="valuateForecast();" id="btnValuate" disabled><span style="font-family:'Segoe MDL2 Assets';color:rgb(0,108,193);font-size:16px;margin-right:8px;">&#xE117;</span>Valuate</button>
                                 <button onclick="saveForecast();" id="btnSave" disabled><span style="font-family:'Segoe MDL2 Assets';color:rgb(0,108,193);font-size:16px;margin-right:8px;">&#xE105;</span>Save</button>
                                 <span style="height:26px;width:1px;background-color:rgba(0,0,0,0.5);margin-top:6px;position:absolute;"></span>
