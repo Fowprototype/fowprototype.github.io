@@ -45,7 +45,21 @@ a:hover {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 13px;
     padding-left: 8px;
-    min-width:120px;
+}
+
+.calendaricon {
+    position: relative;
+    float: right;
+    left: -40px;
+    top: 0px;
+    height: 26px;
+    width: 36px;
+    color: #0063B1;
+    font-size: 16px;
+    font-family: 'Segoe MDL2 Assets';
+    cursor: pointer;
+    text-align: center;
+    padding-top: 9px;
 }
 
 .primarybutton {
@@ -368,8 +382,11 @@ th.tdSummaryActive > div.tooltipicon {
     cursor: pointer;
 }
 
+.pivot:hover {
+    border-bottom: 2px solid rgba(0,0,0,0.1);
+}
 
-.pivotactive {
+.pivotactive, .pivotactive:hover {
     border-bottom: 2px solid rgb(0,99,177);
     font-weight: 500;
 }
@@ -551,7 +568,6 @@ th.tdSummaryActive > div.tooltipicon {
 .modalbox {
     background-color: #FFF;
     margin: auto;
-    padding: 24px;
     border: 1px solid #0078D7;
     width: 25%;
     box-shadow: 0 2px 20px 0 rgba(0,0,0,0.2),0 4px 8px 0 rgba(0,0,0,0.2);
@@ -559,6 +575,27 @@ th.tdSummaryActive > div.tooltipicon {
     -webkit-animation-duration: 0.4s;
     animation-name: animatetop;
     animation-duration: 0.4s
+}
+
+.modalheader {
+    padding-left: 24px;
+    padding-right: 24px;
+    padding-top: 24px;
+}
+
+.modalfooter {
+    padding-left: 24px;
+    padding-right: 24px;
+    padding-bottom: 24px;
+}
+
+.modalbody {
+    padding-left: 24px;
+    padding-right: 24px;
+    padding-bottom: 20px;
+    padding-top: 0px;
+    max-height:500px;
+    overflow-y:auto;
 }
 
 .Xbutton {

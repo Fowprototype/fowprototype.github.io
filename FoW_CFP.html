@@ -257,6 +257,14 @@
                 document.getElementById('modalEditRole').style.display = "";
             }
 
+            function showSplitRoleModal() {
+                document.getElementById('modalSplitRole').style.display = "";
+            }
+
+            function showBulkUpdateModal() {
+                document.getElementById('modalBulkUpdate').style.display = "";
+            }
+
             function hideModals() {
                 var m = document.getElementsByClassName('modalbg');
                 var i;
@@ -270,9 +278,9 @@
     <body>
         <div id="divMenuOverflowList" class="menuOverflowList">
             <p><a onclick="showEditRoleModal();" href="#">Edit role</a></p>
-            <p><a href="#">Split role</a></p>
+            <p><a onclick="showSplitRoleModal();" href="#">Split role</a></p>
             <div style="background:#f0f0f0;height:1px;width:100%;margin-top:10px;margin-bottom:10px;"></div>
-            <p><a href="#">Bulk plan...</a></p>
+            <p><a onclick="showBulkUpdateModal();" href="#">Bulk plan...</a></p>
             <p><a href="#">Resource details</a></p>
             <div style="background:#f0f0f0;height:1px;width:100%;margin-top:10px;margin-bottom:10px;"></div>
             <p><a href="#">Copy row values</a></p>
@@ -283,9 +291,11 @@
         </div>
         <div id="modalEditRole" class="modalbg" style="display:none;">
             <div class="modalbox">
-                <div class="Xbutton" onclick="hideModals();">&#xE10A;</div>
-                <div class="subtitle">Edit Role</div>
-                <div id="modalbody" style="max-height:500px;overflow-y:scroll;">
+                <div class="modalheader">
+                    <div class="Xbutton" onclick="hideModals();">&#xE10A;</div>
+                    <div class="subtitle">Edit Role</div>
+                </div>
+                <div id="modalEditRolebody" class="modalbody">
                     <div class="formrow">
                         <div class="fieldlabel">EBS Item</div>
                         <div>
@@ -383,9 +393,180 @@
                         </div>
                     </div>
                 </div>
-                <div class="formrow" style="text-align:right;">
+                <div class="modalfooter" style="text-align:right;">
                     <button class="secondarybutton" onclick="hideModals();">Cancel</button>
                     <button class="primarybutton" onclick="hideModals();">Save</button>
+                </div>
+            </div>
+        </div>
+        <div id="modalSplitRole" class="modalbg" style="display:none;">
+            <div class="modalbox">
+                <div class="modalheader">
+                    <div class="Xbutton" onclick="hideModals();">&#xE10A;</div>
+                    <div class="subtitle">Split Role</div>
+                </div>
+                <div id="modalSplitRole" class="modalbody">
+                    <div class="formrow" style="width: 47%; float: right;">
+                        <div class="fieldlabel">Current Forecast/Plan</div>
+                        <div>250/300 Hours</div>
+                    </div>
+                    <div class="formrow" style="width: 47%;">
+                        <div class="fieldlabel">Role</div>
+                        <div>Senior Project Manager</div>
+                    </div>
+                    <div class="formrow" style="width: 47%; float: right;">
+                        <div class="fieldlabel">New Role Ending</div>
+                        <div>
+                            <input type="text" id="frmRoleStart" class="fieldinput" style="width:136px" value="25-Jun-2018" />
+                            <div class="calendaricon">&#xE163;</div>
+                        </div>
+                    </div>
+                    <div class="formrow" style="width: 47%;">
+                        <div class="fieldlabel">New Role Starting</div>
+                        <div>
+                            <input type="text" id="frmRoleEnd" class="fieldinput" style="width:136px" value="25-Jun-2018" />
+                            <div class="calendaricon">&#xE163;</div>
+                        </div>
+                    </div>
+                    <div class="formrow">
+                        <div class="fieldlabel">Hours to Move</div>
+                        <div>
+                            <input type="text" id="frmHoursToSplit" class="fieldinput" style="width:50px;" value="" />
+                            <div class="dataitemsmaller dataitemlight">Cannot exceed 50 hours.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modalfooter" style="text-align:right;">
+                    <button class="secondarybutton" onclick="hideModals();">Cancel</button>
+                    <button class="primarybutton" onclick="hideModals();">Split</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="modalBulkUpdate" class="modalbg" style="display:none;">
+            <div class="modalbox">
+                <div class="modalheader">
+                    <div class="Xbutton" onclick="hideModals();">&#xE10A;</div>
+                    <div class="subtitle">Bulk Update</div>
+                    <div>
+                        <button id="pivByRange" class="pivot pivotactive" onclick="showBUsection('ByRange');">By date range</button>
+                        <button id="pivByWeek" class="pivot" onclick="showBUsection('ByWeek');">By week</button>
+                        <script type="text/javascript">
+                            function showBUsection(s) {
+                                switch (s) {
+                                    case "ByRange":
+                                        document.getElementById("modalBulkUpdate1Body").style.display = "";
+                                        document.getElementById("modalBulkUpdate2Body").style.display = "none";
+
+                                        document.getElementById("pivByRange").className = "pivot pivotactive";
+                                        document.getElementById("pivByWeek").className = "pivot";
+                                        break;
+                                    case "ByWeek":
+                                        document.getElementById("modalBulkUpdate1Body").style.display = "none";
+                                        document.getElementById("modalBulkUpdate2Body").style.display = "";
+
+                                        document.getElementById("pivByRange").className = "pivot";
+                                        document.getElementById("pivByWeek").className = "pivot pivotactive";
+                                        break;
+                                }
+                            }
+                        </script>
+                    </div>
+                </div>
+                <div id="modalBulkUpdate1Body" class="modalbody">
+                    <div class="formrow">
+                        <div class="fieldlabel">Project Duration</div>
+                        <div>
+                            01-Mar-2018 to 30-Sep-2018
+                        </div>
+                    </div>
+                    <div class="formrow" style="width: 47%; float: right;">
+                        <div class="fieldlabel">Week Starting</div>
+                        <div>
+                            <input type="text" id="frmWkStart" class="fieldinput" style="width:136px" value="25-Jun-2018" />
+                            <div class="calendaricon">&#xE163;</div>
+                        </div>
+                    </div>
+                    <div class="formrow" style="width: 47%;">
+                        <div class="fieldlabel">Week Ending</div>
+                        <div>
+                            <input type="text" id="frmWkEnd" class="fieldinput" style="width:136px" value="25-Jun-2018" />
+                            <div class="calendaricon">&#xE163;</div>
+                        </div>
+                    </div>
+                    <div class="formrow">
+                        <div class="fieldlabel">Hours per Week</div>
+                        <div>
+                            <input type="radio" name="rdoSpread" id="rdoSpreadCustom" checked /> <label for="rdoSpreadCustom">Specify hours per week:</label> <input type="text" id="frmHoursPerWeek" class="fieldinput" style="width:50px;" value="40" />
+                        </div>
+                        <div>
+                            <input type="radio" name="rdoSpread" id="rdoSpreadAuto" /> <label for="rdoSpreadAuto">Spread planned hours evenly across project duration (36.6 hours/week)</label>
+                        </div>
+                    </div>
+                </div>
+                <div id="modalBulkUpdate2Body" class="modalbody" style="display:none;">
+                    <div class="formrow">
+                        <div class="fieldlabel">Project Duration</div>
+                        <div>
+                            01-Mar-2018 to 30-Sep-2018
+                        </div>
+                    </div>
+                    <div class="formrow">
+                        <table class="datatable">
+                            <thead>
+                                <tr>
+                                    <th>Week Starting</th>
+                                    <th>Hours per Week</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>01-Mar-2018</td>
+                                    <td><input type="text" id="frmHoursPerWeek" class="fieldinput" style="width:50px;" value="40" /></td>
+                                </tr>
+                                <tr>
+                                    <td>08-Mar-2018</td>
+                                    <td><input type="text" id="frmHoursPerWeek" class="fieldinput" style="width:50px;" value="40" /></td>
+                                </tr>
+                                <tr>
+                                    <td>15-Mar-2018</td>
+                                    <td><input type="text" id="frmHoursPerWeek" class="fieldinput" style="width:50px;" value="40" /></td>
+                                </tr>
+                                <tr>
+                                    <td>22-Mar-2018</td>
+                                    <td><input type="text" id="frmHoursPerWeek" class="fieldinput" style="width:50px;" value="40" /></td>
+                                </tr>
+                                <tr>
+                                    <td>29-Mar-2018</td>
+                                    <td><input type="text" id="frmHoursPerWeek" class="fieldinput" style="width:50px;" value="40" /></td>
+                                </tr>
+                                <tr>
+                                    <td>06-Apr-2018</td>
+                                    <td><input type="text" id="frmHoursPerWeek" class="fieldinput" style="width:50px;" value="40" /></td>
+                                </tr>
+                                <tr>
+                                    <td>13-Apr-2018</td>
+                                    <td><input type="text" id="frmHoursPerWeek" class="fieldinput" style="width:50px;" value="40" /></td>
+                                </tr>
+                                <tr>
+                                    <td>20-Apr-2018</td>
+                                    <td><input type="text" id="frmHoursPerWeek" class="fieldinput" style="width:50px;" value="40" /></td>
+                                </tr>
+                                <tr>
+                                    <td>27-Apr-2018</td>
+                                    <td><input type="text" id="frmHoursPerWeek" class="fieldinput" style="width:50px;" value="40" /></td>
+                                </tr>
+                                <tr>
+                                    <td>04-May-2018</td>
+                                    <td><input type="text" id="frmHoursPerWeek" class="fieldinput" style="width:50px;" value="40" /></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modalfooter" style="text-align:right;">
+                    <button class="secondarybutton" onclick="hideModals();">Cancel</button>
+                    <button class="primarybutton" onclick="hideModals();">Update</button>
                 </div>
             </div>
         </div>
@@ -722,14 +903,8 @@
                                         <tr>
                                             <td colspan="3" class="tdbordernobottom tdbordernoright"></td>
                                             <td class="dataitemsmaller tdactiveweek tdbordernobottom tdbordernoright tdbordernoleft dataitembold"><a href="#">&lt; Prev</a></td>
-                                            <td colspan="7" class="tdcenter dataitemsmaller tdactiveweek tdbordernobottom tdbordernoleft tdbordernoright dataitembold"><a href="#">12-May &ndash; 13-Jul</a></td>
+                                            <td colspan="10" class="tdcenter dataitemsmaller tdactiveweek tdbordernobottom tdbordernoleft tdbordernoright dataitembold"><a href="#">12-May &ndash; 10-Aug</a></td>
                                             <td class="dataitemsmaller tdactiveweek tdright tdbordernobottom tdbordernoleft dataitembold"><a href="#">Next &gt;</a></td>
-                                        </tr>
-                                        <tr style="display:none;">
-                                            <td colspan="3" class="tdbordernobottom"></td>
-                                            <td colspan="4" class="tdcenter dataitembold dataitemsmaller thdarkgrey">ACTUALS</td>
-                                            <td class="tdcenter dataitembold dataitemsmaller tdactiveweek">CURRENT</td>
-                                            <td colspan="4" class="tdcenter dataitembold dataitemsmaller thmiddleblue">FORECAST</td>
                                         </tr>
                                         <tr>
                                             <th style="width:50px;border-left: 1px solid rgba(0,0,0,0.1);">EBS Description</th>
@@ -744,6 +919,9 @@
                                             <th class="tdcenter" style="width:5%">Week 52<p class="dataitemsmallest">30-Jun<br />06-Jul</p></th>
                                             <th class="tdcenter" style="width:5%">Week 01<p class="dataitemsmallest">07-Jul<br />13-Jul</p></th>
                                             <th class="tdcenter" style="width:5%">Week 02<p class="dataitemsmallest">14-Jul<br />20-Jul</p></th>
+                                            <th class="tdcenter" style="width:5%">Week 03<p class="dataitemsmallest">21-Jul<br />27-Jul</p></th>
+                                            <th class="tdcenter" style="width:5%">Week 04<p class="dataitemsmallest">28-Jul<br />03-Aug</p></th>
+                                            <th class="tdcenter" style="width:5%">Week 05<p class="dataitemsmallest">04-Aug<br />10-Aug</p></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -770,6 +948,9 @@
                                             <td class="tdright tdtotal">128<div class="dataitemlighter">88</div></td>
                                             <td class="tdright tdtotal">128<div class="dataitemlighter">88</div></td>
                                             <td class="tdright tdtotal">128<div class="dataitemlighter">88</div></td>
+                                            <td class="tdright tdtotal">128<div class="dataitemlighter">88</div></td>
+                                            <td class="tdright tdtotal">128<div class="dataitemlighter">88</div></td>
+                                            <td class="tdright tdtotal">128<div class="dataitemlighter">88</div></td>
                                         </tr>
                                         <tr class="trsubrows" id="trDetailCost_1">
                                             <td class="tdwhite">&nbsp;</td>
@@ -790,6 +971,9 @@
                                             <td class="tdright">20,557<div class="dataitemlighter">14,203</div></td>
                                             <td class="tdright">20,557<div class="dataitemlighter">14,203</div></td>
                                             <td class="tdright">20,557<div class="dataitemlighter">14,203</div></td>
+                                            <td class="tdright">20,557<div class="dataitemlighter">14,203</div></td>
+                                            <td class="tdright">20,557<div class="dataitemlighter">14,203</div></td>
+                                            <td class="tdright">20,557<div class="dataitemlighter">14,203</div></td>
                                         </tr>
                                         <tr class="trsubrows" id="trDetailRevenue_1">
                                             <td class="tdwhite">&nbsp;</td>
@@ -807,6 +991,9 @@
                                             <td class="tdright">28,261<div class="dataitemlighter">28,261</div></td>
                                             <td class="tdright tdactiveweek">28,261<div class="dataitemlighter">28,261</div></td>
                                             <td class="tdright">28,261<div class="dataitemlighter">24,777</div></td>
+                                            <td class="tdright">28,261<div class="dataitemlighter">19,419</div></td>
+                                            <td class="tdright">28,261<div class="dataitemlighter">19,419</div></td>
+                                            <td class="tdright">28,261<div class="dataitemlighter">19,419</div></td>
                                             <td class="tdright">28,261<div class="dataitemlighter">19,419</div></td>
                                             <td class="tdright">28,261<div class="dataitemlighter">19,419</div></td>
                                             <td class="tdright">28,261<div class="dataitemlighter">19,419</div></td>
@@ -835,6 +1022,9 @@
                                             <td class="tdright tdtotal">128<div class="dataitemlighter">88</div></td>
                                             <td class="tdright tdtotal">128<div class="dataitemlighter">88</div></td>
                                             <td class="tdright tdtotal">128<div class="dataitemlighter">88</div></td>
+                                            <td class="tdright tdtotal">128<div class="dataitemlighter">88</div></td>
+                                            <td class="tdright tdtotal">128<div class="dataitemlighter">88</div></td>
+                                            <td class="tdright tdtotal">128<div class="dataitemlighter">88</div></td>
                                         </tr>
                                         <tr class="trsubrows" id="trDetailCost_2">
                                             <td class="tdwhite">&nbsp;</td>
@@ -855,6 +1045,9 @@
                                             <td class="tdright">20,557<div class="dataitemlighter">14,203</div></td>
                                             <td class="tdright">20,557<div class="dataitemlighter">14,203</div></td>
                                             <td class="tdright">20,557<div class="dataitemlighter">14,203</div></td>
+                                            <td class="tdright">20,557<div class="dataitemlighter">14,203</div></td>
+                                            <td class="tdright">20,557<div class="dataitemlighter">14,203</div></td>
+                                            <td class="tdright">20,557<div class="dataitemlighter">14,203</div></td>
                                         </tr>
                                         <tr class="trsubrows" id="trDetailRevenue_2">
                                             <td class="tdwhite">&nbsp;</td>
@@ -872,6 +1065,9 @@
                                             <td class="tdright">28,261<div class="dataitemlighter">28,261</div></td>
                                             <td class="tdright tdactiveweek">28,261<div class="dataitemlighter">28,261</div></td>
                                             <td class="tdright">28,261<div class="dataitemlighter">24,777</div></td>
+                                            <td class="tdright">28,261<div class="dataitemlighter">19,419</div></td>
+                                            <td class="tdright">28,261<div class="dataitemlighter">19,419</div></td>
+                                            <td class="tdright">28,261<div class="dataitemlighter">19,419</div></td>
                                             <td class="tdright">28,261<div class="dataitemlighter">19,419</div></td>
                                             <td class="tdright">28,261<div class="dataitemlighter">19,419</div></td>
                                             <td class="tdright">28,261<div class="dataitemlighter">19,419</div></td>
@@ -896,6 +1092,9 @@
                                             <td class="tdright tdtotal tdlightestgrey">120<div class="dataitemlighter">120</div></td>
                                             <td class="tdright tdtotal tdactiveweek">120<div class="dataitemlighter">120</div></td>
                                             <td class="tdright tdtotal">120<div class="dataitemlighter">104</div></td>
+                                            <td class="tdright tdtotal">120<div class="dataitemlighter">80</div></td>
+                                            <td class="tdright tdtotal">120<div class="dataitemlighter">80</div></td>
+                                            <td class="tdright tdtotal">120<div class="dataitemlighter">80</div></td>
                                             <td class="tdright tdtotal">120<div class="dataitemlighter">80</div></td>
                                             <td class="tdright tdtotal">120<div class="dataitemlighter">80</div></td>
                                             <td class="tdright tdtotal">120<div class="dataitemlighter">80</div></td>
@@ -924,6 +1123,9 @@
                                             <td class="tdright"><span id="hrs_R1_W7">40</span><input id="txt_R1_W7" type="text" value="40" class="fctext" style="display:none;" /><div class="dataitemlighter">40</div></td>
                                             <td class="tdright"><span id="hrs_R1_W8">40</span><input id="txt_R1_W8" type="text" value="40" class="fctext" style="display:none;" /><div class="dataitemlighter">40</div></td>
                                             <td class="tdright"><span id="hrs_R1_W9">40</span><input id="txt_R1_W9" type="text" value="40" class="fctext" style="display:none;" /><div class="dataitemlighter">40</div></td>
+                                            <td class="tdright"><span id="hrs_R1_W10">40</span><input id="txt_R1_W10" type="text" value="40" class="fctext" style="display:none;" /><div class="dataitemlighter">40</div></td>
+                                            <td class="tdright"><span id="hrs_R1_W11">40</span><input id="txt_R1_W11" type="text" value="40" class="fctext" style="display:none;" /><div class="dataitemlighter">40</div></td>
+                                            <td class="tdright"><span id="hrs_R1_W12">40</span><input id="txt_R1_W12" type="text" value="40" class="fctext" style="display:none;" /><div class="dataitemlighter">40</div></td>
                                         </tr>
                                         <tr class="trsubrows" id="rowResource_1_1" style="display:none;">
                                             <td class="tdwhite">&nbsp;</td>
@@ -944,6 +1146,9 @@
                                             <td class="tdright">6,402<div class="dataitemlighter">6,402</div></td>
                                             <td class="tdright">6,402<div class="dataitemlighter">6,402</div></td>
                                             <td class="tdright">6,402<div class="dataitemlighter">6,402</div></td>
+                                            <td class="tdright">6,402<div class="dataitemlighter">6,402</div></td>
+                                            <td class="tdright">6,402<div class="dataitemlighter">6,402</div></td>
+                                            <td class="tdright">6,402<div class="dataitemlighter">6,402</div></td>
                                         </tr>
                                         <tr class="trsubrows" id="rowResource_1_2" style="display:none;">
                                             <td class="tdwhite">&nbsp;</td>
@@ -960,6 +1165,9 @@
                                             <td class="tdright">8,816<div class="dataitemlighter">8,816</div></td>
                                             <td class="tdright">8,816<div class="dataitemlighter">8,816</div></td>
                                             <td class="tdactiveweek tdright">8,816<div class="dataitemlighter">8,816</div></td>
+                                            <td class="tdright">8,816<div class="dataitemlighter">8,816</div></td>
+                                            <td class="tdright">8,816<div class="dataitemlighter">8,816</div></td>
+                                            <td class="tdright">8,816<div class="dataitemlighter">8,816</div></td>
                                             <td class="tdright">8,816<div class="dataitemlighter">8,816</div></td>
                                             <td class="tdright">8,816<div class="dataitemlighter">8,816</div></td>
                                             <td class="tdright">8,816<div class="dataitemlighter">8,816</div></td>
@@ -989,6 +1197,10 @@
                                             <td class="tdright"><span id="hrs_R2_W7">40</span><input id="txt_R2_W7" type="text" value="40" class="fctext" style="display:none;" /><div class="dataitemlighter">40</div></td>
                                             <td class="tdright"><span id="hrs_R2_W8">40</span><input id="txt_R2_W8" type="text" value="40" class="fctext" style="display:none;" /><div class="dataitemlighter">40</div></td>
                                             <td class="tdright"><span id="hrs_R2_W9">40</span><input id="txt_R2_W9" type="text" value="40" class="fctext" style="display:none;" /><div class="dataitemlighter">40</div></td>
+                                            <td class="tdright"><span id="hrs_R2_W10">40</span><input id="txt_R2_W10" type="text" value="40" class="fctext" style="display:none;" /><div class="dataitemlighter">40</div></td>
+                                            <td class="tdright"><span id="hrs_R2_W11">40</span><input id="txt_R2_W11" type="text" value="40" class="fctext" style="display:none;" /><div class="dataitemlighter">40</div></td>
+                                            <td class="tdright"><span id="hrs_R2_W12">40</span><input id="txt_R2_W12" type="text" value="40" class="fctext" style="display:none;" /><div class="dataitemlighter">40</div></td>
+
                                         </tr>
                                         <tr class="trsubrows" id="rowResource_2_1" style="display:none;">
                                             <td class="tdwhite">&nbsp;</td>
@@ -1009,6 +1221,9 @@
                                             <td class="tdright">6,402<div class="dataitemlighter">6,402</div></td>
                                             <td class="tdright">6,402<div class="dataitemlighter">6,402</div></td>
                                             <td class="tdright">6,402<div class="dataitemlighter">6,402</div></td>
+                                            <td class="tdright">6,402<div class="dataitemlighter">6,402</div></td>
+                                            <td class="tdright">6,402<div class="dataitemlighter">6,402</div></td>
+                                            <td class="tdright">6,402<div class="dataitemlighter">6,402</div></td>
                                         </tr>
                                         <tr class="trsubrows" id="rowResource_2_2" style="display:none;">
                                             <td class="tdwhite">&nbsp;</td>
@@ -1025,6 +1240,9 @@
                                             <td class="tdright">8,816<div class="dataitemlighter">8,816</div></td>
                                             <td class="tdright">8,816<div class="dataitemlighter">8,816</div></td>
                                             <td class="tdactiveweek tdright">8,816<div class="dataitemlighter">8,816</div></td>
+                                            <td class="tdright">8,816<div class="dataitemlighter">8,816</div></td>
+                                            <td class="tdright">8,816<div class="dataitemlighter">8,816</div></td>
+                                            <td class="tdright">8,816<div class="dataitemlighter">8,816</div></td>
                                             <td class="tdright">8,816<div class="dataitemlighter">8,816</div></td>
                                             <td class="tdright">8,816<div class="dataitemlighter">8,816</div></td>
                                             <td class="tdright">8,816<div class="dataitemlighter">8,816</div></td>
@@ -1054,6 +1272,9 @@
                                             <td class="tdright"><span id="hrs_R3_W7">40</span><input id="txt_R3_W7" type="text" value="40" class="fctext" style="display:none;" /><div class="dataitemlighter">0</div></td>
                                             <td class="tdright"><span id="hrs_R3_W8">40</span><input id="txt_R3_W8" type="text" value="40" class="fctext" style="display:none;" /><div class="dataitemlighter">0</div></td>
                                             <td class="tdright"><span id="hrs_R3_W9">40</span><input id="txt_R3_W9" type="text" value="40" class="fctext" style="display:none;" /><div class="dataitemlighter">0</div></td>
+                                            <td class="tdright"><span id="hrs_R3_W10">40</span><input id="txt_R3_W10" type="text" value="40" class="fctext" style="display:none;" /><div class="dataitemlighter">0</div></td>
+                                            <td class="tdright"><span id="hrs_R3_W11">40</span><input id="txt_R3_W11" type="text" value="40" class="fctext" style="display:none;" /><div class="dataitemlighter">0</div></td>
+                                            <td class="tdright"><span id="hrs_R3_W12">40</span><input id="txt_R3_W12" type="text" value="40" class="fctext" style="display:none;" /><div class="dataitemlighter">0</div></td>
                                         </tr>
                                         <tr class="trsubrows" id="rowResource_3_1" style="display:none;">
                                             <td class="tdwhite">&nbsp;</td>
@@ -1074,6 +1295,9 @@
                                             <td class="tdright">4,805<div class="dataitemlighter">0</div></td>
                                             <td class="tdright">4,805<div class="dataitemlighter">0</div></td>
                                             <td class="tdright">4,805<div class="dataitemlighter">0</div></td>
+                                            <td class="tdright">4,805<div class="dataitemlighter">0</div></td>
+                                            <td class="tdright">4,805<div class="dataitemlighter">0</div></td>
+                                            <td class="tdright">4,805<div class="dataitemlighter">0</div></td>
                                         </tr>
                                         <tr class="trsubrows" id="rowResource_3_2" style="display:none;">
                                             <td class="tdwhite">&nbsp;</td>
@@ -1090,6 +1314,9 @@
                                             <td class="tdright">0<div class="dataitemlighter">0</div></td>
                                             <td class="tdright">0<div class="dataitemlighter">0</div></td>
                                             <td class="tdright tdactiveweek">0<div class="dataitemlighter">0</div></td>
+                                            <td class="tdright">0<div class="dataitemlighter">0</div></td>
+                                            <td class="tdright">0<div class="dataitemlighter">0</div></td>
+                                            <td class="tdright">0<div class="dataitemlighter">0</div></td>
                                             <td class="tdright">0<div class="dataitemlighter">0</div></td>
                                             <td class="tdright">0<div class="dataitemlighter">0</div></td>
                                             <td class="tdright">0<div class="dataitemlighter">0</div></td>
@@ -1119,6 +1346,9 @@
                                             <td class="tdright"><span id="hrs_R4_W7">0</span><input id="txt_R4_W7" type="text" value="0" class="fctext" style="display:none;" /><div class="dataitemlighter">0</div></td>
                                             <td class="tdright"><span id="hrs_R4_W8">30</span><input id="txt_R4_W8" type="text" value="30" class="fctext" style="display:none;" /><div class="dataitemlighter">0</div></td>
                                             <td class="tdright"><span id="hrs_R4_W9">40</span><input id="txt_R4_W9" type="text" value="40" class="fctext" style="display:none;" /><div class="dataitemlighter">0</div></td>
+                                            <td class="tdright"><span id="hrs_R4_W11">40</span><input id="txt_R4_W10" type="text" value="40" class="fctext" style="display:none;" /><div class="dataitemlighter">0</div></td>
+                                            <td class="tdright"><span id="hrs_R4_W11">40</span><input id="txt_R4_W11" type="text" value="40" class="fctext" style="display:none;" /><div class="dataitemlighter">0</div></td>
+                                            <td class="tdright"><span id="hrs_R4_W12">40</span><input id="txt_R4_W12" type="text" value="40" class="fctext" style="display:none;" /><div class="dataitemlighter">0</div></td>
                                         </tr>
                                         <tr class="trsubrows" id="rowResource_4_1" style="display:none;">
                                             <td class="tdwhite">&nbsp;</td>
@@ -1138,6 +1368,9 @@
                                             <td class="tdright">0<div class="dataitemlighter">0</div></td>
                                             <td class="tdright">0<div class="dataitemlighter">0</div></td>
                                             <td class="tdright">4,955<div class="dataitemlighter">0</div></td>
+                                            <td class="tdright">6,402<div class="dataitemlighter">0</div></td>
+                                            <td class="tdright">6,402<div class="dataitemlighter">0</div></td>
+                                            <td class="tdright">6,402<div class="dataitemlighter">0</div></td>
                                             <td class="tdright">6,402<div class="dataitemlighter">0</div></td>
                                         </tr>
                                         <tr class="trsubrows" id="rowResource_4_2" style="display:none;">
@@ -1159,6 +1392,9 @@
                                             <td class="tdright">0<div class="dataitemlighter">0</div></td>
                                             <td class="tdright">6,936<div class="dataitemlighter">0</div></td>
                                             <td class="tdright">8,816<div class="dataitemlighter">0</div></td>
+                                            <td class="tdright">8,816<div class="dataitemlighter">0</div></td>
+                                            <td class="tdright">8,816<div class="dataitemlighter">0</div></td>
+                                            <td class="tdright">8,816<div class="dataitemlighter">0</div></td>
                                         </tr>
                                         <tr id="trTask_2">
                                             <td colspan="2" class="tdindentL_2">
@@ -1179,6 +1415,9 @@
                                             <td class="tdright tdlightestgrey tdtotal">8<div class="dataitemlighter">8</div></td>
                                             <td class="tdright tdlightestgrey tdtotal">8<div class="dataitemlighter">8</div></td>
                                             <td class="tdright tdtotal tdactiveweek">8<div class="dataitemlighter">8</div></td>
+                                            <td class="tdright tdtotal">8<div class="dataitemlighter">8</div></td>
+                                            <td class="tdright tdtotal">8<div class="dataitemlighter">8</div></td>
+                                            <td class="tdright tdtotal">8<div class="dataitemlighter">8</div></td>
                                             <td class="tdright tdtotal">8<div class="dataitemlighter">8</div></td>
                                             <td class="tdright tdtotal">8<div class="dataitemlighter">8</div></td>
                                             <td class="tdright tdtotal">8<div class="dataitemlighter">8</div></td>
@@ -1208,6 +1447,9 @@
                                             <td class="tdright"><span id="hrs_R5_W7">8</span><input id="txt_R5_W7" type="text" value="8" class="fctext" style="display:none;" /><div class="dataitemlighter">8</div></td>
                                             <td class="tdright"><span id="hrs_R5_W8">8</span><input id="txt_R5_W8" type="text" value="8" class="fctext" style="display:none;" /><div class="dataitemlighter">8</div></td>
                                             <td class="tdright"><span id="hrs_R5_W9">8</span><input id="txt_R5_W9" type="text" value="8" class="fctext" style="display:none;" /><div class="dataitemlighter">8</div></td>
+                                            <td class="tdright"><span id="hrs_R5_W10">8</span><input id="txt_R5_W10" type="text" value="8" class="fctext" style="display:none;" /><div class="dataitemlighter">8</div></td>
+                                            <td class="tdright"><span id="hrs_R5_W11">8</span><input id="txt_R5_W11" type="text" value="8" class="fctext" style="display:none;" /><div class="dataitemlighter">8</div></td>
+                                            <td class="tdright"><span id="hrs_R5_W12">8</span><input id="txt_R5_W12" type="text" value="8" class="fctext" style="display:none;" /><div class="dataitemlighter">8</div></td>
                                         </tr>
                                         <tr class="trsubrows" id="rowResource_5_1" style="display:none;">
                                             <td class="tdwhite">&nbsp;</td>
@@ -1228,6 +1470,9 @@
                                             <td class="tdright">1,302<div class="dataitemlighter">1,302</div></td>
                                             <td class="tdright">1,302<div class="dataitemlighter">1,302</div></td>
                                             <td class="tdright">1,302<div class="dataitemlighter">1,302</div></td>
+                                            <td class="tdright">1,302<div class="dataitemlighter">1,302</div></td>
+                                            <td class="tdright">1,302<div class="dataitemlighter">1,302</div></td>
+                                            <td class="tdright">1,302<div class="dataitemlighter">1,302</div></td>
                                         </tr>
                                         <tr class="trsubrows" id="rowResource_5_2" style="display:none;">
                                             <td class="tdwhite">&nbsp;</td>
@@ -1244,6 +1489,9 @@
                                             <td class="tdright">1,766<div class="dataitemlighter">1,766</div></td>
                                             <td class="tdright">1,766<div class="dataitemlighter">1,766</div></td>
                                             <td class="tdactiveweek tdright">1,766<div class="dataitemlighter">1,766</div></td>
+                                            <td class="tdright">1,766<div class="dataitemlighter">1,766</div></td>
+                                            <td class="tdright">1,766<div class="dataitemlighter">1,766</div></td>
+                                            <td class="tdright">1,766<div class="dataitemlighter">1,766</div></td>
                                             <td class="tdright">1,766<div class="dataitemlighter">1,766</div></td>
                                             <td class="tdright">1,766<div class="dataitemlighter">1,766</div></td>
                                             <td class="tdright">1,766<div class="dataitemlighter">1,766</div></td>
