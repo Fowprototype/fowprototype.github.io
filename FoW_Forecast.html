@@ -249,19 +249,269 @@
                 }
             }
 
+            function showBulkUpdateModal() {
+                document.getElementById('modalBulkUpdate').style.display = "";
+            }
+
+            function showResourceDetailsModal() {
+                document.getElementById('modalResourceDetails').style.display = "";
+            }
+
+            function hideModals() {
+                var m = document.getElementsByClassName('modalbg');
+                var i;
+                for (i = 0; i < m.length; i++) {
+                    m[i].style.display = "none";
+                }
+            }
+
         </script>
     </head>
     <body>
         <div id="divMenuOverflowList" class="menuOverflowList">
-            <p><a href="#">Bulk forecast...</a></p>
-            <p><a href="#">Resource details</a></p>
+            <p><a onclick="showBulkUpdateModal();" href="#">Bulk forecast</a></p>
+            <p><a onclick="showResourceDetailsModal();" href="#">Resource details</a></p>
             <div style="background:#f0f0f0;height:1px;width:100%;margin-top:10px;margin-bottom:10px;"></div>
             <p><a href="#">Copy row values</a></p>
             <p><a href="#">Paste row values</a></p>
         </div>
+
         <div id="divTooltipHelp" class="menuTooltipHelp">
             <p>This is some helpful text that defines what this data represents. Please consult the requirements for the final text.</p>
         </div>
+
+        <div id="modalBulkUpdate" class="modalbg" style="display:none;">
+            <div class="modalbox">
+                <div class="modalheader">
+                    <div class="Xbutton" onclick="hideModals();">&#xE10A;</div>
+                    <div class="subtitle">Bulk Update</div>
+                    <div>
+                        <button id="pivByRange" class="pivot pivotactive" onclick="showBUsection('ByRange');">By date range</button>
+                        <button id="pivByWeek" class="pivot" onclick="showBUsection('ByWeek');">By week</button>
+                        <script type="text/javascript">
+                            function showBUsection(s) {
+                                switch (s) {
+                                    case "ByRange":
+                                        document.getElementById("modalBulkUpdate1Body").style.display = "";
+                                        document.getElementById("modalBulkUpdate2Body").style.display = "none";
+
+                                        document.getElementById("pivByRange").className = "pivot pivotactive";
+                                        document.getElementById("pivByWeek").className = "pivot";
+                                        break;
+                                    case "ByWeek":
+                                        document.getElementById("modalBulkUpdate1Body").style.display = "none";
+                                        document.getElementById("modalBulkUpdate2Body").style.display = "";
+
+                                        document.getElementById("pivByRange").className = "pivot";
+                                        document.getElementById("pivByWeek").className = "pivot pivotactive";
+                                        break;
+                                }
+                            }
+                        </script>
+                    </div>
+                </div>
+                <div id="modalBulkUpdate1Body" class="modalbody">
+                    <div class="formrow">
+                        <div class="fieldlabel">Project Duration</div>
+                        <div>
+                            01-Mar-2018 to 30-Sep-2018
+                        </div>
+                    </div>
+                    <div class="formrow" style="width: 47%; float: right;">
+                        <div class="fieldlabel">Week Starting</div>
+                        <div>
+                            <input type="text" id="frmWkStart" class="fieldinput" style="width:136px" value="25-Jun-2018" />
+                            <div class="calendaricon">&#xE163;</div>
+                        </div>
+                    </div>
+                    <div class="formrow" style="width: 47%;">
+                        <div class="fieldlabel">Week Ending</div>
+                        <div>
+                            <input type="text" id="frmWkEnd" class="fieldinput" style="width:136px" value="25-Jun-2018" />
+                            <div class="calendaricon">&#xE163;</div>
+                        </div>
+                    </div>
+                    <div class="formrow">
+                        <div class="fieldlabel">Hours per Week</div>
+                        <div>
+                            <input type="radio" name="rdoSpread" id="rdoSpreadCustom" checked /> <label for="rdoSpreadCustom">Specify hours per week:</label> <input type="text" id="frmHoursPerWeek" class="fieldinput" style="width:50px;" value="40" />
+                        </div>
+                        <div>
+                            <input type="radio" name="rdoSpread" id="rdoSpreadAuto" /> <label for="rdoSpreadAuto">Spread planned hours evenly across project duration (36.6 hours/week)</label>
+                        </div>
+                    </div>
+                </div>
+                <div id="modalBulkUpdate2Body" class="modalbody" style="display:none;">
+                    <div class="formrow">
+                        <div class="fieldlabel">Project Duration</div>
+                        <div>
+                            01-Mar-2018 to 30-Sep-2018
+                        </div>
+                    </div>
+                    <div class="formrow">
+                        <table class="datatable">
+                            <thead>
+                                <tr>
+                                    <th>Week Starting</th>
+                                    <th>Hours per Week</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>01-Mar-2018</td>
+                                    <td><input type="text" id="frmHoursPerWeek" class="fieldinput" style="width:50px;" value="40" /></td>
+                                </tr>
+                                <tr>
+                                    <td>08-Mar-2018</td>
+                                    <td><input type="text" id="frmHoursPerWeek" class="fieldinput" style="width:50px;" value="40" /></td>
+                                </tr>
+                                <tr>
+                                    <td>15-Mar-2018</td>
+                                    <td><input type="text" id="frmHoursPerWeek" class="fieldinput" style="width:50px;" value="40" /></td>
+                                </tr>
+                                <tr>
+                                    <td>22-Mar-2018</td>
+                                    <td><input type="text" id="frmHoursPerWeek" class="fieldinput" style="width:50px;" value="40" /></td>
+                                </tr>
+                                <tr>
+                                    <td>29-Mar-2018</td>
+                                    <td><input type="text" id="frmHoursPerWeek" class="fieldinput" style="width:50px;" value="40" /></td>
+                                </tr>
+                                <tr>
+                                    <td>06-Apr-2018</td>
+                                    <td><input type="text" id="frmHoursPerWeek" class="fieldinput" style="width:50px;" value="40" /></td>
+                                </tr>
+                                <tr>
+                                    <td>13-Apr-2018</td>
+                                    <td><input type="text" id="frmHoursPerWeek" class="fieldinput" style="width:50px;" value="40" /></td>
+                                </tr>
+                                <tr>
+                                    <td>20-Apr-2018</td>
+                                    <td><input type="text" id="frmHoursPerWeek" class="fieldinput" style="width:50px;" value="40" /></td>
+                                </tr>
+                                <tr>
+                                    <td>27-Apr-2018</td>
+                                    <td><input type="text" id="frmHoursPerWeek" class="fieldinput" style="width:50px;" value="40" /></td>
+                                </tr>
+                                <tr>
+                                    <td>04-May-2018</td>
+                                    <td><input type="text" id="frmHoursPerWeek" class="fieldinput" style="width:50px;" value="40" /></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modalfooter" style="text-align:right;">
+                    <button class="secondarybutton" onclick="hideModals();">Cancel</button>
+                    <button class="primarybutton" onclick="hideModals();">Update</button>
+                </div>
+            </div>
+        </div>
+        <div id="modalResourceDetails" class="modalbg" style="display:none;">
+            <div class="modalbox">
+                <div class="modalheader">
+                    <div class="Xbutton" onclick="hideModals();">&#xE10A;</div>
+                    <div class="subtitle">Resource Details</div>
+                </div>
+                <div id="modalSplitRole" class="modalbody">
+                    <div class="formrow">
+                        <table class="datatable">
+                            <tr>
+                                <td class="tdFTE tdbordernobottom">
+                                    <p class="dataitembold">Sally Johnson</p>
+                                    <p class="dataitemsmall">SENIOR PROGRAM MANAGER</p>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="formrow" style="width: 47%; float: right;">
+                        <div class="fieldlabel">Resource Type</div>
+                        <div>Full Time</div>
+                    </div>
+                    <div class="formrow" style="width: 47%;">
+                        <div class="fieldlabel">Role</div>
+                        <div>Senior Project Manager</div>
+                    </div>
+                    <div class="formrow" style="width: 47%; float: right;">
+                        <div class="fieldlabel">Business Partner ID</div>
+                        <div>123456789</div>
+                    </div>
+                    <div class="formrow" style="width: 47%;">
+                        <div class="fieldlabel">GRM Demand ID</div>
+                        <div>123456789</div>
+                    </div>
+                    <div class="formrow" style="width: 47%; float: right;">
+                        <div class="fieldlabel">Bill Rate</div>
+                        <div>220 USD/hr</div>
+                    </div>
+                    <div class="formrow" style="width: 47%;">
+                        <div class="fieldlabel">Cost Rate (since 01-Mar-2018)</div>
+                        <div>180 USD/hr</div>
+                    </div>
+                    <div class="formrow" style="width: 47%; float: right;">
+                        <div class="fieldlabel">Billing Role ID</div>
+                        <div>123456</div>
+                    </div>
+                    <div class="formrow" style="width: 47%;">
+                        <div class="fieldlabel">Domain</div>
+                        <div>Business Applications</div>
+                    </div>
+                    <div class="formrow" style="width: 47%; float: right;">
+                        <div class="fieldlabel">Resource Location</div>
+                        <div>Toronto, Canada</div>
+                    </div>
+                    <div class="formrow" style="width: 47%;">
+                        <div class="fieldlabel">Delivery Location</div>
+                        <div>Toronto, Canada</div>
+                    </div>
+                    <div class="formrow" style="width: 47%; float: right;">
+                        <div class="fieldlabel">PO Line Item</div>
+                        <div>10</div>
+                    </div>
+                    <div class="formrow" style="width: 47%;">
+                        <div class="fieldlabel">Purchase Order</div>
+                        <div>90001266</div>
+                    </div>
+                    <div class="formrow">
+                        <table class="datatable">
+                            <thead>
+                                <tr>
+                                    <th>Category</th>
+                                    <th class="tdright">Planned</th>
+                                    <th class="tdright">Proposed</th>
+                                    <th class="tdright">Staffed</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Labor (hours)</td>
+                                    <td class="tdright">250</td>
+                                    <td class="tdright">250</td>
+                                    <td class="tdright">210</td>
+                                </tr>
+                                <tr>
+                                    <td>Cost (USD)</td>
+                                    <td class="tdright">45,278</td>
+                                    <td class="tdright">45,278</td>
+                                    <td class="tdright">42,991</td>
+                                </tr>
+                                <tr>
+                                    <td>Revenue (USD)</td>
+                                    <td class="tdright">52,053</td>
+                                    <td class="tdright">52,053</td>
+                                    <td class="tdright">49,226</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modalfooter" style="text-align:right;">
+                    <button class="primarybutton" onclick="hideModals();">Close</button>
+                </div>
+            </div>
+        </div>
+
+
         <div id="divHeader"><div class="middleitem">ESXP &nbsp;|&nbsp; Project Management</div></div>
         <div id="divBody">
             <!-- BEGIN LEFT NAV  -->
@@ -437,6 +687,7 @@
                                     switch (s) {
                                         case "Labor":
                                             document.getElementById("secForecast").style.display = "";
+                                            document.getElementById("divForecastRowOptions").style.display = "";
                                             document.getElementById("secSubconFF").style.display = "none";
                                             document.getElementById("secExpense").style.display = "none";
 
@@ -446,6 +697,7 @@
                                             break;
                                         case "Subcon":
                                             document.getElementById("secForecast").style.display = "none";
+                                            document.getElementById("divForecastRowOptions").style.display = "none";
                                             document.getElementById("secSubconFF").style.display = "";
                                             document.getElementById("secExpense").style.display = "none";
 
@@ -455,6 +707,7 @@
                                             break;
                                         case "Expense":
                                             document.getElementById("secForecast").style.display = "none";
+                                            document.getElementById("divForecastRowOptions").style.display = "none";
                                             document.getElementById("secSubconFF").style.display = "none";
                                             document.getElementById("secExpense").style.display = "";
 
@@ -467,123 +720,125 @@
                             </script>
                         </div>
 
-                        <div id="secForecast">
-                            <div id="divCommandBar">
-                                <button onclick="editForecast();" id="btnEditForecast"><span style="font-family:'Segoe MDL2 Assets';color:rgb(0,108,193);font-size:16px;margin-right:8px;">&#xE70F;</span>Edit forecast</button>
-                                <button onclick="valuateForecast();" id="btnValuate" disabled><span style="font-family:'Segoe MDL2 Assets';color:rgb(0,108,193);font-size:16px;margin-right:8px;">&#xE1CA;</span>Recalculate</button>
-                                <button onclick="saveForecast();" id="btnSave" disabled><span style="font-family:'Segoe MDL2 Assets';color:rgb(0,108,193);font-size:16px;margin-right:8px;">&#xE105;</span>Save</button>
-                                <span style="height:26px;width:1px;background-color:rgba(0,0,0,0.5);margin-top:6px;position:absolute;"></span>
-                                <button onclick="navSummaryTable(3);" id="btnViewPlan" style="margin-left:4px;"><span style="font-family:'Segoe MDL2 Assets';color:rgb(0,108,193);font-size:16px;margin-right:8px;">&#xE1F1;</span>View financial plan</button>
-                                <div style="float:right;padding-top:10px;padding-right:10px;">
-                                    <div>
-                                        <input type="checkbox" id="chkShowCosts" onchange="showCostInDetail();" checked /><label for="chkShowCosts" style="margin-right:15px;">Show Costs</label>
-                                        <input type="checkbox" id="chkShowRevenue" onchange="showRevenueInDetail();" checked /><label for="chkShowRevenue" style="margin-right:15px;">Show Revenue</label>
-                                        <input type="checkbox" id="chkShowResourcesOnly" onchange="showResourcesOnlyInDetail();" /><label for="chkShowResourcesOnly">Show Resources Only</label>
-                                    </div>
+                        <div id="divCommandBar">
+                            <button onclick="editForecast();" id="btnEditForecast"><span style="font-family:'Segoe MDL2 Assets';color:rgb(0,108,193);font-size:16px;margin-right:8px;">&#xE70F;</span>Edit forecast</button>
+                            <button onclick="valuateForecast();" id="btnValuate" disabled><span style="font-family:'Segoe MDL2 Assets';color:rgb(0,108,193);font-size:16px;margin-right:8px;">&#xE1CA;</span>Recalculate</button>
+                            <button onclick="saveForecast();" id="btnSave" disabled><span style="font-family:'Segoe MDL2 Assets';color:rgb(0,108,193);font-size:16px;margin-right:8px;">&#xE105;</span>Save</button>
+                            <span style="height:26px;width:1px;background-color:rgba(0,0,0,0.5);margin-top:6px;position:absolute;"></span>
+                            <button onclick="navSummaryTable(3);" id="btnViewPlan" style="margin-left:4px;"><span style="font-family:'Segoe MDL2 Assets';color:rgb(0,108,193);font-size:16px;margin-right:8px;">&#xE1F1;</span>View financial plan</button>
+                            <div id="divForecastRowOptions" style="float:right;padding-top:10px;padding-right:10px;">
+                                <div>
+                                    <input type="checkbox" id="chkShowCosts" onchange="showCostInDetail();" checked /><label for="chkShowCosts" style="margin-right:15px;">Show Costs</label>
+                                    <input type="checkbox" id="chkShowRevenue" onchange="showRevenueInDetail();" checked /><label for="chkShowRevenue" style="margin-right:15px;">Show Revenue</label>
+                                    <input type="checkbox" id="chkShowResourcesOnly" onchange="showResourcesOnlyInDetail();" /><label for="chkShowResourcesOnly">Show Resources Only</label>
                                 </div>
-                                <script type="text/javascript">
-                                    var showCosts = false;
-                                    var showRevenue = false;
-                                    var showResourcesOnly = false;
-                                    var displaystyle = "";
+                            </div>
+                            <script type="text/javascript">
+                                var showCosts = false;
+                                var showRevenue = false;
+                                var showResourcesOnly = false;
+                                var displaystyle = "";
 
-                                    function showCostInDetail() {
-                                        if (showCosts) {
-                                            displaystyle = "";
-                                            showCosts = false;
-                                        }
-                                        else {
-                                            displaystyle = "none";
-                                            showCosts = true;
-                                        }
+                                function showCostInDetail() {
+                                    if (showCosts) {
+                                        displaystyle = "";
+                                        showCosts = false;
+                                    }
+                                    else {
+                                        displaystyle = "none";
+                                        showCosts = true;
+                                    }
+                                    document.getElementById("trDetailCost_1").style.display = displaystyle;
+                                    document.getElementById("trDetailCost_2").style.display = displaystyle;
+                                    document.getElementById("rowResource_1_1").style.display = displaystyle;
+                                    document.getElementById("rowResource_2_1").style.display = displaystyle;
+                                    document.getElementById("rowResource_3_1").style.display = displaystyle;
+                                    document.getElementById("rowResource_4_1").style.display = displaystyle;
+                                    document.getElementById("rowResource_5_1").style.display = displaystyle;
+                                }
+
+                                function showRevenueInDetail() {
+                                    if (showRevenue) {
+                                        displaystyle = "";
+                                        showRevenue = false;
+                                    }
+                                    else {
+                                        displaystyle = "none";
+                                        showRevenue = true;
+                                    }
+                                    document.getElementById("trDetailRevenue_1").style.display = displaystyle;
+                                    document.getElementById("trDetailRevenue_2").style.display = displaystyle;
+                                    document.getElementById("rowResource_1_2").style.display = displaystyle;
+                                    document.getElementById("rowResource_2_2").style.display = displaystyle;
+                                    document.getElementById("rowResource_3_2").style.display = displaystyle;
+                                    document.getElementById("rowResource_4_2").style.display = displaystyle;
+                                    document.getElementById("rowResource_5_2").style.display = displaystyle;
+                                }
+
+                                function showResourcesOnlyInDetail() {
+                                    if (showResourcesOnly) {
+                                        displaystyle = "";
+                                        showResourcesOnly = false;
+                                    }
+                                    else {
+                                        displaystyle = "none";
+                                        showResourcesOnly = true;
                                         document.getElementById("trDetailCost_1").style.display = displaystyle;
                                         document.getElementById("trDetailCost_2").style.display = displaystyle;
-                                        document.getElementById("rowResource_1_1").style.display = displaystyle;
-                                        document.getElementById("rowResource_2_1").style.display = displaystyle;
-                                        document.getElementById("rowResource_3_1").style.display = displaystyle;
-                                        document.getElementById("rowResource_4_1").style.display = displaystyle;
-                                        document.getElementById("rowResource_5_1").style.display = displaystyle;
-                                    }
-
-                                    function showRevenueInDetail() {
-                                        if (showRevenue) {
-                                            displaystyle = "";
-                                            showRevenue = false;
-                                        }
-                                        else {
-                                            displaystyle = "none";
-                                            showRevenue = true;
-                                        }
                                         document.getElementById("trDetailRevenue_1").style.display = displaystyle;
                                         document.getElementById("trDetailRevenue_2").style.display = displaystyle;
-                                        document.getElementById("rowResource_1_2").style.display = displaystyle;
-                                        document.getElementById("rowResource_2_2").style.display = displaystyle;
-                                        document.getElementById("rowResource_3_2").style.display = displaystyle;
-                                        document.getElementById("rowResource_4_2").style.display = displaystyle;
-                                        document.getElementById("rowResource_5_2").style.display = displaystyle;
                                     }
+                                    document.getElementById("trEng").style.display = displaystyle;
+                                    document.getElementById("trProj").style.display = displaystyle;
+                                    document.getElementById("trTask_1").style.display = displaystyle;
+                                    document.getElementById("trTask_2").style.display = displaystyle;
+                                }
 
-                                    function showResourcesOnlyInDetail() {
-                                        if (showResourcesOnly) {
-                                            displaystyle = "";
-                                            showResourcesOnly = false;
-                                        }
-                                        else {
-                                            displaystyle = "none";
-                                            showResourcesOnly = true;
-                                            document.getElementById("trDetailCost_1").style.display = displaystyle;
-                                            document.getElementById("trDetailCost_2").style.display = displaystyle;
-                                            document.getElementById("trDetailRevenue_1").style.display = displaystyle;
-                                            document.getElementById("trDetailRevenue_2").style.display = displaystyle;
-                                        }
-                                        document.getElementById("trEng").style.display = displaystyle;
-                                        document.getElementById("trProj").style.display = displaystyle;
-                                        document.getElementById("trTask_1").style.display = displaystyle;
-                                        document.getElementById("trTask_2").style.display = displaystyle;
-                                    }
+                                function editForecast(m) {
+                                    var spans = document.getElementsByTagName("span");
+                                    var txtinputs = document.getElementsByTagName("input");
 
-                                    function editForecast(m) {
-                                        var spans = document.getElementsByTagName("span");
-                                        var txtinputs = document.getElementsByTagName("input");
+                                    document.getElementById("btnEditForecast").disabled = true;
+                                    document.getElementById("btnValuate").disabled = false;
+                                    document.getElementById("btnSave").disabled = false;
 
-
-                                        document.getElementById("btnValuate").disabled = false;
-                                        document.getElementById("btnSave").disabled = false;
-
-                                        for (var i = 0; i < spans.length; i++) {
-                                            if (spans[i].id.startsWith("hrs_")) {
-                                                if (m == "off") {
-                                                    spans[i].style.display = "";
-                                                } else {
-                                                    spans[i].style.display = "none";
-                                                }
-                                            }
-                                        }
-
-                                        for (var i = 0; i < txtinputs.length; i++) {
-                                            if (txtinputs[i].id.startsWith("txt_")) {
-                                                if (m == "off") {
-                                                    txtinputs[i].style.display = "none";
-                                                } else {
-                                                    txtinputs[i].style.display = "";
-                                                }
+                                    for (var i = 0; i < spans.length; i++) {
+                                        if (spans[i].id.startsWith("hrs_")) {
+                                            if (m == "off") {
+                                                spans[i].style.display = "";
+                                            } else {
+                                                spans[i].style.display = "none";
                                             }
                                         }
                                     }
 
-                                    function valuateForecast() {
-                                        alert("Values have been updated.");
+                                    for (var i = 0; i < txtinputs.length; i++) {
+                                        if (txtinputs[i].id.startsWith("txt_")) {
+                                            if (m == "off") {
+                                                txtinputs[i].style.display = "none";
+                                            } else {
+                                                txtinputs[i].style.display = "";
+                                            }
+                                        }
                                     }
+                                }
 
-                                    function saveForecast() {
-                                        alert("Are you sure you want to save this Forecast?");
-                                        editForecast("off");
-                                        document.getElementById("btnValuate").disabled = true;
-                                        document.getElementById("btnSave").disabled = true;
-                                    }
+                                function valuateForecast() {
+                                    alert("Values have been updated.");
+                                }
 
-                                </script>
-                            </div>
+                                function saveForecast() {
+                                    alert("Are you sure you want to save this Forecast?");
+                                    editForecast("off");
+                                    document.getElementById("btnEditForecast").disabled = false;
+                                    document.getElementById("btnValuate").disabled = true;
+                                    document.getElementById("btnSave").disabled = true;
+                                }
+
+                            </script>
+                        </div>
+
+                        <div id="secForecast">
                             <div id="tableForecastDetails">
                                 <table id="tblDetailTable" class="datatable datatable_findetails">
                                     <thead>
@@ -1164,12 +1419,6 @@
                         </div>
 
                         <div id="secExpense" style="display:none;">
-                            <div id="divCommandBar">
-                                <button onclick="editForecast();" id="btnEditExpense"><span style="font-family:'Segoe MDL2 Assets';color:rgb(0,108,193);font-size:16px;margin-right:8px;">&#xE70F;</span>Edit expenses</button>
-                                <button id="btnAddExpense" disabled><span style="font-family:'Segoe MDL2 Assets';color:rgb(0,108,193);font-size:16px;margin-right:8px;">&#xE109;</span>Add expense</button>
-                                <button onclick="saveForecast();" id="btnSaveExp" disabled><span style="font-family:'Segoe MDL2 Assets';color:rgb(0,108,193);font-size:16px;margin-right:8px;">&#xE105;</span>Save</button>
-                            </div>
-
                             <div id="tableExpenseDetails">
                                 <table class="datatable datatable_findetails">
                                     <thead>
@@ -1448,8 +1697,6 @@
                                     </tbody>
                                 </table>
                             </div>
-
-
                         </div>
                     </div>
                 </div>

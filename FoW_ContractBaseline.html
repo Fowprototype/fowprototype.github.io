@@ -249,15 +249,133 @@
                 }
             }
 
+            function showResourceDetailsModal() {
+                document.getElementById('modalResourceDetails').style.display = "";
+            }
+
+            function hideModals() {
+                var m = document.getElementsByClassName('modalbg');
+                var i;
+                for (i = 0; i < m.length; i++) {
+                    m[i].style.display = "none";
+                }
+            }
+
         </script>
     </head>
     <body>
         <div id="divMenuOverflowList" class="menuOverflowList">
-            <p><a href="#">Resource details</a></p>
+            <p><a onclick="showResourceDetailsModal();" href="#">Resource details</a></p>
         </div>
+
         <div id="divTooltipHelp" class="menuTooltipHelp">
             <p>This is some helpful text that defines what this data represents. Please consult the requirements for the final text.</p>
         </div>
+
+        <div id="modalResourceDetails" class="modalbg" style="display:none;">
+            <div class="modalbox">
+                <div class="modalheader">
+                    <div class="Xbutton" onclick="hideModals();">&#xE10A;</div>
+                    <div class="subtitle">Resource Details</div>
+                </div>
+                <div id="modalSplitRole" class="modalbody">
+                    <div class="formrow">
+                        <table class="datatable">
+                            <tr>
+                                <td class="tdFTE tdbordernobottom">
+                                    <p class="dataitembold">Sally Johnson</p>
+                                    <p class="dataitemsmall">SENIOR PROGRAM MANAGER</p>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="formrow" style="width: 47%; float: right;">
+                        <div class="fieldlabel">Resource Type</div>
+                        <div>Full Time</div>
+                    </div>
+                    <div class="formrow" style="width: 47%;">
+                        <div class="fieldlabel">Role</div>
+                        <div>Senior Project Manager</div>
+                    </div>
+                    <div class="formrow" style="width: 47%; float: right;">
+                        <div class="fieldlabel">Business Partner ID</div>
+                        <div>123456789</div>
+                    </div>
+                    <div class="formrow" style="width: 47%;">
+                        <div class="fieldlabel">GRM Demand ID</div>
+                        <div>123456789</div>
+                    </div>
+                    <div class="formrow" style="width: 47%; float: right;">
+                        <div class="fieldlabel">Bill Rate</div>
+                        <div>220 USD/hr</div>
+                    </div>
+                    <div class="formrow" style="width: 47%;">
+                        <div class="fieldlabel">Cost Rate (since 01-Mar-2018)</div>
+                        <div>180 USD/hr</div>
+                    </div>
+                    <div class="formrow" style="width: 47%; float: right;">
+                        <div class="fieldlabel">Billing Role ID</div>
+                        <div>123456</div>
+                    </div>
+                    <div class="formrow" style="width: 47%;">
+                        <div class="fieldlabel">Domain</div>
+                        <div>Business Applications</div>
+                    </div>
+                    <div class="formrow" style="width: 47%; float: right;">
+                        <div class="fieldlabel">Resource Location</div>
+                        <div>Toronto, Canada</div>
+                    </div>
+                    <div class="formrow" style="width: 47%;">
+                        <div class="fieldlabel">Delivery Location</div>
+                        <div>Toronto, Canada</div>
+                    </div>
+                    <div class="formrow" style="width: 47%; float: right;">
+                        <div class="fieldlabel">PO Line Item</div>
+                        <div>10</div>
+                    </div>
+                    <div class="formrow" style="width: 47%;">
+                        <div class="fieldlabel">Purchase Order</div>
+                        <div>90001266</div>
+                    </div>
+                    <div class="formrow">
+                        <table class="datatable">
+                            <thead>
+                                <tr>
+                                    <th>Category</th>
+                                    <th class="tdright">Planned</th>
+                                    <th class="tdright">Proposed</th>
+                                    <th class="tdright">Staffed</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Labor (hours)</td>
+                                    <td class="tdright">250</td>
+                                    <td class="tdright">250</td>
+                                    <td class="tdright">210</td>
+                                </tr>
+                                <tr>
+                                    <td>Cost (USD)</td>
+                                    <td class="tdright">45,278</td>
+                                    <td class="tdright">45,278</td>
+                                    <td class="tdright">42,991</td>
+                                </tr>
+                                <tr>
+                                    <td>Revenue (USD)</td>
+                                    <td class="tdright">52,053</td>
+                                    <td class="tdright">52,053</td>
+                                    <td class="tdright">49,226</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modalfooter" style="text-align:right;">
+                    <button class="primarybutton" onclick="hideModals();">Close</button>
+                </div>
+            </div>
+        </div>
+        
         <div id="divHeader"><div class="middleitem">ESXP &nbsp;|&nbsp; Project Management</div></div>
         <div id="divBody">
             <!-- BEGIN LEFT NAV  -->

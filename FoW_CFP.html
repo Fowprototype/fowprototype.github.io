@@ -257,6 +257,14 @@
                 document.getElementById('modalAddRole').style.display = "";
             }
 
+            function showAddSubconFFModal() {
+                document.getElementById('modalAddSubconFF').style.display = "";
+            }
+
+            function showAddExpenseModal() {
+                document.getElementById('modalAddExpense').style.display = "";
+            }
+
             function showEditRoleModal() {
                 document.getElementById('modalEditRole').style.display = "";
             }
@@ -292,12 +300,13 @@
             <p><a onclick="showEditRoleModal();" href="#">Edit role</a></p>
             <p><a onclick="showSplitRoleModal();" href="#">Split role</a></p>
             <div style="background:#f0f0f0;height:1px;width:100%;margin-top:10px;margin-bottom:10px;"></div>
-            <p><a onclick="showBulkUpdateModal();" href="#">Bulk plan...</a></p>
+            <p><a onclick="showBulkUpdateModal();" href="#">Bulk plan</a></p>
             <p><a onclick="showResourceDetailsModal();" href="#">Resource details</a></p>
             <div style="background:#f0f0f0;height:1px;width:100%;margin-top:10px;margin-bottom:10px;"></div>
             <p><a href="#">Copy row values</a></p>
             <p><a href="#">Paste row values</a></p>
         </div>
+
         <div id="modalEditRole" class="modalbg" style="display:none;">
             <div class="modalbox">
                 <div class="modalheader">
@@ -323,7 +332,7 @@
                     <div class="formrow" style="width: 47%;">
                         <div class="fieldlabel">GRM Demand ID</div>
                         <div>
-                            <input type="text" id="frmGRMDemand" class="fieldinput" style="width:100%" value="12345678" />
+                            <input type="text" id="frmGRMDemand" class="fieldinput" style="width:100%" value="12345678" disabled />
                         </div>
                     </div>
                     <div class="formrow" style="width: 47%; float: right;">
@@ -683,6 +692,16 @@
                     <div class="subtitle">Resource Details</div>
                 </div>
                 <div id="modalSplitRole" class="modalbody">
+                    <div class="formrow">
+                        <table class="datatable">
+                            <tr>
+                                <td class="tdFTE tdbordernobottom">
+                                    <p class="dataitembold">Sally Johnson</p>
+                                    <p class="dataitemsmall">SENIOR PROGRAM MANAGER</p>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
                     <div class="formrow" style="width: 47%; float: right;">
                         <div class="fieldlabel">Resource Type</div>
                         <div>Full Time</div>
@@ -769,6 +788,116 @@
                 </div>
             </div>
         </div>
+        <div id="modalAddSubconFF" class="modalbg" style="display:none;">
+            <div class="modalbox">
+                <div class="modalheader">
+                    <div class="Xbutton" onclick="hideModals();">&#xE10A;</div>
+                    <div class="subtitle">Add Subcon FF</div>
+                </div>
+                <div id="modalAddRolebody" class="modalbody">
+                    <div class="formrow">
+                        <div class="fieldlabel">EBS Item</div>
+                        <div>
+                            <select id="frmEBS" class="fieldinput" style="width:100%">
+                                <option></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="formrow" style="width: 47%; float: right;">
+                        <div class="fieldlabel">Resource Name</div>
+                        <div>
+                            <input type="text" id="frmHours" class="fieldinput" style="width:100%" value="" />
+                        </div>
+                    </div>
+                    <div class="formrow" style="width: 47%;">
+                        <div class="fieldlabel">Resource Type</div>
+                        <div>
+                            <select id="frmType" class="fieldinput" style="width:100%">
+                                <option></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="formrow">
+                        <div class="fieldlabel">Description</div>
+                        <div>
+                            <input id="frmResource" class="fieldinput" style="width:100%" value="" />
+                        </div>
+                    </div>
+                    <div class="formrow" style="width: 47%; float: right;">
+                        <div class="fieldlabel">Planned Revenue (USD)</div>
+                        <div>
+                            <input type="text" id="frmHours" class="fieldinput" style="width:100%" value="" />
+                        </div>
+                    </div>
+                    <div class="formrow" style="width: 47%;">
+                        <div class="fieldlabel">Planned Cost (USD)</div>
+                        <div>
+                            <input type="text" id="frmHours" class="fieldinput" style="width:100%" value="" />
+                        </div>
+                    </div>
+                </div>
+                <div class="modalfooter" style="text-align:right;">
+                    <button class="secondarybutton" onclick="hideModals();">Cancel</button>
+                    <button class="primarybutton" onclick="hideModals();">Add</button>
+                </div>
+            </div>
+        </div>
+        <div id="modalAddExpense" class="modalbg" style="display:none;">
+            <div class="modalbox">
+                <div class="modalheader">
+                    <div class="Xbutton" onclick="hideModals();">&#xE10A;</div>
+                    <div class="subtitle">Add Expense</div>
+                </div>
+                <div id="modalAddRolebody" class="modalbody">
+                    <div class="formrow">
+                        <div class="fieldlabel">EBS Item</div>
+                        <div>
+                            <select id="frmEBS" class="fieldinput" style="width:100%">
+                                <option></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="formrow" style="width: 47%; float: right;">
+                        <div class="fieldlabel">Resource Name</div>
+                        <div>
+                            <input type="text" id="frmHours" class="fieldinput" style="width:100%" value="Billable Expense" />
+                        </div>
+                    </div>
+                    <div class="formrow" style="width: 47%;">
+                        <div class="fieldlabel">Resource Type</div>
+                        <div>
+                            <select id="frmType" class="fieldinput" style="width:100%">
+                                <option></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="formrow">
+                        <div class="fieldlabel">Description</div>
+                        <div>
+                            <input id="frmResource" class="fieldinput" style="width:100%" value="Expense Task" />
+                        </div>
+                    </div>
+                    <div class="formrow" style="width: 47%; float: right;">
+                        <div class="fieldlabel">Planned Revenue (USD)</div>
+                        <div>
+                            <input type="text" id="frmHours" class="fieldinput" style="width:100%" value="" />
+                        </div>
+                    </div>
+                    <div class="formrow" style="width: 47%;">
+                        <div class="fieldlabel">Planned Cost (USD)</div>
+                        <div>
+                            <input type="text" id="frmHours" class="fieldinput" style="width:100%" value="" />
+                        </div>
+                    </div>
+                </div>
+                <div class="modalfooter" style="text-align:right;">
+                    <button class="secondarybutton" onclick="hideModals();">Cancel</button>
+                    <button class="primarybutton" onclick="hideModals();">Add</button>
+                </div>
+            </div>
+        </div>
+
+
 
         <div id="divHeader"><div class="middleitem">ESXP &nbsp;|&nbsp; Project Management</div></div>
         <div id="divBody">
@@ -945,8 +1074,12 @@
                                     switch (s) {
                                         case "Labor":
                                             document.getElementById("secForecast").style.display = "";
+                                            document.getElementById("divForecastRowOptions").style.display = "";
                                             document.getElementById("secSubconFF").style.display = "none";
                                             document.getElementById("secExpense").style.display = "none";
+                                            document.getElementById("btnAddRole").style.display = "";
+                                            document.getElementById("btnAddSubconFF").style.display = "none";
+                                            document.getElementById("btnAddExpense").style.display = "none";
 
                                             document.getElementById("pivLabor").className = "pivot pivotactive";
                                             document.getElementById("pivSubconFF").className = "pivot";
@@ -954,8 +1087,12 @@
                                             break;
                                         case "Subcon":
                                             document.getElementById("secForecast").style.display = "none";
+                                            document.getElementById("divForecastRowOptions").style.display = "none";
                                             document.getElementById("secSubconFF").style.display = "";
                                             document.getElementById("secExpense").style.display = "none";
+                                            document.getElementById("btnAddRole").style.display = "none";
+                                            document.getElementById("btnAddSubconFF").style.display = "";
+                                            document.getElementById("btnAddExpense").style.display = "none";
 
                                             document.getElementById("pivLabor").className = "pivot";
                                             document.getElementById("pivSubconFF").className = "pivot pivotactive";
@@ -963,8 +1100,12 @@
                                             break;
                                         case "Expense":
                                             document.getElementById("secForecast").style.display = "none";
+                                            document.getElementById("divForecastRowOptions").style.display = "none";
                                             document.getElementById("secSubconFF").style.display = "none";
                                             document.getElementById("secExpense").style.display = "";
+                                            document.getElementById("btnAddRole").style.display = "none";
+                                            document.getElementById("btnAddSubconFF").style.display = "none";
+                                            document.getElementById("btnAddExpense").style.display = "";
 
                                             document.getElementById("pivLabor").className = "pivot";
                                             document.getElementById("pivSubconFF").className = "pivot";
@@ -975,128 +1116,138 @@
                             </script>
                         </div>
 
-                        <div id="secForecast">
-                            <div id="divCommandBar">
-                                <button onclick="editForecast();" id="btnEditForecast"><span style="font-family:'Segoe MDL2 Assets';color:rgb(0,108,193);font-size:16px;margin-right:8px;">&#xE70F;</span>Edit plan</button>
-                                <button onclick="showAddRoleModal();" id="btnAddRole" disabled><span style="font-family:'Segoe MDL2 Assets';color:rgb(0,108,193);font-size:16px;margin-right:8px;">&#xE109;</span>Add role</button>
-                                <button onclick="valuateForecast();" id="btnValuate" disabled><span style="font-family:'Segoe MDL2 Assets';color:rgb(0,108,193);font-size:16px;margin-right:8px;">&#xE117;</span>Valuate</button>
-                                <button onclick="saveForecast();" id="btnSave" disabled><span style="font-family:'Segoe MDL2 Assets';color:rgb(0,108,193);font-size:16px;margin-right:8px;">&#xE105;</span>Save</button>
-                                <span style="height:26px;width:1px;background-color:rgba(0,0,0,0.5);margin-top:6px;position:absolute;"></span>
-                                <button onclick="navSummaryTable(5);" id="btnViewPlan" style="margin-left:4px;"><span style="font-family:'Segoe MDL2 Assets';color:rgb(0,108,193);font-size:16px;margin-right:8px;">&#xE1F1;</span>View forecast</button>
-                                <div style="float:right;padding-top:10px;padding-right:10px;">
-                                    <div>
-                                        <input type="checkbox" id="chkShowCosts" onchange="showCostInDetail();" checked /><label for="chkShowCosts" style="margin-right:15px;">Show Costs</label>
-                                        <input type="checkbox" id="chkShowRevenue" onchange="showRevenueInDetail();" checked /><label for="chkShowRevenue" style="margin-right:15px;">Show Revenue</label>
-                                        <input type="checkbox" id="chkShowResourcesOnly" onchange="showResourcesOnlyInDetail();" /><label for="chkShowResourcesOnly">Show Resources Only</label>
-                                    </div>
+                        <div id="divCommandBar">
+                            <button id="btnEditForecast" onclick="editForecast();"><span style="font-family:'Segoe MDL2 Assets';color:rgb(0,108,193);font-size:16px;margin-right:8px;">&#xE70F;</span>Edit plan</button>
+                            <button id="btnAddRole" onclick="showAddRoleModal();" disabled><span style="font-family:'Segoe MDL2 Assets';color:rgb(0,108,193);font-size:16px;margin-right:8px;">&#xE109;</span>Add role</button>
+                            <button id="btnAddSubconFF" onclick="showAddSubconFFModal();" style="display:none;" disabled><span style="font-family:'Segoe MDL2 Assets';color:rgb(0,108,193);font-size:16px;margin-right:8px;">&#xE109;</span>Add SubconFF</button>
+                            <button id="btnAddExpense" onclick="showAddExpenseModal();" style="display:none;" disabled><span style="font-family:'Segoe MDL2 Assets';color:rgb(0,108,193);font-size:16px;margin-right:8px;">&#xE109;</span>Add expense</button>
+                            <button id="btnValuate" onclick="valuateForecast();" disabled><span style="font-family:'Segoe MDL2 Assets';color:rgb(0,108,193);font-size:16px;margin-right:8px;">&#xE117;</span>Valuate</button>
+                            <button id="btnSave" onclick="saveForecast();" disabled><span style="font-family:'Segoe MDL2 Assets';color:rgb(0,108,193);font-size:16px;margin-right:8px;">&#xE105;</span>Save</button>
+                            <span style="height:26px;width:1px;background-color:rgba(0,0,0,0.5);margin-top:6px;position:absolute;"></span>
+                            <button onclick="navSummaryTable(5);" id="btnViewPlan" style="margin-left:4px;"><span style="font-family:'Segoe MDL2 Assets';color:rgb(0,108,193);font-size:16px;margin-right:8px;">&#xE1F1;</span>View forecast</button>
+                            <div id="divForecastRowOptions" style="float:right;padding-top:10px;padding-right:10px;">
+                                <div>
+                                    <input type="checkbox" id="chkShowCosts" onchange="showCostInDetail();" checked /><label for="chkShowCosts" style="margin-right:15px;">Show Costs</label>
+                                    <input type="checkbox" id="chkShowRevenue" onchange="showRevenueInDetail();" checked /><label for="chkShowRevenue" style="margin-right:15px;">Show Revenue</label>
+                                    <input type="checkbox" id="chkShowResourcesOnly" onchange="showResourcesOnlyInDetail();" /><label for="chkShowResourcesOnly">Show Resources Only</label>
                                 </div>
-                                <script type="text/javascript">
-                                    var showCosts = false;
-                                    var showRevenue = false;
-                                    var showResourcesOnly = false;
-                                    var displaystyle = "";
+                            </div>
+                            <script type="text/javascript">
+                                var showCosts = false;
+                                var showRevenue = false;
+                                var showResourcesOnly = false;
+                                var displaystyle = "";
 
-                                    function showCostInDetail() {
-                                        if (showCosts) {
-                                            displaystyle = "";
-                                            showCosts = false;
-                                        }
-                                        else {
-                                            displaystyle = "none";
-                                            showCosts = true;
-                                        }
+                                function showCostInDetail() {
+                                    if (showCosts) {
+                                        displaystyle = "";
+                                        showCosts = false;
+                                    }
+                                    else {
+                                        displaystyle = "none";
+                                        showCosts = true;
+                                    }
+                                    document.getElementById("trDetailCost_1").style.display = displaystyle;
+                                    document.getElementById("trDetailCost_2").style.display = displaystyle;
+                                    document.getElementById("rowResource_1_1").style.display = displaystyle;
+                                    document.getElementById("rowResource_2_1").style.display = displaystyle;
+                                    document.getElementById("rowResource_3_1").style.display = displaystyle;
+                                    document.getElementById("rowResource_4_1").style.display = displaystyle;
+                                    document.getElementById("rowResource_5_1").style.display = displaystyle;
+                                }
+
+                                function showRevenueInDetail() {
+                                    if (showRevenue) {
+                                        displaystyle = "";
+                                        showRevenue = false;
+                                    }
+                                    else {
+                                        displaystyle = "none";
+                                        showRevenue = true;
+                                    }
+                                    document.getElementById("trDetailRevenue_1").style.display = displaystyle;
+                                    document.getElementById("trDetailRevenue_2").style.display = displaystyle;
+                                    document.getElementById("rowResource_1_2").style.display = displaystyle;
+                                    document.getElementById("rowResource_2_2").style.display = displaystyle;
+                                    document.getElementById("rowResource_3_2").style.display = displaystyle;
+                                    document.getElementById("rowResource_4_2").style.display = displaystyle;
+                                    document.getElementById("rowResource_5_2").style.display = displaystyle;
+                                }
+
+                                function showResourcesOnlyInDetail() {
+                                    if (showResourcesOnly) {
+                                        displaystyle = "";
+                                        showResourcesOnly = false;
+                                    }
+                                    else {
+                                        displaystyle = "none";
+                                        showResourcesOnly = true;
                                         document.getElementById("trDetailCost_1").style.display = displaystyle;
                                         document.getElementById("trDetailCost_2").style.display = displaystyle;
-                                        document.getElementById("rowResource_1_1").style.display = displaystyle;
-                                        document.getElementById("rowResource_2_1").style.display = displaystyle;
-                                        document.getElementById("rowResource_3_1").style.display = displaystyle;
-                                        document.getElementById("rowResource_4_1").style.display = displaystyle;
-                                        document.getElementById("rowResource_5_1").style.display = displaystyle;
-                                    }
-
-                                    function showRevenueInDetail() {
-                                        if (showRevenue) {
-                                            displaystyle = "";
-                                            showRevenue = false;
-                                        }
-                                        else {
-                                            displaystyle = "none";
-                                            showRevenue = true;
-                                        }
                                         document.getElementById("trDetailRevenue_1").style.display = displaystyle;
                                         document.getElementById("trDetailRevenue_2").style.display = displaystyle;
-                                        document.getElementById("rowResource_1_2").style.display = displaystyle;
-                                        document.getElementById("rowResource_2_2").style.display = displaystyle;
-                                        document.getElementById("rowResource_3_2").style.display = displaystyle;
-                                        document.getElementById("rowResource_4_2").style.display = displaystyle;
-                                        document.getElementById("rowResource_5_2").style.display = displaystyle;
                                     }
+                                    document.getElementById("trEng").style.display = displaystyle;
+                                    document.getElementById("trProj").style.display = displaystyle;
+                                    document.getElementById("trTask_1").style.display = displaystyle;
+                                    document.getElementById("trTask_2").style.display = displaystyle;
+                                }
 
-                                    function showResourcesOnlyInDetail() {
-                                        if (showResourcesOnly) {
-                                            displaystyle = "";
-                                            showResourcesOnly = false;
-                                        }
-                                        else {
-                                            displaystyle = "none";
-                                            showResourcesOnly = true;
-                                            document.getElementById("trDetailCost_1").style.display = displaystyle;
-                                            document.getElementById("trDetailCost_2").style.display = displaystyle;
-                                            document.getElementById("trDetailRevenue_1").style.display = displaystyle;
-                                            document.getElementById("trDetailRevenue_2").style.display = displaystyle;
-                                        }
-                                        document.getElementById("trEng").style.display = displaystyle;
-                                        document.getElementById("trProj").style.display = displaystyle;
-                                        document.getElementById("trTask_1").style.display = displaystyle;
-                                        document.getElementById("trTask_2").style.display = displaystyle;
-                                    }
+                                function editForecast(m) {
+                                    var spans = document.getElementsByTagName("span");
+                                    var txtinputs = document.getElementsByTagName("input");
 
-                                    function editForecast(m) {
-                                        var spans = document.getElementsByTagName("span");
-                                        var txtinputs = document.getElementsByTagName("input");
+                                    document.getElementById("btnEditForecast").disabled = true;
+                                    document.getElementById("btnAddRole").disabled = false;
+                                    document.getElementById("btnAddSubconFF").disabled = false;
+                                    document.getElementById("btnAddExpense").disabled = false;
+                                    document.getElementById("btnValuate").disabled = false;
+                                    document.getElementById("btnSave").disabled = false;
 
-                                        document.getElementById("btnAddRole").disabled = false;
-                                        document.getElementById("btnValuate").disabled = false;
-                                        document.getElementById("btnSave").disabled = false;
-
-                                        for (var i = 0; i < spans.length; i++) {
-                                            if (spans[i].id.startsWith("hrs_")) {
-                                                if (m == "off") {
-                                                    spans[i].style.display = "";
-                                                } else {
-                                                    spans[i].style.display = "none";
-                                                }
+                                    for (var i = 0; i < spans.length; i++) {
+                                        if (spans[i].id.startsWith("hrs_")) {
+                                            if (m == "off") {
+                                                spans[i].style.display = "";
+                                            } else {
+                                                spans[i].style.display = "none";
                                             }
                                         }
+                                    }
 
-                                        for (var i = 0; i < txtinputs.length; i++) {
-                                            if (txtinputs[i].id.startsWith("txt_")) {
-                                                if (m == "off") {
-                                                    txtinputs[i].style.display = "none";
-                                                } else {
-                                                    txtinputs[i].style.display = "";
-                                                }
+                                    for (var i = 0; i < txtinputs.length; i++) {
+                                        if (txtinputs[i].id.startsWith("txt_")) {
+                                            if (m == "off") {
+                                                txtinputs[i].style.display = "none";
+                                            } else {
+                                                txtinputs[i].style.display = "";
                                             }
                                         }
-
-                                        document.getElementById("btnViewPlan").disabled = true;
                                     }
 
-                                    function valuateForecast() {
-                                        alert("Values have been updated.");
-                                    }
+                                    document.getElementById("btnViewPlan").disabled = true;
+                                }
 
-                                    function saveForecast() {
-                                        alert("Are you sure you want to save this Current Financial Plan?");
-                                        editForecast("off");
-                                        document.getElementById("btnAddRole").disabled = true;
-                                        document.getElementById("btnValuate").disabled = true;
-                                        document.getElementById("btnSave").disabled = true;
-                                        document.getElementById("btnViewPlan").disabled = false;
-                                    }
+                                function valuateForecast() {
+                                    alert("Values have been updated.");
+                                }
 
-                                </script>
-                            </div>
+                                function saveForecast() {
+                                    alert("Are you sure you want to save this Current Financial Plan?");
+                                    editForecast("off");
+                                    document.getElementById("btnEditForecast").disabled = false;
+                                    document.getElementById("btnAddRole").disabled = true;
+                                    document.getElementById("btnAddSubconFF").disabled = true;
+                                    document.getElementById("btnAddExpense").disabled = true;
+                                    document.getElementById("btnValuate").disabled = true;
+                                    document.getElementById("btnSave").disabled = true;
+                                    document.getElementById("btnViewPlan").disabled = false;
+                                }
+
+                            </script>
+                        </div>
+
+
+                        <div id="secForecast">
                             <div id="tableForecastDetails">
                                 <table id="tblDetailTable" class="datatable datatable_findetails">
                                     <thead>
@@ -1707,17 +1858,9 @@
                         </div>
 
                         <div id="secExpense" style="display:none;">
-                            <div id="divCommandBar">
-                                <button id="btnEditExpense"><span style="font-family:'Segoe MDL2 Assets';color:rgb(0,108,193);font-size:16px;margin-right:8px;">&#xE70F;</span>Edit expenses</button>
-                                <button id="btnAddExpense" disabled><span style="font-family:'Segoe MDL2 Assets';color:rgb(0,108,193);font-size:16px;margin-right:8px;">&#xE109;</span>Add expense</button>
-                                <button id="btnSaveExp" disabled><span style="font-family:'Segoe MDL2 Assets';color:rgb(0,108,193);font-size:16px;margin-right:8px;">&#xE105;</span>Save</button>
-                            </div>
-
                             <div id="tableExpenseDetails">
                                 <h2>There is nothing here in the prototype.</h2>
                             </div>
-
-
                         </div>
                     </div>
                 </div>
