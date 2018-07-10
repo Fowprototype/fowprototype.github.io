@@ -13,6 +13,8 @@
             var showExpense_1 = false;
             var showExpense_3 = false;
             var showProject_1 = true;
+            var showProject_2 = true;
+            var showProject_3 = true;
             var txtDisplayStyle = "none";
             var txtUpCaretStyle = "&#xE010;";
             var txtDownCaretStyle = "&#xE011;";
@@ -171,6 +173,29 @@
                         }
                     }
                 }
+                else if (section == "Project_3") {
+                    if (showProject_3) {
+                        txtDisplayStyle = "none";
+                        showProject_3 = false;
+                        document.getElementById("pdProject_3").innerHTML = txtDownCaretStyle;
+                    }
+                    else {
+                        txtDisplayStyle = "";
+                        showProject_3 = true;
+                        document.getElementById("pdProject_3").innerHTML = txtUpCaretStyle;
+                    }
+                    var tblFD = document.getElementById("tblExpenseTable");
+                    for (var r = 0, rowFD; rowFD = tblFD.rows[r]; r++) {
+                        if (r > 4) {
+                            if (rowFD.id.startsWith("rowExpense_")) {
+                                rowFD.style.display = "none";
+                            }
+                            else {
+                                rowFD.style.display = txtDisplayStyle;
+                            }
+                        }
+                    }
+                }
             }
 
             function hoverSummaryTable(n) {
@@ -234,9 +259,15 @@
             // Show/Hide the popup menu when user clicks anyway in the window.
             window.onclick = function (event) {
                 var w = document.getElementById('divMenuOverflowList');
+                var wEXP = document.getElementById('divMenuOverflowListEXP');
                 var h = document.getElementById('divTooltipHelp');
+                var dENG = document.getElementById('divMenuOverflowDetailENG');
+                var dPROJ = document.getElementById('divMenuOverflowDetailPROJ');
                 w.style.display = "none";
+                wEXP.style.display = "none";
                 h.style.display = "none";
+                dENG.style.display = "none";
+                dPROJ.style.display = "none";
                 if (event.target.id.startsWith('btnMenuOverflow_')) {
                     w.style.left = event.clientX + document.body.scrollLeft;
                     w.style.top = event.clientY + document.body.scrollTop;
@@ -246,6 +277,23 @@
                     h.style.left = event.clientX + document.body.scrollLeft;
                     h.style.top = event.clientY + document.body.scrollTop;
                     h.style.display = "inline-block";
+                }
+                else if (event.target.id.startsWith('btnMenuOverflowEXP_')) {
+                    wEXP.style.left = event.clientX + document.body.scrollLeft;
+                    wEXP.style.top = event.clientY + document.body.scrollTop;
+                    wEXP.style.display = "inline-block";
+                }
+                else if (event.target.id.startsWith('btnMenuOverflowDetail_')) {
+                    if (event.target.id.endsWith('E')) {
+                        dENG.style.left = event.clientX + document.body.scrollLeft;
+                        dENG.style.top = event.clientY + document.body.scrollTop;
+                        dENG.style.display = "inline-block";
+                    }
+                    else {
+                        dPROJ.style.left = event.clientX + document.body.scrollLeft;
+                        dPROJ.style.top = event.clientY + document.body.scrollTop;
+                        dPROJ.style.display = "inline-block";
+                    }
                 }
             }
 
@@ -274,6 +322,66 @@
             <div style="background:#f0f0f0;height:1px;width:100%;margin-top:10px;margin-bottom:10px;"></div>
             <p><a href="#">Copy row values</a></p>
             <p><a href="#">Paste row values</a></p>
+        </div>
+
+        <div id="divMenuOverflowListEXP" class="menuOverflowList">
+            <p><a href="#">Copy row values</a></p>
+            <p><a href="#">Paste row values</a></p>
+        </div>
+
+        <div id="divMenuOverflowDetailENG" class="menuOverflowList">
+            <div class="formrow">
+                <div class="fieldlabel">Engagement</div>
+                <div>Testing Engagement 2018</div>
+            </div>
+            <div class="formrow" style="width: 47%; float: right;">
+                <div class="fieldlabel">End Date</div>
+                <div>30-Sep-2018</div>
+            </div>
+            <div class="formrow" style="width: 47%;">
+                <div class="fieldlabel">Start Date</div>
+                <div>01-Mar-2018</div>
+            </div>
+            <div class="formrow">
+                <div class="fieldlabel">Primary Domain Project Manager</div>
+                <div>Eduardo Filipe Gonzales</div>
+            </div>
+            <div class="formrow">
+                <div class="fieldlabel">Additional Primary Domain Project Manager</div>
+                <div>
+                    Alejandro Rimeriez<br />
+                    Lordes Sanchez de Castillo
+                </div>
+            </div>
+        </div>
+
+        <div id="divMenuOverflowDetailPROJ" class="menuOverflowList">
+            <div class="formrow">
+                <div class="fieldlabel">Project</div>
+                <div>Tailored Consulting 2018-2019</div>
+            </div>
+            <div class="formrow" style="width: 47%; float: right;">
+                <div class="fieldlabel">End Date</div>
+                <div>30-Sep-2018</div>
+            </div>
+            <div class="formrow" style="width: 47%;">
+                <div class="fieldlabel">Start Date</div>
+                <div>01-Mar-2018</div>
+            </div>
+            <div class="formrow">
+                <div class="fieldlabel">Domain</div>
+                <div>ES Business Productivity</div>
+            </div>
+            <div class="formrow">
+                <div class="fieldlabel">Domain Project Manager</div>
+                <div>Eduardo Filipe Gonzales</div>
+            </div>
+            <div class="formrow">
+                <div class="fieldlabel">Additional Domain Project Manager</div>
+                <div>
+                    (none)
+                </div>
+            </div>
         </div>
 
         <div id="divTooltipHelp" class="menuTooltipHelp">
@@ -878,7 +986,7 @@
                                         <tr id="trEng">
                                             <td colspan="2">
                                                 <div class="icoMenuOverflow">&#xE10C;</div>
-                                                <div id="btnMenuOverflow_1" class="icoMenuOverflow icoMenuOverflowCir">&#xEA3A;</div>
+                                                <div id="btnMenuOverflowDetail_E" class="icoMenuOverflow icoMenuOverflowCir">&#xEA3A;</div>
                                                 <p class="dataitembold">Engagement: Testing Engagement 2018</p>
                                                 <p class="dataitemsmall dataitemlight">EBS: C.6908001200358</p>
                                             </td>
@@ -946,7 +1054,7 @@
                                         <tr id="trProj">
                                             <td colspan="2">
                                                 <div class="icoMenuOverflow">&#xE10C;</div>
-                                                <div id="btnMenuOverflow_2" class="icoMenuOverflow icoMenuOverflowCir">&#xEA3A;</div>
+                                                <div id="btnMenuOverflowDetail_P" class="icoMenuOverflow icoMenuOverflowCir">&#xEA3A;</div>
                                                 <div id="pdProject_1" onclick="ShowHideRows('Project_1')" style="font-family:'Segoe MDL2 Assets';padding-right:10px;float:left;height:30px;cursor:pointer;">&#xE010;</div>
                                                 <p class="dataitembold">Project: Tailored Consulting 2018-2019</p>
                                                 <p class="dataitemsmall dataitemlight">EBS: C.6908001200358.001000</p>
@@ -1014,8 +1122,10 @@
                                         </tr>
                                         <tr id="trTask_1">
                                             <td colspan="2" class="tdindentL_2">
-                                                <div class="icoMenuOverflow">&#xE10C;</div>
-                                                <div id="btnMenuOverflow_3" class="icoMenuOverflow icoMenuOverflowCir">&#xEA3A;</div>
+                                                <!--
+                                            <div class="icoMenuOverflow">&#xE10C;</div>
+                                            <div id="btnMenuOverflow_3" class="icoMenuOverflow icoMenuOverflowCir">&#xEA3A;</div>
+                                                                                        -->
                                                 <p class="dataitembold">Task: Default Task</p>
                                                 <p class="dataitemsmall dataitemlight">EBS: C.6908001200358.001000.01</p>
                                             </td>
@@ -1316,8 +1426,10 @@
                                         </tr>
                                         <tr id="trTask_2">
                                             <td colspan="2" class="tdindentL_2">
-                                                <div class="icoMenuOverflow">&#xE10C;</div>
-                                                <div id="btnMenuOverflow_8" class="icoMenuOverflow icoMenuOverflowCir">&#xEA3A;</div>
+                                                <!--
+                                            <div class="icoMenuOverflow">&#xE10C;</div>
+                                            <div id="btnMenuOverflow_8" class="icoMenuOverflow icoMenuOverflowCir">&#xEA3A;</div>
+                                                                                        -->
                                                 <p class="dataitembold">Task: Risk Reserve</p>
                                                 <p class="dataitemsmall dataitemlight">EBS: C.6908001200358.001000.02</p>
                                             </td>
@@ -1420,7 +1532,7 @@
 
                         <div id="secExpense" style="display:none;">
                             <div id="tableExpenseDetails">
-                                <table class="datatable datatable_findetails">
+                                <table id="tblExpenseTable" class="datatable datatable_findetails">
                                     <thead>
                                         <tr>
                                             <td colspan="3" class="tdbordernobottom tdbordernoright"></td>
@@ -1439,7 +1551,7 @@
                                         <tr>
                                             <th style="width:50px;border-left: 1px solid rgba(0,0,0,0.1);">EBS Description</th>
                                             <th>Category</th>
-                                            <th style="width:14%">Expense (Actuals/Planned)</th>
+                                            <th class="tdright" style="width:14%">Expense (Actuals/Planned)<div class="tooltipicon">&#xE946;</div></th>
                                             <th class="tdcenter tdlightestgrey tdborderleftstrong" style="width:5%">Week 46<p class="dataitemsmallest">19-May<br />25-May</p></th>
                                             <th class="tdcenter tdlightestgrey" style="width:5%">Week 47<p class="dataitemsmallest">26-May<br />01-Jun</p></th>
                                             <th class="tdcenter tdactiveweek" style="width:5%">Week 48<p class="dataitemsmallest">02-Jun<br />08-Jun</p></th>
@@ -1457,6 +1569,8 @@
                                     <tbody>
                                         <tr id="trExEng">
                                             <td colspan="2">
+                                                <div class="icoMenuOverflow">&#xE10C;</div>
+                                                <div id="btnMenuOverflowDetail_E" class="icoMenuOverflow icoMenuOverflowCir">&#xEA3A;</div>
                                                 <p class="dataitembold">Engagement: Testing Engagement 2018</p>
                                                 <p class="dataitemsmall dataitemlight">EBS: C.6908001200358</p>
                                             </td>
@@ -1480,7 +1594,10 @@
                                             <td class="tdright tdtotal">10,000</td>
                                         </tr>
                                         <tr id="trExProj">
-                                            <td colspan="2" class="tdindentL_1">
+                                            <td colspan="2">
+                                                <div class="icoMenuOverflow">&#xE10C;</div>
+                                                <div id="btnMenuOverflowDetail_P" class="icoMenuOverflow icoMenuOverflowCir">&#xEA3A;</div>
+                                                <div id="pdProject_3" onclick="ShowHideRows('Project_3')" style="font-family:'Segoe MDL2 Assets';padding-right:10px;float:left;height:30px;cursor:pointer;">&#xE010;</div>
                                                 <p class="dataitembold">Project: Tailored Consulting 2018-2019</p>
                                                 <p class="dataitemsmall dataitemlight">EBS: C.6908001200358.001000</p>
                                             </td>
@@ -1530,6 +1647,8 @@
                                         <tr>
                                             <td onclick="ShowHideRows('Expense_1')" style="cursor:pointer;" class="tdwhite tdright"><span id="pdExpense_1" style="font-family:'Segoe MDL2 Assets';padding-right:5px;">&#xE011;</span></td>
                                             <td>
+                                                <div class="icoMenuOverflow">&#xE10C;</div>
+                                                <div id="btnMenuOverflowEXP_10" class="icoMenuOverflow icoMenuOverflowCir">&#xEA3A;</div>
                                                 <p class="dataitembold">Expenses</p>
                                                 <p class="dataitemsmall">(Billable)</p>
                                             </td>
@@ -1576,6 +1695,8 @@
                                         <tr>
                                             <td class="tdwhite">&nbsp;</td>
                                             <td>
+                                                <div class="icoMenuOverflow">&#xE10C;</div>
+                                                <div id="btnMenuOverflowEXP_11" class="icoMenuOverflow icoMenuOverflowCir">&#xEA3A;</div>
                                                 <p class="dataitembold">Expenses</p>
                                                 <p class="dataitemsmall textdarkred">(Non-billable)</p>
                                             </td>
@@ -1625,6 +1746,8 @@
                                         <tr>
                                             <td onclick="ShowHideRows('Expense_3')" style="cursor:pointer;" class="tdwhite tdright"><span id="pdExpense_3" style="font-family:'Segoe MDL2 Assets';padding-right:5px;">&#xE011;</span></td>
                                             <td>
+                                                <div class="icoMenuOverflow">&#xE10C;</div>
+                                                <div id="btnMenuOverflowEXP_12" class="icoMenuOverflow icoMenuOverflowCir">&#xEA3A;</div>
                                                 <p class="dataitembold">Materials</p>
                                                 <p class="dataitemsmall">(Billable)</p>
                                             </td>
@@ -1671,6 +1794,8 @@
                                         <tr>
                                             <td class="tdwhite">&nbsp;</td>
                                             <td>
+                                                <div class="icoMenuOverflow">&#xE10C;</div>
+                                                <div id="btnMenuOverflowEXP_13" class="icoMenuOverflow icoMenuOverflowCir">&#xEA3A;</div>
                                                 <p class="dataitembold">Materials</p>
                                                 <p class="dataitemsmall textdarkred">(Non-billable)</p>
                                             </td>
