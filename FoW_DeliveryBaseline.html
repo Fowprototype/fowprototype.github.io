@@ -651,7 +651,8 @@
                         </table>
 
                         <!-- BEGIN DETAIL TABLE -->
-                        <div>
+
+                        <div id="divCommandBar">
                             <button id="pivLabor" class="pivot pivotactive" onclick="showDetailSection('Labor');">Labor</button>
                             <button id="pivSubconFF" class="pivot" onclick="showDetailSection('Subcon');">Subcon FF</button>
                             <button id="pivExpense" class="pivot" onclick="showDetailSection('Expense');">Expenses &amp; Materials</button>
@@ -691,14 +692,14 @@
                                     }
                                 }
                             </script>
-                        </div>
-
-                        <div id="divCommandBar">
-                            <button style="display:none;" onclick="editForecast();" id="btnEditForecast"><span style="font-family:'Segoe MDL2 Assets';color:rgb(0,108,193);font-size:16px;margin-right:8px;">&#xE70F;</span>Edit plan</button>
-                            <button style="display:none;" onclick="valuateForecast();" id="btnValuate" disabled><span style="font-family:'Segoe MDL2 Assets';color:rgb(0,108,193);font-size:16px;margin-right:8px;">&#xE117;</span>Valuate</button>
-                            <button style="display:none;" onclick="saveForecast();" id="btnSave" disabled><span style="font-family:'Segoe MDL2 Assets';color:rgb(0,108,193);font-size:16px;margin-right:8px;">&#xE105;</span>Save</button>
+                            <div style="width:8px;display:inline-block;">&nbsp;</div>
+                            <span style="height:26px;width:1px;background-color:rgba(0,0,0,0.5);margin-top:6px;position:absolute;"></span>
+                            <div style="width:8px;display:inline-block;">&nbsp;</div>
+                            <button class="CommandBarButton" style="display:none;" onclick="editForecast();" id="btnEditForecast"><span style="font-family:'Segoe MDL2 Assets';color:rgb(0,108,193);font-size:16px;margin-right:8px;">&#xE70F;</span>Edit plan</button>
+                            <button class="CommandBarButton" style="display:none;" onclick="valuateForecast();" id="btnValuate" disabled><span style="font-family:'Segoe MDL2 Assets';color:rgb(0,108,193);font-size:16px;margin-right:8px;">&#xE1CA;</span>Recalculate</button>
+                            <button class="CommandBarButton" style="display:none;" onclick="saveForecast();" id="btnSave" disabled><span style="font-family:'Segoe MDL2 Assets';color:rgb(0,108,193);font-size:16px;margin-right:8px;">&#xE105;</span>Save</button>
                             <span style="DISPLAY:none;height:26px;width:1px;background-color:rgba(0,0,0,0.5);margin-top:6px;position:absolute;"></span>
-                            <button onclick="navSummaryTable(5);" id="btnViewPlan" style="margin-left:4px;"><span style="font-family:'Segoe MDL2 Assets';color:rgb(0,108,193);font-size:16px;margin-right:8px;">&#xE1F1;</span>View forecast</button>
+                            <button class="CommandBarButton" onclick="navSummaryTable(5);" id="btnViewPlan" style="margin-left:4px;"><span style="font-family:'Segoe MDL2 Assets';color:rgb(0,108,193);font-size:16px;margin-right:8px;">&#xE1F1;</span>Go to forecast</button>
                             <div id="divForecastRowOptions" style="float:right;padding-top:10px;padding-right:10px;">
                                 <div>
                                     <input type="checkbox" id="chkShowCosts" onchange="showCostInDetail();" checked /><label for="chkShowCosts" style="margin-right:15px;">Show Costs</label>
