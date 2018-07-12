@@ -357,6 +357,10 @@ th.tdSummaryActive > div.tooltipicon {
     padding-left: 50px !important;
 }
 
+.tdVcenter {
+    padding-top: 18px !important;
+}
+
 .tooltipicon {
     color: #3076bc;
     font-family: 'Segoe MDL2 Assets';
