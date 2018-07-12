@@ -10,6 +10,9 @@
             var showResource_3 = false;
             var showResource_4 = false;
             var showResource_5 = false;
+            var showSubconFF_1 = false;
+            var showSubconFF_2 = false;
+            var showSubconFF_3 = false;
             var showExpense_1 = false;
             var showExpense_3 = false;
             var showProject_1 = true;
@@ -124,6 +127,45 @@
                     document.getElementById("rowResource_5_1").style.display = txtDisplayStyle;
                     document.getElementById("rowResource_5_2").style.display = txtDisplayStyle;
                 }
+                else if (section == "SubconFF_1") {
+                    if (showSubconFF_1) {
+                        txtDisplayStyle = "none";
+                        showSubconFF_1 = false;
+                        document.getElementById("pdSubconFF_1").innerHTML = txtDownCaretStyle;
+                    }
+                    else {
+                        txtDisplayStyle = "";
+                        showSubconFF_1 = true;
+                        document.getElementById("pdSubconFF_1").innerHTML = txtUpCaretStyle;
+                    }
+                    document.getElementById("rowSubConFF_1_1").style.display = txtDisplayStyle;
+                }
+                else if (section == "SubconFF_2") {
+                    if (showSubconFF_2) {
+                        txtDisplayStyle = "none";
+                        showSubconFF_2 = false;
+                        document.getElementById("pdSubconFF_2").innerHTML = txtDownCaretStyle;
+                    }
+                    else {
+                        txtDisplayStyle = "";
+                        showSubconFF_2 = true;
+                        document.getElementById("pdSubconFF_2").innerHTML = txtUpCaretStyle;
+                    }
+                    document.getElementById("rowSubConFF_2_1").style.display = txtDisplayStyle;
+                }
+                else if (section == "SubconFF_3") {
+                    if (showSubconFF_3) {
+                        txtDisplayStyle = "none";
+                        showSubconFF_3 = false;
+                        document.getElementById("pdSubconFF_3").innerHTML = txtDownCaretStyle;
+                    }
+                    else {
+                        txtDisplayStyle = "";
+                        showSubconFF_3 = true;
+                        document.getElementById("pdSubconFF_3").innerHTML = txtUpCaretStyle;
+                    }
+                    document.getElementById("rowSubConFF_3_1").style.display = txtDisplayStyle;
+                }
                 else if (section == "Expense_1") {
                     if (showExpense_1) {
                         txtDisplayStyle = "none";
@@ -169,6 +211,29 @@
                             }
                             else {
                                 rowFD.style.display = txtDisplayStyle;
+                            }
+                        }
+                    }
+                }
+                else if (section == "Project_2") {
+                    if (showProject_2) {
+                        txtDisplayStyle = "none";
+                        showProject_2 = false;
+                        document.getElementById("pdProject_2").innerHTML = txtDownCaretStyle;
+                    }
+                    else {
+                        txtDisplayStyle = "";
+                        showProject_2 = true;
+                        document.getElementById("pdProject_2").innerHTML = txtUpCaretStyle;
+                    }
+                    var tblSC = document.getElementById("tblSubconFFTable");
+                    for (var r = 0, rowSC; rowSC = tblSC.rows[r]; r++) {
+                        if (r > 4) {
+                            if (rowSC.id.startsWith("rowSubConFF_")) {
+                                rowSC.style.display = "none";
+                            }
+                            else {
+                                rowSC.style.display = txtDisplayStyle;
                             }
                         }
                     }
@@ -699,7 +764,7 @@
                             <button class="CommandBarButton" style="display:none;" onclick="valuateForecast();" id="btnValuate" disabled><span style="font-family:'Segoe MDL2 Assets';color:rgb(0,108,193);font-size:16px;margin-right:8px;">&#xE1CA;</span>Recalculate</button>
                             <button class="CommandBarButton" style="display:none;" onclick="saveForecast();" id="btnSave" disabled><span style="font-family:'Segoe MDL2 Assets';color:rgb(0,108,193);font-size:16px;margin-right:8px;">&#xE105;</span>Save</button>
                             <span style="DISPLAY:none;height:26px;width:1px;background-color:rgba(0,0,0,0.5);margin-top:6px;position:absolute;"></span>
-                            <button class="CommandBarButton" onclick="navSummaryTable(5);" id="btnViewPlan" style="margin-left:4px;"><span style="font-family:'Segoe MDL2 Assets';color:rgb(0,108,193);font-size:16px;margin-right:8px;">&#xE1F1;</span>Go to forecast</button>
+                            <button class="CommandBarButton" onclick="navSummaryTable(5);" id="btnViewPlan" style="margin-left:4px;"><span style="font-family:'Segoe MDL2 Assets';color:rgb(0,108,193);font-size:16px;margin-right:8px;">&#xE0AD;</span>Go to forecast</button>
                             <div id="divForecastRowOptions" style="float:right;padding-top:10px;padding-right:10px;">
                                 <div>
                                     <input type="checkbox" id="chkShowCosts" onchange="showCostInDetail();" checked /><label for="chkShowCosts" style="margin-right:15px;">Show Costs</label>
@@ -993,9 +1058,9 @@
                                         <tr id="trTask_1">
                                             <td colspan="2" class="tdindentL_2">
                                                 <!--
-                        <div class="icoMenuOverflow">&#xE10C;</div>
-                        <div id="btnMenuOverflow_3" class="icoMenuOverflow icoMenuOverflowCir">&#xEA3A;</div>
-                        -->
+                            <div class="icoMenuOverflow">&#xE10C;</div>
+                            <div id="btnMenuOverflow_3" class="icoMenuOverflow icoMenuOverflowCir">&#xEA3A;</div>
+                            -->
                                                 <p class="dataitembold">Task: Default Task</p>
                                                 <p class="dataitemsmall dataitemlight">EBS: C.6908001200358.001000.01</p>
                                             </td>
@@ -1319,9 +1384,9 @@
                                         <tr id="trTask_2">
                                             <td colspan="2" class="tdindentL_2">
                                                 <!--
-                        <div class="icoMenuOverflow">&#xE10C;</div>
-                        <div id="btnMenuOverflow_8" class="icoMenuOverflow icoMenuOverflowCir">&#xEA3A;</div>
-                                                                    -->
+                            <div class="icoMenuOverflow">&#xE10C;</div>
+                            <div id="btnMenuOverflow_8" class="icoMenuOverflow icoMenuOverflowCir">&#xEA3A;</div>
+                                                                        -->
                                                 <p class="dataitembold">Task: Risk Reserve</p>
                                                 <p class="dataitemsmall dataitemlight">EBS: C.6908001200358.001000.02</p>
                                             </td>
@@ -1425,7 +1490,288 @@
                         </div>
 
                         <div id="secSubconFF" style="display:none">
-                            <h2>There is nothing here in the prototype.</h2>
+                            <div id="tableSubconFFDetails">
+                                <table id="tblSubconFFTable" class="datatable datatable_findetails">
+                                    <thead>
+                                        <tr>
+                                            <td colspan="3" class="tdbordernobottom tdbordernoright"></td>
+                                            <td class="dataitemsmaller tdactiveweek tdbordernobottom tdbordernoright tdbordernoleft dataitembold"><a href="#">&lt; Prev</a></td>
+                                            <td colspan="10" class="tdcenter dataitemsmaller tdactiveweek tdbordernobottom tdbordernoleft tdbordernoright dataitembold"><a href="#">12-May &ndash; 10-Aug</a></td>
+                                            <td class="dataitemsmaller tdactiveweek tdright tdbordernobottom tdbordernoleft dataitembold"><a href="#">Next &gt;</a></td>
+                                        </tr>
+                                        <tr>
+                                            <th style="width:50px;border-left: 1px solid rgba(0,0,0,0.1);">EBS Description</th>
+                                            <th>Purchase Order</th>
+                                            <th class="tdright" style="width:14%">Purchase Order (Planned)<div class="tooltipicon">&#xE946;</div></th>
+                                            <th class="tdcenter tdlightestgrey tdborderleftstrong" style="width:5%">Week 46<p class="dataitemsmallest">19-May<br />25-May</p></th>
+                                            <th class="tdcenter tdlightestgrey" style="width:5%">Week 47<p class="dataitemsmallest">26-May<br />01-Jun</p></th>
+                                            <th class="tdcenter tdactiveweek" style="width:5%">Week 48<p class="dataitemsmallest">02-Jun<br />08-Jun</p></th>
+                                            <th class="tdcenter" style="width:5%">Week 49<p class="dataitemsmallest">09-Jun<br />15-Jun</p></th>
+                                            <th class="tdcenter" style="width:5%">Week 50<p class="dataitemsmallest">16-Jun<br />22-Jun</p></th>
+                                            <th class="tdcenter" style="width:5%">Week 51<p class="dataitemsmallest">23-Jun<br />29-Jun</p></th>
+                                            <th class="tdcenter" style="width:5%">Week 52<p class="dataitemsmallest">30-Jun<br />06-Jul</p></th>
+                                            <th class="tdcenter" style="width:5%">Week 01<p class="dataitemsmallest">07-Jul<br />13-Jul</p></th>
+                                            <th class="tdcenter" style="width:5%">Week 02<p class="dataitemsmallest">14-Jul<br />20-Jul</p></th>
+                                            <th class="tdcenter" style="width:5%">Week 52<p class="dataitemsmallest">21-Jul<br />27-Jul</p></th>
+                                            <th class="tdcenter" style="width:5%">Week 01<p class="dataitemsmallest">28-Jul<br />03-Aug</p></th>
+                                            <th class="tdcenter" style="width:5%">Week 02<p class="dataitemsmallest">04-Aug<br />10-Aug</p></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr id="trSCEng">
+                                            <td colspan="2">
+                                                <div class="icoMenuOverflow">&#xE10C;</div>
+                                                <div id="btnMenuOverflowDetail_E" class="icoMenuOverflow icoMenuOverflowCir">&#xEA3A;</div>
+                                                <p class="dataitembold">Engagement: Testing Engagement 2018</p>
+                                                <p class="dataitemsmall dataitemlight">EBS: C.6908001200358</p>
+                                            </td>
+                                            <td class="tdright">
+                                                <div class="micrographbg" style="DISPLAY:none;">
+                                                    <div class="micrograph_G" style="width:6px;"></div>
+                                                </div>39,490
+                                                <p class="dataitemlight dataitemsmaller">(USD)</p>
+                                            </td>
+                                            <td class="tdright tdborderleftstrong tdtotal tdlightestgrey">9 %</td>
+                                            <td class="tdright tdtotal tdlightestgrey">9 %</td>
+                                            <td class="tdright tdtotal tdactiveweek">9 %</td>
+                                            <td class="tdright tdtotal">9 %</td>
+                                            <td class="tdright tdtotal">11 %</td>
+                                            <td class="tdright tdtotal">11 %</td>
+                                            <td class="tdright tdtotal">11 %</td>
+                                            <td class="tdright tdtotal">41 %</td>
+                                            <td class="tdright tdtotal">43 %</td>
+                                            <td class="tdright tdtotal">43 %</td>
+                                            <td class="tdright tdtotal">43 %</td>
+                                            <td class="tdright tdtotal">43 %</td>
+                                        </tr>
+                                        <tr id="trSCProj">
+                                            <td colspan="2">
+                                                <div class="icoMenuOverflow">&#xE10C;</div>
+                                                <div id="btnMenuOverflowDetail_P" class="icoMenuOverflow icoMenuOverflowCir">&#xEA3A;</div>
+                                                <div id="pdProject_2" onclick="ShowHideRows('Project_2')" style="font-family:'Segoe MDL2 Assets';padding-right:10px;float:left;height:30px;cursor:pointer;">&#xE010;</div>
+                                                <p class="dataitembold">Project: Tailored Consulting 2018-2019</p>
+                                                <p class="dataitemsmall dataitemlight">EBS: C.6908001200358.001000</p>
+                                            </td>
+                                            <td class="tdright">
+                                                <div class="micrographbg" style="DISPLAY:none;">
+                                                    <div class="micrograph_G" style="width:6px;"></div>
+                                                </div>39,490
+                                                <p class="dataitemlight dataitemsmaller">(USD)</p>
+                                            </td>
+                                            <td class="tdright tdborderleftstrong tdtotal tdlightestgrey">9 %</td>
+                                            <td class="tdright tdtotal tdlightestgrey">9 %</td>
+                                            <td class="tdright tdtotal tdactiveweek">9 %</td>
+                                            <td class="tdright tdtotal">9 %</td>
+                                            <td class="tdright tdtotal">11 %</td>
+                                            <td class="tdright tdtotal">11 %</td>
+                                            <td class="tdright tdtotal">11 %</td>
+                                            <td class="tdright tdtotal">41 %</td>
+                                            <td class="tdright tdtotal">43 %</td>
+                                            <td class="tdright tdtotal">43 %</td>
+                                            <td class="tdright tdtotal">43 %</td>
+                                            <td class="tdright tdtotal">43 %</td>
+                                        </tr>
+                                        <tr id="trSCTask_1">
+                                            <td colspan="2" class="tdindentL_2">
+                                                <p class="dataitembold">Task: Default Task</p>
+                                                <p class="dataitemsmall dataitemlight">EBS: C.6908001200358.001000.01</p>
+                                            </td>
+                                            <td class="tdright">
+                                                <div class="micrographbg" style="DISPLAY:none;">
+                                                    <div class="micrograph_G" style="width:15px;"></div>
+                                                </div>2,000
+                                                <p class="dataitemlight dataitemsmaller">(USD)</p>
+                                            </td>
+                                            <td class="tdright tdlightestgrey tdborderleftstrong tdtotal">25 %</td>
+                                            <td class="tdright tdlightestgrey tdtotal">25%</td>
+                                            <td class="tdright tdactiveweek tdtotal">25 %</td>
+                                            <td class="tdright tdtotal">25 %</td>
+                                            <td class="tdright tdtotal">50 %</td>
+                                            <td class="tdright tdtotal">50 %</td>
+                                            <td class="tdright tdtotal">50 %</td>
+                                            <td class="tdright tdtotal">50 %</td>
+                                            <td class="tdright tdtotal">100 %</td>
+                                            <td class="tdright tdtotal">100 %</td>
+                                            <td class="tdright tdtotal">100 %</td>
+                                            <td class="tdright tdtotal">100 %</td>
+                                        </tr>
+                                        <tr>
+                                            <td onclick="ShowHideRows('SubconFF_1')" style="cursor:pointer;" class="tdwhite tdright"><span id="pdSubconFF_1" style="font-family:'Segoe MDL2 Assets';padding-right:5px;">&#xE011;</span></td>
+                                            <td>
+                                                <!--
+    <div class="icoMenuOverflow">&#xE10C;</div>
+    <div id="btnMenuOverflowEXP_10" class="icoMenuOverflow icoMenuOverflowCir">&#xEA3A;</div>
+                                                -->
+                                                <p class="dataitembold">PO 90001234</p>
+                                                <p class="dataitemsmall">Line item: 10</p>
+                                            </td>
+                                            <td class="tdright">
+                                                <div class="micrographbg" style="DISPLAY:none;">
+                                                    <div class="micrograph_G" style="width:1px;"></div>
+                                                </div>1,000
+                                                <p class="dataitemlight dataitemsmaller">(USD)</p>
+                                            </td>
+                                            <td class="tdright tdlightestgrey tdborderleftstrong"><span id="hrs_S1_W11">0 %</span><input id="txt_S1_W11" type="text" value="0" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright tdlightestgrey"><span id="hrs_S1_W12">0 %</span><input id="txt_S1_W12" type="text" value="0" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright tdactiveweek"><span id="hrs_S1_W1">0 %</span><input id="txt_S1_W1" type="text" value="0" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright"><span id="hrs_S1_W2">0 %</span><input id="txt_S1_W2" type="text" value="0" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright"><span id="hrs_S1_W3">0 %</span><input id="txt_S1_W3" type="text" value="0" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright"><span id="hrs_S1_W4">0 %</span><input id="txt_S1_W4" type="text" value="0" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright"><span id="hrs_S1_W5">0 %</span><input id="txt_S1_W5" type="text" value="0" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright"><span id="hrs_S1_W6">0 %</span><input id="txt_S1_W6" type="text" value="0" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright"><span id="hrs_S1_W7">100 %</span><input id="txt_S1_W7" type="text" value="100" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright"><span id="hrs_S1_W8">100 %</span><input id="txt_S1_W8" type="text" value="100" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright"><span id="hrs_S1_W9">100 %</span><input id="txt_S1_W9" type="text" value="100" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright"><span id="hrs_S1_W10">100 %</span><input id="txt_S1_W10" type="text" value="100" class="fctext" style="display:none;" /></td>
+                                        </tr>
+                                        <tr class="trsubrows" id="rowSubConFF_1_1" style="display:none;">
+                                            <td class="tdwhite">&nbsp;</td>
+                                            <td class="tdright"><p>Cost (USD)</p></td>
+                                            <td class="tdright">
+                                                <div class="micrographbg" style="DISPLAY:none;">
+                                                    <div class="micrograph_G" style="width:1px;"></div>
+                                                </div>1,000
+                                            </td>
+                                            <td class="tdborderleftstrong tdright">0</td>
+                                            <td class="tdright">0</td>
+                                            <td class="tdright tdactiveweek">0</td>
+                                            <td class="tdright">0</td>
+                                            <td class="tdright">0</td>
+                                            <td class="tdright">0</td>
+                                            <td class="tdright">0</td>
+                                            <td class="tdright">0</td>
+                                            <td class="tdright">1,000</td>
+                                            <td class="tdright">1,000</td>
+                                            <td class="tdright">1,000</td>
+                                            <td class="tdright">1,000</td>
+                                        </tr>
+                                        <tr>
+                                            <td onclick="ShowHideRows('SubconFF_2')" style="cursor:pointer;" class="tdwhite tdright"><span id="pdSubconFF_2" style="font-family:'Segoe MDL2 Assets';padding-right:5px;">&#xE011;</span></td>
+                                            <td>
+                                                <!--
+    <div class="icoMenuOverflow">&#xE10C;</div>
+    <div id="btnMenuOverflowEXP_11" class="icoMenuOverflow icoMenuOverflowCir">&#xEA3A;</div>
+                                                -->
+                                                <p class="dataitembold">PO 90001234</p>
+                                                <p class="dataitemsmall">Line Item: 20</p>
+                                            </td>
+                                            <td class="tdright">
+                                                <div class="micrographbg" style="DISPLAY:none;">
+                                                    <div class="micrograph_G" style="width:30px;"></div>
+                                                </div>1,000
+                                                <p class="dataitemlight dataitemsmaller">(USD)</p>
+                                            </td>
+                                            <td class="tdright tdlightestgrey tdborderleftstrong"><span id="hrs_S2_W11">50 %</span><input id="txt_S2_W11" type="text" value="50" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright tdlightestgrey"><span id="hrs_S2_W12">50 %</span><input id="txt_S2_W12" type="text" value="50" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright tdactiveweek"><span id="hrs_S2_W1">50 %</span><input id="txt_S2_W1" type="text" value="50" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright"><span id="hrs_S2_W2">50 %</span><input id="txt_S2_W2" type="text" value="50" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright"><span id="hrs_S2_W3">100 %</span><input id="txt_S2_W3" type="text" value="100" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright"><span id="hrs_S2_W4">100 %</span><input id="txt_S2_W4" type="text" value="100" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright"><span id="hrs_S2_W5">100 %</span><input id="txt_S2_W5" type="text" value="100" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright"><span id="hrs_S2_W6">100 %</span><input id="txt_S2_W6" type="text" value="100" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright"><span id="hrs_S2_W7">100 %</span><input id="txt_S2_W7" type="text" value="100" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright"><span id="hrs_S2_W8">100 %</span><input id="txt_S2_W8" type="text" value="100" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright"><span id="hrs_S2_W9">100 %</span><input id="txt_S2_W9" type="text" value="100" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright"><span id="hrs_S2_W10">100 %</span><input id="txt_S2_W10" type="text" value="100" class="fctext" style="display:none;" /></td>
+                                        </tr>
+                                        <tr class="trsubrows" id="rowSubConFF_2_1" style="display:none;">
+                                            <td class="tdwhite">&nbsp;</td>
+                                            <td class="tdright"><p>Cost (USD)</p></td>
+                                            <td class="tdright">
+                                                <div class="micrographbg" style="DISPLAY:none;">
+                                                    <div class="micrograph_G" style="width:1px;"></div>
+                                                </div>1,000
+                                            </td>
+                                            <td class="tdborderleftstrong tdright">500</td>
+                                            <td class="tdright">500</td>
+                                            <td class="tdright tdactiveweek">500</td>
+                                            <td class="tdright">500</td>
+                                            <td class="tdright">1,000</td>
+                                            <td class="tdright">1,000</td>
+                                            <td class="tdright">1,000</td>
+                                            <td class="tdright">1,000</td>
+                                            <td class="tdright">1,000</td>
+                                            <td class="tdright">1,000</td>
+                                            <td class="tdright">1,000</td>
+                                            <td class="tdright">1,000</td>
+                                        </tr>
+                                        <tr id="trSCTask_2">
+                                            <td colspan="2" class="tdindentL_2">
+                                                <p class="dataitembold">Task: Another Task</p>
+                                                <p class="dataitemsmall dataitemlight">EBS: C.6908001200358.001000.02</p>
+                                            </td>
+                                            <td class="tdright">
+                                                <div class="micrographbg" style="DISPLAY:none;">
+                                                    <div class="micrograph_G" style="width:2px;"></div>
+                                                </div>37,490
+                                                <p class="dataitemlight dataitemsmaller">(USD)</p>
+                                            </td>
+                                            <td class="tdright tdlightestgrey tdborderleftstrong tdtotal">3 %</td>
+                                            <td class="tdright tdlightestgrey tdtotal">3 %</td>
+                                            <td class="tdright tdactiveweek tdtotal">3 %</td>
+                                            <td class="tdright tdtotal">3 %</td>
+                                            <td class="tdright tdtotal">3 %</td>
+                                            <td class="tdright tdtotal">3 %</td>
+                                            <td class="tdright tdtotal">3 %</td>
+                                            <td class="tdright tdtotal">40 %</td>
+                                            <td class="tdright tdtotal">40 %</td>
+                                            <td class="tdright tdtotal">40 %</td>
+                                            <td class="tdright tdtotal">40 %</td>
+                                            <td class="tdright tdtotal">40 %</td>
+                                        </tr>
+                                        <tr>
+                                            <td onclick="ShowHideRows('SubconFF_3')" style="cursor:pointer;" class="tdwhite tdright"><span id="pdSubconFF_3" style="font-family:'Segoe MDL2 Assets';padding-right:5px;">&#xE011;</span></td>
+                                            <td>
+                                                <!--
+    <div class="icoMenuOverflow">&#xE10C;</div>
+    <div id="btnMenuOverflowEXP_12" class="icoMenuOverflow icoMenuOverflowCir">&#xEA3A;</div>
+                                                -->
+                                                <p class="dataitembold">PO 90001255</p>
+                                                <p class="dataitemsmall">Line Item: 10</p>
+                                            </td>
+                                            <td class="tdright">
+                                                <div class="micrographbg" style="DISPLAY:none;">
+                                                    <div class="micrograph_G" style="width:2px;"></div>
+                                                </div>37,490
+                                                <p class="dataitemlight dataitemsmaller">(USD)</p>
+                                            </td>
+                                            <td class="tdright tdlightestgrey tdborderleftstrong"><span id="hrs_S3_W11">3 %</span><input id="txt_S3_W11" type="text" value="3" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright tdlightestgrey"><span id="hrs_S3_W12">3 %</span><input id="txt_S3_W12" type="text" value="3" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright tdactiveweek"><span id="hrs_S3_W1">3 %</span><input id="txt_S3_W1" type="text" value="3" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright"><span id="hrs_S3_W2">3 %</span><input id="txt_S3_W2" type="text" value="3" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright"><span id="hrs_S3_W3">3 %</span><input id="txt_S3_W3" type="text" value="3" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright"><span id="hrs_S3_W4">3 %</span><input id="txt_S3_W4" type="text" value="3" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright"><span id="hrs_S3_W5">3 %</span><input id="txt_S3_W5" type="text" value="3" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright"><span id="hrs_S3_W6">40 %</span><input id="txt_S3_W6" type="text" value="40" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright"><span id="hrs_S3_W7">40 %</span><input id="txt_S3_W7" type="text" value="40" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright"><span id="hrs_S3_W8">40 %</span><input id="txt_S3_W8" type="text" value="40" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright"><span id="hrs_S3_W9">40 %</span><input id="txt_S3_W9" type="text" value="40" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright"><span id="hrs_S3_W10">40 %</span><input id="txt_S3_W10" type="text" value="40" class="fctext" style="display:none;" /></td>
+                                        </tr>
+                                        <tr class="trsubrows" id="rowSubConFF_3_1" style="display:none;">
+                                            <td class="tdwhite">&nbsp;</td>
+                                            <td class="tdright"><p>Cost (USD)</p></td>
+                                            <td class="tdright">
+                                                <div class="micrographbg" style="DISPLAY:none;">
+                                                    <div class="micrograph_G" style="width:1px;"></div>
+                                                </div>37,490
+                                            </td>
+                                            <td class="tdborderleftstrong tdright">1,189</td>
+                                            <td class="tdright">1,189</td>
+                                            <td class="tdright tdactiveweek">1,189</td>
+                                            <td class="tdright">1,189</td>
+                                            <td class="tdright">1,189</td>
+                                            <td class="tdright">1,189</td>
+                                            <td class="tdright">1,189</td>
+                                            <td class="tdright">14,996</td>
+                                            <td class="tdright">14,996</td>
+                                            <td class="tdright">14,996</td>
+                                            <td class="tdright">14,996</td>
+                                            <td class="tdright">14,996</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
 
                         <div id="secExpense" style="display:none;">
@@ -1538,9 +1884,9 @@
                                             <td onclick="ShowHideRows('Expense_1')" style="cursor:pointer;" class="tdwhite tdright"><span id="pdExpense_1" style="font-family:'Segoe MDL2 Assets';padding-right:5px;">&#xE011;</span></td>
                                             <td>
                                                 <!--
-    <div class="icoMenuOverflow">&#xE10C;</div>
-    <div id="btnMenuOverflowEXP_10" class="icoMenuOverflow icoMenuOverflowCir">&#xEA3A;</div>
-                                                -->
+                            <div class="icoMenuOverflow">&#xE10C;</div>
+                            <div id="btnMenuOverflowEXP_10" class="icoMenuOverflow icoMenuOverflowCir">&#xEA3A;</div>
+                                                                        -->
                                                 <p class="dataitembold">Expenses</p>
                                                 <p class="dataitemsmall">(Billable)</p>
                                             </td>
@@ -1588,9 +1934,9 @@
                                             <td class="tdwhite">&nbsp;</td>
                                             <td>
                                                 <!--
-    <div class="icoMenuOverflow">&#xE10C;</div>
-    <div id="btnMenuOverflowEXP_11" class="icoMenuOverflow icoMenuOverflowCir">&#xEA3A;</div>
-                                                -->
+                            <div class="icoMenuOverflow">&#xE10C;</div>
+                            <div id="btnMenuOverflowEXP_11" class="icoMenuOverflow icoMenuOverflowCir">&#xEA3A;</div>
+                                                                        -->
                                                 <p class="dataitembold">Expenses</p>
                                                 <p class="dataitemsmall textdarkred">(Non-billable)</p>
                                             </td>
@@ -1641,9 +1987,9 @@
                                             <td onclick="ShowHideRows('Expense_3')" style="cursor:pointer;" class="tdwhite tdright"><span id="pdExpense_3" style="font-family:'Segoe MDL2 Assets';padding-right:5px;">&#xE011;</span></td>
                                             <td>
                                                 <!--
-    <div class="icoMenuOverflow">&#xE10C;</div>
-    <div id="btnMenuOverflowEXP_12" class="icoMenuOverflow icoMenuOverflowCir">&#xEA3A;</div>
-                                                -->
+                            <div class="icoMenuOverflow">&#xE10C;</div>
+                            <div id="btnMenuOverflowEXP_12" class="icoMenuOverflow icoMenuOverflowCir">&#xEA3A;</div>
+                                                                        -->
                                                 <p class="dataitembold">Materials</p>
                                                 <p class="dataitemsmall">(Billable)</p>
                                             </td>
@@ -1691,9 +2037,9 @@
                                             <td class="tdwhite">&nbsp;</td>
                                             <td>
                                                 <!--
-    <div class="icoMenuOverflow">&#xE10C;</div>
-    <div id="btnMenuOverflowEXP_13" class="icoMenuOverflow icoMenuOverflowCir">&#xEA3A;</div>
-                                                -->
+                            <div class="icoMenuOverflow">&#xE10C;</div>
+                            <div id="btnMenuOverflowEXP_13" class="icoMenuOverflow icoMenuOverflowCir">&#xEA3A;</div>
+                                                                        -->
                                                 <p class="dataitembold">Materials</p>
                                                 <p class="dataitemsmall textdarkred">(Non-billable)</p>
                                             </td>
