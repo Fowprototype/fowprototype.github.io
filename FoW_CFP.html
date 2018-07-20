@@ -325,11 +325,13 @@
             window.onclick = function (event) {
                 var w = document.getElementById('divMenuOverflowList');
                 var wEXP = document.getElementById('divMenuOverflowListEXP');
+                var wSCFF = document.getElementById('divMenuOverflowListSubconFF');
                 var h = document.getElementById('divTooltipHelp');
                 var dENG = document.getElementById('divMenuOverflowDetailENG');
                 var dPROJ = document.getElementById('divMenuOverflowDetailPROJ');
                 w.style.display = "none";
                 wEXP.style.display = "none";
+                wSCFF.style.display = "none";
                 h.style.display = "none";
                 dENG.style.display = "none";
                 dPROJ.style.display = "none";
@@ -347,6 +349,11 @@
                     wEXP.style.left = event.clientX + document.body.scrollLeft;
                     wEXP.style.top = event.clientY + document.body.scrollTop;
                     wEXP.style.display = "inline-block";
+                }
+                else if (event.target.id.startsWith('btnMenuOverflowSubconFF_')) {
+                    wSCFF.style.left = event.clientX + document.body.scrollLeft;
+                    wSCFF.style.top = event.clientY + document.body.scrollTop;
+                    wSCFF.style.display = "inline-block";
                 }
                 else if (event.target.id.startsWith('btnMenuOverflowDetail_')) {
                     if (event.target.id.endsWith('E')) {
@@ -374,8 +381,16 @@
                 document.getElementById('modalAddSubconFF').style.display = "";
             }
 
+            function showEditSubconFFModal() {
+                document.getElementById('modalEditSubconFF').style.display = "";
+            }
+
             function showAddExpenseModal() {
                 document.getElementById('modalAddExpense').style.display = "";
+            }
+
+            function showEditExpenseModal() {
+                document.getElementById('modalEditExpense').style.display = "";
             }
 
             function showEditRoleModal() {
@@ -420,7 +435,16 @@
             <p><a href="#">Paste row values</a></p>
         </div>
 
+        <div id="divMenuOverflowListSubconFF" class="menuOverflowList">
+            <p><a onclick="showEditSubconFFModal();" href="#">Edit Subcon FF</a></p>
+            <div style="background:#f0f0f0;height:1px;width:100%;margin-top:10px;margin-bottom:10px;"></div>
+            <p><a href="#">Copy row values</a></p>
+            <p><a href="#">Paste row values</a></p>
+        </div>
+
         <div id="divMenuOverflowListEXP" class="menuOverflowList">
+            <p><a onclick="showEditExpenseModal();" href="#">Edit Expense</a></p>
+            <div style="background:#f0f0f0;height:1px;width:100%;margin-top:10px;margin-bottom:10px;"></div>
             <p><a href="#">Copy row values</a></p>
             <p><a href="#">Paste row values</a></p>
         </div>
@@ -991,6 +1015,54 @@
                 </div>
             </div>
         </div>
+        <div id="modalEditSubconFF" class="modalbg" style="display:none;">
+            <div class="modalbox">
+                <div class="modalheader">
+                    <div class="Xbutton" onclick="hideModals();">&#xE10A;</div>
+                    <div class="subtitle">Edit Subcon FF</div>
+                </div>
+                <div id="modalAddRolebody" class="modalbody">
+                    <div class="formrow">
+                        <div class="fieldlabel">EBS Item</div>
+                        <div>
+                            <select id="frmEBS" class="fieldinput" style="width:100%">
+                                <option></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="formrow" style="width: 47%; float: right;">
+                        <div class="fieldlabel">Role</div>
+                        <div>
+                            <input type="text" id="frmHours" class="fieldinput" style="width:100%" value="" />
+                        </div>
+                    </div>
+                    <div class="formrow" style="width: 47%;">
+                        <div class="fieldlabel">Resource Type</div>
+                        <div>
+                            <select id="frmType" class="fieldinput" style="width:100%">
+                                <option></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="formrow">
+                        <div class="fieldlabel">Description</div>
+                        <div>
+                            <input id="frmResource" class="fieldinput" style="width:100%" value="" />
+                        </div>
+                    </div>
+                    <div class="formrow" style="width: 47%;">
+                        <div class="fieldlabel">Planned Cost (USD)</div>
+                        <div>
+                            <input type="text" id="frmHours" class="fieldinput" style="width:100%" value="" />
+                        </div>
+                    </div>
+                </div>
+                <div class="modalfooter" style="text-align:right;">
+                    <button class="secondarybutton" onclick="hideModals();">Cancel</button>
+                    <button class="primarybutton" onclick="hideModals();">Save</button>
+                </div>
+            </div>
+        </div>
         <div id="modalAddExpense" class="modalbg" style="display:none;">
             <div class="modalbox">
                 <div class="modalheader">
@@ -1015,7 +1087,75 @@
                     <div class="formrow" style="width: 47%;">
                         <div class="fieldlabel">Resource Type</div>
                         <div>
-                            <select id="frmType" class="fieldinput" style="width:100%">
+                            <select id="frmTypeAddExpType" class="fieldinput" style="width:100%" onchange="if (this.value == 'Material') { document.getElementById('frmAddExpRowPO').style.display = '';document.getElementById('frmAddExpRowPOLI').style.display = '';}else{ document.getElementById('frmAddExpRowPO').style.display = 'none';document.getElementById('frmAddExpRowPOLI').style.display = 'none';};">
+                                <option></option>
+                                <option value="Expense">Expense</option>
+                                <option value="Material">Material</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="formrow">
+                        <div class="fieldlabel">Description</div>
+                        <div>
+                            <input id="frmResource" class="fieldinput" style="width:100%" value="Expense Task" />
+                        </div>
+                    </div>
+                    <div class="formrow" style="width: 47%; float: right;">
+                        <div class="fieldlabel">Planned Revenue (USD)</div>
+                        <div>
+                            <input type="text" id="frmHours" class="fieldinput" style="width:100%" value="" />
+                        </div>
+                    </div>
+                    <div class="formrow" style="width: 47%;">
+                        <div class="fieldlabel">Planned Cost (USD)</div>
+                        <div>
+                            <input type="text" id="frmHours" class="fieldinput" style="width:100%" value="" />
+                        </div>
+                    </div>
+                    <div class="formrow" id="frmAddExpRowPO" style="display:none;">
+                        <div class="fieldlabel">Purchase Order</div>
+                        <div>
+                            <input id="frmResource" class="fieldinput" style="width:100%" value="" />
+                        </div>
+                    </div>
+                    <div class="formrow" id="frmAddExpRowPOLI" style="display:none;">
+                        <div class="fieldlabel">PO Line Item</div>
+                        <div>
+                            <input id="frmResource" class="fieldinput" style="width:100%" value="" />
+                        </div>
+                    </div>
+                </div>
+                <div class="modalfooter" style="text-align:right;">
+                    <button class="secondarybutton" onclick="hideModals();">Cancel</button>
+                    <button class="primarybutton" onclick="hideModals();">Add</button>
+                </div>
+            </div>
+        </div>
+        <div id="modalEditExpense" class="modalbg" style="display:none;">
+            <div class="modalbox">
+                <div class="modalheader">
+                    <div class="Xbutton" onclick="hideModals();">&#xE10A;</div>
+                    <div class="subtitle">Edit Expense</div>
+                </div>
+                <div id="modalEditExpensebody" class="modalbody">
+                    <div class="formrow">
+                        <div class="fieldlabel">EBS Item</div>
+                        <div>
+                            <select id="frmEBS" class="fieldinput" style="width:100%">
+                                <option></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="formrow" style="width: 47%; float: right;">
+                        <div class="fieldlabel">Role</div>
+                        <div>
+                            <input type="text" id="frmHours" class="fieldinput" style="width:100%" value="Billable Expense" />
+                        </div>
+                    </div>
+                    <div class="formrow" style="width: 47%;">
+                        <div class="fieldlabel">Resource Type</div>
+                        <div>
+                            <select id="frmTypeAddExpType" class="fieldinput" style="width:100%" onchange="if (this.value == 'Material') { document.getElementById('frmEditExpRowPO').style.display = '';document.getElementById('frmEditExpRowPOLI').style.display = '';}else{ document.getElementById('frmEditExpRowPO').style.display = 'none';document.getElementById('frmEditExpRowPOLI').style.display = 'none';};">
                                 <option></option>
                                 <option>Expense</option>
                                 <option>Material</option>
@@ -1040,10 +1180,22 @@
                             <input type="text" id="frmHours" class="fieldinput" style="width:100%" value="" />
                         </div>
                     </div>
+                    <div class="formrow" id="frmEditExpRowPO" style="display:none;">
+                        <div class="fieldlabel">Purchase Order</div>
+                        <div>
+                            <input id="frmResource" class="fieldinput" style="width:100%" value="" />
+                        </div>
+                    </div>
+                    <div class="formrow" id="frmEditExpRowPOLI" style="display:none;">
+                        <div class="fieldlabel">PO Line Item</div>
+                        <div>
+                            <input id="frmResource" class="fieldinput" style="width:100%" value="" />
+                        </div>
+                    </div>
                 </div>
                 <div class="modalfooter" style="text-align:right;">
                     <button class="secondarybutton" onclick="hideModals();">Cancel</button>
-                    <button class="primarybutton" onclick="hideModals();">Add</button>
+                    <button class="primarybutton" onclick="hideModals();">Save</button>
                 </div>
             </div>
         </div>
@@ -1579,9 +1731,9 @@
                                         <tr id="trTask_1">
                                             <td colspan="2" class="tdindentL_2">
                                                 <!--
-                            <div class="icoMenuOverflow">&#xE10C;</div>
-                            <div id="btnMenuOverflow_3" class="icoMenuOverflow icoMenuOverflowCir">&#xEA3A;</div>
-                            -->
+                                            <div class="icoMenuOverflow">&#xE10C;</div>
+                                            <div id="btnMenuOverflow_3" class="icoMenuOverflow icoMenuOverflowCir">&#xEA3A;</div>
+                                            -->
                                                 <p class="dataitembold">Task: Default Task</p>
                                                 <p class="dataitemsmall dataitemlight">EBS: C.6908001200358.001000.01</p>
                                             </td>
@@ -1905,9 +2057,9 @@
                                         <tr id="trTask_2">
                                             <td colspan="2" class="tdindentL_2">
                                                 <!--
-                            <div class="icoMenuOverflow">&#xE10C;</div>
-                            <div id="btnMenuOverflow_8" class="icoMenuOverflow icoMenuOverflowCir">&#xEA3A;</div>
-                                                                        -->
+                                            <div class="icoMenuOverflow">&#xE10C;</div>
+                                            <div id="btnMenuOverflow_8" class="icoMenuOverflow icoMenuOverflowCir">&#xEA3A;</div>
+                                                                                        -->
                                                 <p class="dataitembold">Task: Risk Reserve</p>
                                                 <p class="dataitemsmall dataitemlight">EBS: C.6908001200358.001000.02</p>
                                             </td>
@@ -2120,7 +2272,7 @@
                                             <td onclick="ShowHideRows('SubconFF_1')" style="cursor:pointer;" class="tdwhite tdright"><span id="pdSubconFF_1" style="font-family:'Segoe MDL2 Assets';padding-right:5px;">&#xE011;</span></td>
                                             <td>
                                                 <div class="icoMenuOverflow">&#xE10C;</div>
-                                                <div id="btnMenuOverflowEXP_10" class="icoMenuOverflow icoMenuOverflowCir">&#xEA3A;</div>
+                                                <div id="btnMenuOverflowSubconFF_1" class="icoMenuOverflow icoMenuOverflowCir">&#xEA3A;</div>
                                                 <p class="dataitembold">PO 90001234</p>
                                                 <p class="dataitemsmall">Line item: 10</p>
                                             </td>
@@ -2168,7 +2320,7 @@
                                             <td onclick="ShowHideRows('SubconFF_2')" style="cursor:pointer;" class="tdwhite tdright"><span id="pdSubconFF_2" style="font-family:'Segoe MDL2 Assets';padding-right:5px;">&#xE011;</span></td>
                                             <td>
                                                 <div class="icoMenuOverflow">&#xE10C;</div>
-                                                <div id="btnMenuOverflowEXP_11" class="icoMenuOverflow icoMenuOverflowCir">&#xEA3A;</div>
+                                                <div id="btnMenuOverflowSubconFF_2" class="icoMenuOverflow icoMenuOverflowCir">&#xEA3A;</div>
                                                 <p class="dataitembold">PO 90001234</p>
                                                 <p class="dataitemsmall">Line Item: 20</p>
                                             </td>
@@ -2240,7 +2392,7 @@
                                             <td onclick="ShowHideRows('SubconFF_3')" style="cursor:pointer;" class="tdwhite tdright"><span id="pdSubconFF_3" style="font-family:'Segoe MDL2 Assets';padding-right:5px;">&#xE011;</span></td>
                                             <td>
                                                 <div class="icoMenuOverflow">&#xE10C;</div>
-                                                <div id="btnMenuOverflowEXP_12" class="icoMenuOverflow icoMenuOverflowCir">&#xEA3A;</div>
+                                                <div id="btnMenuOverflowSubconFF_3" class="icoMenuOverflow icoMenuOverflowCir">&#xEA3A;</div>
                                                 <p class="dataitembold">PO 90001255</p>
                                                 <p class="dataitemsmall">Line Item: 10</p>
                                             </td>
