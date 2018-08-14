@@ -486,6 +486,14 @@ th.tdSummaryActive > div.tooltipicon {
     padding-left: 32px !important;
 }
 
+.tdProposed {
+    background-image: url('HeadcountIcon_Proposed.png');
+    background-repeat: no-repeat;
+    background-size: 24px;
+    background-position-y: 11px;
+    padding-left: 32px !important;
+}
+
 .thdarkgrey {
     background-color: rgba(0,0,0,0.2);
     color: #000;

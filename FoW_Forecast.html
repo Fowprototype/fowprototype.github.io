@@ -721,11 +721,11 @@
                             <thead>
                                 <tr>
                                     <th colspan="2">Category</th>
-                                    <th class="tdright" onmouseover="hoverSummaryTable(1);" onmouseout="outSummaryTable(1);" onclick="navSummaryTable(1);"><a href="FoW_ContractBaseline.html">Contract Baseline</a><div class="tooltipicon">&#xE946;</div></th>
-                                    <th class="tdright" style="width:12%" onmouseover="hoverSummaryTable(2);" onmouseout="outSummaryTable(2);" onclick="navSummaryTable(2);"><a href="FoW_DeliveryBaseline.html">Delivery Baseline</a><div class="tooltipicon">&#xE946;</div></th>
-                                    <th class="tdright" style="width:12%" onmouseover="hoverSummaryTable(3);" onmouseout="outSummaryTable(3);" onclick="navSummaryTable(3);"><a href="FoW_CFP.html">Current<br />Financial Plan</a><div class="tooltipicon">&#xE946;</div></th>
-                                    <th class="tdright" style="width:12%">Actuals</th>
-                                    <th class="tdright tdSummaryActive" style="width:12%">Forecast / ETC<div class="tooltipicon">&#xE946;</div></th>
+                                    <th class="tdright" onmouseover="hoverSummaryTable(1);" onmouseout="outSummaryTable(1);" onclick="navSummaryTable(1);"><a href="FoW_ContractBaseline.html">Contract Baseline</a><div class="tooltipicon">&#xE946;</div><br/><span class="dataitemsmaller">(Finalized)</span></th>
+                                    <th class="tdright" style="width:12%" onmouseover="hoverSummaryTable(2);" onmouseout="outSummaryTable(2);" onclick="navSummaryTable(2);"><a href="FoW_DeliveryBaseline.html">Delivery Baseline</a><div class="tooltipicon">&#xE946;</div><br /><span class="dataitemsmaller">(Finalized)</span></th>
+                                    <th class="tdright" style="width:12%" onmouseover="hoverSummaryTable(3);" onmouseout="outSummaryTable(3);" onclick="navSummaryTable(3);"><a href="FoW_CFP.html">Current<br />Financial Plan</a><div class="tooltipicon">&#xE946;</div><br /><span class="dataitemsmaller">(Active)</span></th>
+                                    <th class="tdright" style="width:12%">Actuals<br /><span class="dataitemsmaller">(as of 13-Aug-2018)</span></th>
+                                    <th class="tdright tdSummaryActive" style="width:12%">Forecast / ETC<div class="tooltipicon">&#xE946;</div><br /><span class="dataitemsmaller">(as of 13-Aug-2018)</span></th>
                                     <th class="tdright" style="width:12%">EAC</th>
                                     <th class="tdright" style="width:12%">EAC Variance to<br />Delivery Baseline</th>
                                 </tr>
@@ -1191,9 +1191,9 @@
                                         <tr id="trTask_1">
                                             <td colspan="2" class="tdindentL_2">
                                                 <!--
-                                            <div class="icoMenuOverflow">&#xE10C;</div>
-                                            <div id="btnMenuOverflow_3" class="icoMenuOverflow icoMenuOverflowCir">&#xEA3A;</div>
-                                                                                        -->
+            <div class="icoMenuOverflow">&#xE10C;</div>
+            <div id="btnMenuOverflow_3" class="icoMenuOverflow icoMenuOverflowCir">&#xEA3A;</div>
+                                                        -->
                                                 <p class="dataitembold">Task: Default Task</p>
                                                 <p class="dataitemsmall dataitemlight">EBS: C.6908001200358.001000.01</p>
                                             </td>
@@ -1495,9 +1495,9 @@
                                         <tr id="trTask_2">
                                             <td colspan="2" class="tdindentL_2">
                                                 <!--
-                                            <div class="icoMenuOverflow">&#xE10C;</div>
-                                            <div id="btnMenuOverflow_8" class="icoMenuOverflow icoMenuOverflowCir">&#xEA3A;</div>
-                                                                                        -->
+            <div class="icoMenuOverflow">&#xE10C;</div>
+            <div id="btnMenuOverflow_8" class="icoMenuOverflow icoMenuOverflowCir">&#xEA3A;</div>
+                                                        -->
                                                 <p class="dataitembold">Task: Risk Reserve (Total Amount: 20,000 USD)</p>
                                                 <p class="dataitemsmall dataitemlight">EBS: C.6908001200358.001000.02</p>
                                             </td>
@@ -1589,6 +1589,34 @@
                                             <td class="tdright">3,961</td>
                                             <td class="tdright tdVcenter">26,064</td>
                                         </tr>
+                                        <tr>
+                                            <td class="tdwhite tdright"><span id="pdResource_6" style="font-family:'Segoe MDL2 Assets';padding-right:5px;"></span></td>
+                                            <td class="tdProposed">
+                                                <div class="icoMenuOverflow">&#xE10C;</div>
+                                                <div id="btnMenuOverflow_10" class="icoMenuOverflow icoMenuOverflowCir">&#xEA3A;</div>
+                                                <p class="dataitembold">(Proposed)</p>
+                                                <p class="dataitemsmall">SENIOR CONSULTANT</p>
+                                            </td>
+                                            <td class="tdright">
+                                                <div class="micrographbg">
+                                                    <div class="micrograph_G" style="width:0px;"></div>
+                                                </div>100
+                                                <p class="dataitemlight dataitemsmaller">hrs</p>
+                                            </td>
+                                            <td class="tdright tdlightestgrey tdborderleftstrong">0<div class="dataitemlighter"></div></td>
+                                            <td class="tdright tdlightestgrey">0<div class="dataitemlighter"></div></td>
+                                            <td class="tdright tdactiveweek"><span id="hrs_R6_W1">0</span><input id="txt_R6_W1" type="text" value="8" class="fctext" style="display:none;" /><div class="dataitemlighter"></div></td>
+                                            <td class="tdright"><span id="hrs_R6_W2">0</span><input id="txt_R6_W2" type="text" value="8" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright"><span id="hrs_R6_W3">0</span><input id="txt_R6_W3" type="text" value="8" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright"><span id="hrs_R6_W4">0</span><input id="txt_R6_W4" type="text" value="8" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright"><span id="hrs_R6_W5">0</span><input id="txt_R6_W5" type="text" value="8" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright"><span id="hrs_R6_W6">0</span><input id="txt_R6_W6" type="text" value="8" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright"><span id="hrs_R6_W7">0</span><input id="txt_R6_W7" type="text" value="8" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright tdborderleftstrong">&nbsp;<div class="dataitemlighter">0</div></td>
+                                            <td class="tdright">0</td>
+                                            <td class="tdright tdVcenter">0</td>
+                                        </tr>
+
                                     </tbody>
                                 </table>
                             </div>
