@@ -205,7 +205,7 @@
                     }
                     var tblFD = document.getElementById("tblDetailTable");
                     for (var r = 0, rowFD; rowFD = tblFD.rows[r]; r++) {
-                        if (r > 6) {
+                        if (r > 5) {
                             if (rowFD.id.startsWith("rowResource_")) {
                                 rowFD.style.display = "none";
                             }
@@ -324,11 +324,13 @@
             // Show/Hide the popup menu when user clicks anyway in the window.
             window.onclick = function (event) {
                 var w = document.getElementById('divMenuOverflowList');
+                var dDEM = document.getElementById('divMenuOverflowListDEM');
                 var wEXP = document.getElementById('divMenuOverflowListEXP');
                 var h = document.getElementById('divTooltipHelp');
                 var dENG = document.getElementById('divMenuOverflowDetailENG');
                 var dPROJ = document.getElementById('divMenuOverflowDetailPROJ');
                 w.style.display = "none";
+                dDEM.style.display = "none";
                 wEXP.style.display = "none";
                 h.style.display = "none";
                 dENG.style.display = "none";
@@ -337,6 +339,11 @@
                     w.style.left = event.clientX + document.body.scrollLeft;
                     w.style.top = event.clientY + document.body.scrollTop;
                     w.style.display = "inline-block";
+                }
+                else if (event.target.id.startsWith("btnMenuOverflowDEM_")) {
+                    dDEM.style.left = event.clientX + document.body.scrollLeft;
+                    dDEM.style.top = event.clientY + document.body.scrollTop;
+                    dDEM.style.display = "inline-block";
                 }
                 else if (event.target.className == "tooltipicon") {
                     h.style.left = event.clientX + document.body.scrollLeft;
@@ -366,6 +373,10 @@
                 document.getElementById('modalResourceDetails').style.display = "";
             }
 
+            function showDemandDetailsModal() {
+                document.getElementById('modalDemandDetails').style.display = "";
+            }
+
             function hideModals() {
                 var m = document.getElementsByClassName('modalbg');
                 var i;
@@ -380,6 +391,11 @@
         <div id="divMenuOverflowList" class="menuOverflowList">
             <p><a onclick="showResourceDetailsModal();" href="#">Resource details</a></p>
         </div>
+
+        <div id="divMenuOverflowListDEM" class="menuOverflowList">
+            <p><a onclick="showDemandDetailsModal();" href="#">Demand details</a></p>
+        </div>
+
 
         <div id="divMenuOverflowListEXP" class="menuOverflowList">
             <p><a href="#">Copy row values</a></p>
@@ -549,6 +565,97 @@
             </div>
         </div>
 
+        <div id="modalDemandDetails" class="modalbg" style="display:none;">
+            <div class="modalbox">
+                <div class="modalheader">
+                    <div class="Xbutton" onclick="hideModals();">&#xE10A;</div>
+                    <div class="subtitle">Demand Details</div>
+                </div>
+                <div id="modalSplitRole" class="modalbody">
+                    <div class="formrow" style="width: 47%; float: right;">
+                        <div class="fieldlabel">Resource Type</div>
+                        <div>Full Time</div>
+                    </div>
+                    <div class="formrow" style="width: 47%;">
+                        <div class="fieldlabel">Role</div>
+                        <div>Senior Project Manager</div>
+                    </div>
+                    <div class="formrow" style="width: 47%; float: right;">
+                        <div class="fieldlabel">Business Partner ID</div>
+                        <div>123456789</div>
+                    </div>
+                    <div class="formrow" style="width: 47%;">
+                        <div class="fieldlabel">GRM Demand ID</div>
+                        <div>123456789</div>
+                    </div>
+                    <div class="formrow" style="width: 47%; float: right;">
+                        <div class="fieldlabel">Bill Rate</div>
+                        <div>220 USD/hr</div>
+                    </div>
+                    <div class="formrow" style="width: 47%;">
+                        <div class="fieldlabel">Cost Rate (since 01-Mar-2018)</div>
+                        <div>180 USD/hr</div>
+                    </div>
+                    <div class="formrow" style="width: 47%; float: right;">
+                        <div class="fieldlabel">Billing Role ID</div>
+                        <div>123456</div>
+                    </div>
+                    <div class="formrow" style="width: 47%;">
+                        <div class="fieldlabel">Domain</div>
+                        <div>Business Applications</div>
+                    </div>
+                    <div class="formrow" style="width: 47%; float: right;">
+                        <div class="fieldlabel">Resource Location</div>
+                        <div>Toronto, Canada</div>
+                    </div>
+                    <div class="formrow" style="width: 47%;">
+                        <div class="fieldlabel">Delivery Location</div>
+                        <div>Toronto, Canada</div>
+                    </div>
+                    <div class="formrow" style="width: 47%; float: right;">
+                        <div class="fieldlabel">PO Line Item</div>
+                        <div>10</div>
+                    </div>
+                    <div class="formrow" style="width: 47%;">
+                        <div class="fieldlabel">Purchase Order</div>
+                        <div>90001266</div>
+                    </div>
+                    <div class="formrow">
+                        <table class="datatable">
+                            <thead>
+                                <tr>
+                                    <th>Category</th>
+                                    <th class="tdright">Planned</th>
+                                    <th class="tdright">Proposed</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Labor (hours)</td>
+                                    <td class="tdright">250</td>
+                                    <td class="tdright">250</td>
+                                </tr>
+                                <tr>
+                                    <td>Cost (USD)</td>
+                                    <td class="tdright">45,278</td>
+                                    <td class="tdright">45,278</td>
+                                </tr>
+                                <tr>
+                                    <td>Revenue (USD)</td>
+                                    <td class="tdright">52,053</td>
+                                    <td class="tdright">52,053</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modalfooter" style="text-align:right;">
+                    <button class="primarybutton" onclick="hideModals();">Close</button>
+                </div>
+            </div>
+        </div>
+
+
         <div id="divHeader"><div class="middleitem">ESXP &nbsp;|&nbsp; Project Management</div></div>
         <div id="divBody">
             <!-- BEGIN LEFT NAV  -->
@@ -587,10 +694,10 @@
                                     <th colspan="2">Category</th>
                                     <th class="tdright tdSummaryActive">Contract Baseline<div class="tooltipicon">&#xE946;</div><br /><span class="dataitemsmaller">(Finalized)</span></th>
                                     <th class="tdright" style="width:12%" onmouseover="hoverSummaryTable(2);" onmouseout="outSummaryTable(2);" onclick="navSummaryTable(2);"><a href="FoW_DeliveryBaseline.html">Delivery Baseline</a><div class="tooltipicon">&#xE946;</div><br /><span class="dataitemsmaller">(Finalized)</span></th>
-                                    <th class="tdright" style="width:12%" onmouseover="hoverSummaryTable(3);" onmouseout="outSummaryTable(3);" onclick="navSummaryTable(3);"><a href="FoW_CFP.html">Current<br />Financial Plan</a><div class="tooltipicon">&#xE946;</div><br /><span class="dataitemsmaller">(Active)</span></th>
+                                    <th class="tdright" style="width:12%" onmouseover="hoverSummaryTable(3);" onmouseout="outSummaryTable(3);" onclick="navSummaryTable(3);"><a href="FoW_CFP.html">Current<br />Financial Plan</a><div class="tooltipicon">&#xE946;</div><br /><span class="dataitemsmaller">(Active as of 15-Jul-2018)</span></th>
                                     <th class="tdright" style="width:12%">Actuals<br /><span class="dataitemsmaller">(as of 13-Aug-2018)</span></th>
                                     <th class="tdright" style="width:12%" onmouseover="hoverSummaryTable(5);" onmouseout="outSummaryTable(5);" onclick="navSummaryTable(5);"><a href="FoW_Forecast.html">Forecast / ETC</a><div class="tooltipicon">&#xE946;</div><br /><span class="dataitemsmaller">(as of 13-Aug-2018)</span></th>
-                                    <th class="tdright" style="width:12%">EAC</th>
+                                    <th class="tdright" style="width:12%">EAC<br /><span class="dataitemsmaller">(as of 13-Aug-2018)</span></th>
                                     <th class="tdright" style="width:12%">EAC Variance to<br />Delivery Baseline</th>
                                 </tr>
                             </thead>
@@ -768,7 +875,7 @@
                                 <div>
                                     <input type="checkbox" id="chkShowCosts" onchange="showCostInDetail();" checked /><label for="chkShowCosts" style="margin-right:15px;">Show Costs</label>
                                     <input type="checkbox" id="chkShowRevenue" onchange="showRevenueInDetail();" checked /><label for="chkShowRevenue" style="margin-right:15px;">Show Revenue</label>
-                                    <input type="checkbox" id="chkShowResourcesOnly" onchange="showResourcesOnlyInDetail();" /><label for="chkShowResourcesOnly">Show Resources Only</label>
+                                    <input type="checkbox" id="chkShowResourcesOnly" onchange="showResourcesOnlyInDetail();" /><label for="chkShowResourcesOnly">Show Demand Only</label>
                                 </div>
                             </div>
                             <script type="text/javascript">
@@ -891,7 +998,7 @@
                                         <tr>
                                             <th style="width:50px;border-left: 1px solid rgba(0,0,0,0.1);">EBS Description</th>
                                             <th>Resource</th>
-                                            <th class="tdright" style="width:14%">( Planned )&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />Hours ( &nbsp;<span class="dataitemitalics">Staffed</span>&nbsp; )<div class="tooltipicon">&#xE946;</div></th>
+                                            <th class="tdright" style="width:14%">Planned Hours<div class="tooltipicon">&#xE946;</div></th>
                                             <th class="tdcenter tdlightestgrey tdborderleftstrong" style="width:5%">Week 46<p class="dataitemsmallest">19-May<br />25-May</p></th>
                                             <th class="tdcenter tdlightestgrey" style="width:5%">Week 47<p class="dataitemsmallest">26-May<br />01-Jun</p></th>
                                             <th class="tdcenter tdactiveweek" style="width:5%">Week 48<p class="dataitemsmallest">02-Jun<br />08-Jun</p></th>
@@ -916,69 +1023,57 @@
                                             </td>
                                             <td class="tdright">
                                                 <p>1,930 <span class="dataitemlight dataitemsmaller">hrs</span></p>
-                                                <div class="micrographbg">
-                                                    <div class="micrograph_G" style="width:50px;"></div>
-                                                </div>
-                                                <p class="dataitemitalics">1,600 <span class="dataitemlight dataitemsmaller ">hrs</span></p>
                                             </td>
-                                            <td class="tdright tdborderleftstrong tdtotal tdlightestgrey">128<div class="dataitemlighter">128</div></td>
-                                            <td class="tdright tdtotal tdlightestgrey">128<div class="dataitemlighter">128</div></td>
-                                            <td class="tdright tdtotal tdactiveweek">128<div class="dataitemlighter">128</div></td>
-                                            <td class="tdright tdtotal">128<div class="dataitemlighter">128</div></td>
-                                            <td class="tdright tdtotal">128<div class="dataitemlighter">128</div></td>
-                                            <td class="tdright tdtotal">128<div class="dataitemlighter">112</div></td>
-                                            <td class="tdright tdtotal">128<div class="dataitemlighter">88</div></td>
-                                            <td class="tdright tdtotal">128<div class="dataitemlighter">88</div></td>
-                                            <td class="tdright tdtotal">128<div class="dataitemlighter">88</div></td>
-                                            <td class="tdright tdtotal">128<div class="dataitemlighter">88</div></td>
-                                            <td class="tdright tdtotal">128<div class="dataitemlighter">88</div></td>
-                                            <td class="tdright tdtotal">128<div class="dataitemlighter">88</div></td>
+                                            <td class="tdright tdborderleftstrong tdtotal tdlightestgrey">128</td>
+                                            <td class="tdright tdtotal tdlightestgrey">128</td>
+                                            <td class="tdright tdtotal tdactiveweek">128</td>
+                                            <td class="tdright tdtotal">128</td>
+                                            <td class="tdright tdtotal">128</td>
+                                            <td class="tdright tdtotal">128</td>
+                                            <td class="tdright tdtotal">128</td>
+                                            <td class="tdright tdtotal">128</td>
+                                            <td class="tdright tdtotal">128</td>
+                                            <td class="tdright tdtotal">128</td>
+                                            <td class="tdright tdtotal">128</td>
+                                            <td class="tdright tdtotal">128</td>
                                         </tr>
                                         <tr class="trsubrows" id="trDetailCost_1">
                                             <td class="tdwhite">&nbsp;</td>
                                             <td class="tdright"><p>Cost (USD)</p></td>
                                             <td class="tdright">
                                                 <p>308,851</p>
-                                                <div class="micrographbg">
-                                                    <div class="micrograph_G" style="width:45px;"></div>
-                                                </div>
-                                                <p class="dataitemitalics">256,088</p>
                                             </td>
-                                            <td class="tdright tdborderleftstrong">20,557<div class="dataitemlighter">20,557</div></td>
-                                            <td class="tdright">20,557<div class="dataitemlighter">20,557</div></td>
-                                            <td class="tdright tdactiveweek">20,557<div class="dataitemlighter">20,557</div></td>
-                                            <td class="tdright">20,557<div class="dataitemlighter">20,557</div></td>
-                                            <td class="tdright">20,557<div class="dataitemlighter">20,557</div></td>
-                                            <td class="tdright">20,557<div class="dataitemlighter">17,920</div></td>
-                                            <td class="tdright">20,557<div class="dataitemlighter">14,203</div></td>
-                                            <td class="tdright">20,557<div class="dataitemlighter">14,203</div></td>
-                                            <td class="tdright">20,557<div class="dataitemlighter">14,203</div></td>
-                                            <td class="tdright">20,557<div class="dataitemlighter">14,203</div></td>
-                                            <td class="tdright">20,557<div class="dataitemlighter">14,203</div></td>
-                                            <td class="tdright">20,557<div class="dataitemlighter">14,203</div></td>
+                                            <td class="tdright tdborderleftstrong">20,557</td>
+                                            <td class="tdright">20,557</td>
+                                            <td class="tdright tdactiveweek">20,557</td>
+                                            <td class="tdright">20,557</td>
+                                            <td class="tdright">20,557</td>
+                                            <td class="tdright">20,557</td>
+                                            <td class="tdright">20,557</td>
+                                            <td class="tdright">20,557</td>
+                                            <td class="tdright">20,557</td>
+                                            <td class="tdright">20,557</td>
+                                            <td class="tdright">20,557</td>
+                                            <td class="tdright">20,557</td>
                                         </tr>
                                         <tr class="trsubrows" id="trDetailRevenue_1">
                                             <td class="tdwhite">&nbsp;</td>
                                             <td class="tdright"><p>Revenue (USD)</p></td>
                                             <td class="tdright">
                                                 <p>424,621</p>
-                                                <div class="micrographbg">
-                                                    <div class="micrograph_G" style="width:45px;"></div>
-                                                </div>
-                                                <p class="dataitemitalics">352,220</p>
                                             </td>
-                                            <td class="tdright tdborderleftstrong">28,261<div class="dataitemlighter">28,261</div></td>
-                                            <td class="tdright">28,261<div class="dataitemlighter">28,261</div></td>
-                                            <td class="tdright tdactiveweek">28,261<div class="dataitemlighter">28,261</div></td>
-                                            <td class="tdright">28,261<div class="dataitemlighter">28,261</div></td>
-                                            <td class="tdright">28,261<div class="dataitemlighter">28,261</div></td>
-                                            <td class="tdright">28,261<div class="dataitemlighter">24,777</div></td>
-                                            <td class="tdright">28,261<div class="dataitemlighter">19,419</div></td>
-                                            <td class="tdright">28,261<div class="dataitemlighter">19,419</div></td>
-                                            <td class="tdright">28,261<div class="dataitemlighter">19,419</div></td>
-                                            <td class="tdright">28,261<div class="dataitemlighter">19,419</div></td>
-                                            <td class="tdright">28,261<div class="dataitemlighter">19,419</div></td>
-                                            <td class="tdright">28,261<div class="dataitemlighter">19,419</div></td>
+                                            <td class="tdright tdborderleftstrong">28,261</td>
+                                            <td class="tdright">28,261</td>
+                                            <td class="tdright tdactiveweek">28,261</td>
+                                            <td class="tdright">28,261</td>
+                                            <td class="tdright">28,261</td>
+                                            <td class="tdright">28,261</td>
+                                            <td class="tdright">28,261</td>
+                                            <td class="tdright">28,261</td>
+                                            <td class="tdright">28,261</td>
+                                            <td class="tdright">28,261</td>
+                                            <td class="tdright">28,261</td>
+                                            <td class="tdright">28,261</td>
                                         </tr>
                                         <tr id="trProj">
                                             <td colspan="2">
@@ -990,100 +1085,103 @@
                                             </td>
                                             <td class="tdright">
                                                 <p>1,930 <span class="dataitemlight dataitemsmaller">hrs</span></p>
-                                                <div class="micrographbg">
-                                                    <div class="micrograph_G" style="width:50px;"></div>
-                                                </div>
-                                                <p class="dataitemitalics">1,600 <span class="dataitemlight dataitemsmaller ">hrs</span></p>
                                             </td>
-                                            <td class="tdright tdborderleftstrong tdtotal tdlightestgrey">128<div class="dataitemlighter">128</div></td>
-                                            <td class="tdright tdtotal tdlightestgrey">128<div class="dataitemlighter">128</div></td>
-                                            <td class="tdright tdtotal tdactiveweek">128<div class="dataitemlighter">128</div></td>
-                                            <td class="tdright tdtotal">128<div class="dataitemlighter">128</div></td>
-                                            <td class="tdright tdtotal">128<div class="dataitemlighter">128</div></td>
-                                            <td class="tdright tdtotal">128<div class="dataitemlighter">112</div></td>
-                                            <td class="tdright tdtotal">128<div class="dataitemlighter">88</div></td>
-                                            <td class="tdright tdtotal">128<div class="dataitemlighter">88</div></td>
-                                            <td class="tdright tdtotal">128<div class="dataitemlighter">88</div></td>
-                                            <td class="tdright tdtotal">128<div class="dataitemlighter">88</div></td>
-                                            <td class="tdright tdtotal">128<div class="dataitemlighter">88</div></td>
-                                            <td class="tdright tdtotal">128<div class="dataitemlighter">88</div></td>
+                                            <td class="tdright tdborderleftstrong tdtotal tdlightestgrey">128</td>
+                                            <td class="tdright tdtotal tdlightestgrey">128</td>
+                                            <td class="tdright tdtotal tdactiveweek">128</td>
+                                            <td class="tdright tdtotal">128</td>
+                                            <td class="tdright tdtotal">128</td>
+                                            <td class="tdright tdtotal">128</td>
+                                            <td class="tdright tdtotal">128</td>
+                                            <td class="tdright tdtotal">128</td>
+                                            <td class="tdright tdtotal">128</td>
+                                            <td class="tdright tdtotal">128</td>
+                                            <td class="tdright tdtotal">128</td>
+                                            <td class="tdright tdtotal">128</td>
                                         </tr>
                                         <tr class="trsubrows" id="trDetailCost_2">
                                             <td class="tdwhite">&nbsp;</td>
                                             <td class="tdright"><p>Cost (USD)</p></td>
                                             <td class="tdright">
                                                 <p>308,851</p>
-                                                <div class="micrographbg">
-                                                    <div class="micrograph_G" style="width:45px;"></div>
-                                                </div>
-                                                <p class="dataitemitalics">256,088</p>
                                             </td>
-                                            <td class="tdright tdborderleftstrong">20,557<div class="dataitemlighter">20,557</div></td>
-                                            <td class="tdright">20,557<div class="dataitemlighter">20,557</div></td>
-                                            <td class="tdright tdactiveweek">20,557<div class="dataitemlighter">20,557</div></td>
-                                            <td class="tdright">20,557<div class="dataitemlighter">20,557</div></td>
-                                            <td class="tdright">20,557<div class="dataitemlighter">20,557</div></td>
-                                            <td class="tdright">20,557<div class="dataitemlighter">17,920</div></td>
-                                            <td class="tdright">20,557<div class="dataitemlighter">14,203</div></td>
-                                            <td class="tdright">20,557<div class="dataitemlighter">14,203</div></td>
-                                            <td class="tdright">20,557<div class="dataitemlighter">14,203</div></td>
-                                            <td class="tdright">20,557<div class="dataitemlighter">14,203</div></td>
-                                            <td class="tdright">20,557<div class="dataitemlighter">14,203</div></td>
-                                            <td class="tdright">20,557<div class="dataitemlighter">14,203</div></td>
+                                            <td class="tdright tdborderleftstrong">20,557</td>
+                                            <td class="tdright">20,557</td>
+                                            <td class="tdright tdactiveweek">20,557</td>
+                                            <td class="tdright">20,557</td>
+                                            <td class="tdright">20,557</td>
+                                            <td class="tdright">20,557</td>
+                                            <td class="tdright">20,557</td>
+                                            <td class="tdright">20,557</td>
+                                            <td class="tdright">20,557</td>
+                                            <td class="tdright">20,557</td>
+                                            <td class="tdright">20,557</td>
+                                            <td class="tdright">20,557</td>
                                         </tr>
                                         <tr class="trsubrows" id="trDetailRevenue_2">
                                             <td class="tdwhite">&nbsp;</td>
                                             <td class="tdright"><p>Revenue (USD)</p></td>
                                             <td class="tdright">
                                                 <p>424,621</p>
-                                                <div class="micrographbg">
-                                                    <div class="micrograph_G" style="width:45px;"></div>
-                                                </div>
-                                                <p class="dataitemitalics">352,220</p>
                                             </td>
-                                            <td class="tdright tdborderleftstrong">28,261<div class="dataitemlighter">28,261</div></td>
-                                            <td class="tdright">28,261<div class="dataitemlighter">28,261</div></td>
-                                            <td class="tdright tdactiveweek">28,261<div class="dataitemlighter">28,261</div></td>
-                                            <td class="tdright">28,261<div class="dataitemlighter">28,261</div></td>
-                                            <td class="tdright">28,261<div class="dataitemlighter">28,261</div></td>
-                                            <td class="tdright">28,261<div class="dataitemlighter">24,777</div></td>
-                                            <td class="tdright">28,261<div class="dataitemlighter">19,419</div></td>
-                                            <td class="tdright">28,261<div class="dataitemlighter">19,419</div></td>
-                                            <td class="tdright">28,261<div class="dataitemlighter">19,419</div></td>
-                                            <td class="tdright">28,261<div class="dataitemlighter">19,419</div></td>
-                                            <td class="tdright">28,261<div class="dataitemlighter">19,419</div></td>
-                                            <td class="tdright">28,261<div class="dataitemlighter">19,419</div></td>
+                                            <td class="tdright tdborderleftstrong">28,261</td>
+                                            <td class="tdright">28,261</td>
+                                            <td class="tdright tdactiveweek">28,261</td>
+                                            <td class="tdright">28,261</td>
+                                            <td class="tdright">28,261</td>
+                                            <td class="tdright">28,261</td>
+                                            <td class="tdright">28,261</td>
+                                            <td class="tdright">28,261</td>
+                                            <td class="tdright">28,261</td>
+                                            <td class="tdright">28,261</td>
+                                            <td class="tdright">28,261</td>
+                                            <td class="tdright">28,261</td>
                                         </tr>
                                         <tr id="trTask_1">
                                             <td colspan="2" class="tdindentL_2">
-                                                <!--
-                            <div class="icoMenuOverflow">&#xE10C;</div>
-                            <div id="btnMenuOverflow_3" class="icoMenuOverflow icoMenuOverflowCir">&#xEA3A;</div>
-                            -->
                                                 <p class="dataitembold">Task: Default Task</p>
                                                 <p class="dataitemsmall dataitemlight">EBS: C.6908001200358.001000.01</p>
                                             </td>
                                             <td class="tdright">
                                                 <p>1,750 <span class="dataitemlight dataitemsmaller">hrs</span></p>
-                                                <div class="micrographbg">
-                                                    <div class="micrograph_G" style="width:51px;"></div>
-                                                </div>
-                                                <p class="dataitemitalics">1,480 <span class="dataitemlight dataitemsmaller ">hrs</span></p>
                                             </td>
-                                            <td class="tdright tdborderleftstrong tdtotal tdlightestgrey">120<div class="dataitemlighter">120</div></td>
-                                            <td class="tdright tdtotal tdlightestgrey">120<div class="dataitemlighter">120</div></td>
-                                            <td class="tdright tdtotal tdactiveweek">120<div class="dataitemlighter">120</div></td>
-                                            <td class="tdright tdtotal">120<div class="dataitemlighter">120</div></td>
-                                            <td class="tdright tdtotal">120<div class="dataitemlighter">120</div></td>
-                                            <td class="tdright tdtotal">120<div class="dataitemlighter">104</div></td>
-                                            <td class="tdright tdtotal">120<div class="dataitemlighter">80</div></td>
-                                            <td class="tdright tdtotal">120<div class="dataitemlighter">80</div></td>
-                                            <td class="tdright tdtotal">120<div class="dataitemlighter">80</div></td>
-                                            <td class="tdright tdtotal">120<div class="dataitemlighter">80</div></td>
-                                            <td class="tdright tdtotal">120<div class="dataitemlighter">80</div></td>
-                                            <td class="tdright tdtotal">120<div class="dataitemlighter">80</div></td>
+                                            <td class="tdright tdborderleftstrong tdtotal tdlightestgrey">120</td>
+                                            <td class="tdright tdtotal tdlightestgrey">120</td>
+                                            <td class="tdright tdtotal tdactiveweek">120</td>
+                                            <td class="tdright tdtotal">120</td>
+                                            <td class="tdright tdtotal">120</td>
+                                            <td class="tdright tdtotal">120</td>
+                                            <td class="tdright tdtotal">120</td>
+                                            <td class="tdright tdtotal">120</td>
+                                            <td class="tdright tdtotal">120</td>
+                                            <td class="tdright tdtotal">120</td>
+                                            <td class="tdright tdtotal">120</td>
+                                            <td class="tdright tdtotal">120</td>
                                         </tr>
-                                        <tr>
+                                        <tr id="trDemand_1">
+                                            <td colspan="2" class="tdindentL_3">
+                                                <div class="icoMenuOverflow">&#xE10C;</div>
+                                                <div id="btnMenuOverflowDEM_1" class="icoMenuOverflow icoMenuOverflowCir">&#xEA3A;</div>
+                                                <p class="dataitembold">Demand: Senior Program Manager</p>
+                                                <p class="dataitemsmall dataitemlight">Demand ID: 12345678</p>
+                                            </td>
+                                            <td class="tdright">
+                                                <p>760 <span class="dataitemlight dataitemsmaller">hrs</span></p>
+                                            </td>
+                                            <td class="tdright tdborderleftstrong tdtotal tdlightestgrey">40</td>
+                                            <td class="tdright tdtotal tdlightestgrey">40</td>
+                                            <td class="tdright tdtotal tdactiveweek">40</td>
+                                            <td class="tdright tdtotal">40</td>
+                                            <td class="tdright tdtotal">40</td>
+                                            <td class="tdright tdtotal">40</td>
+                                            <td class="tdright tdtotal">40</td>
+                                            <td class="tdright tdtotal">40</td>
+                                            <td class="tdright tdtotal">40</td>
+                                            <td class="tdright tdtotal">40</td>
+                                            <td class="tdright tdtotal">40</td>
+                                            <td class="tdright tdtotal">40</td>
+                                        </tr>
+                                        <tr style="display:none;">
                                             <td onclick="ShowHideRows('Resource_1')" style="cursor:pointer;" class="tdwhite tdright"><span id="pdResource_1" style="font-family:'Segoe MDL2 Assets';padding-right:5px;">&#xE011;</span></td>
                                             <td class="tdFTE">
                                                 <div class="icoMenuOverflow">&#xE10C;</div>
@@ -1093,71 +1191,82 @@
                                             </td>
                                             <td class="tdright">
                                                 <p>760 <span class="dataitemlight dataitemsmaller">hrs</span></p>
-                                                <div class="micrographbg">
-                                                    <div class="micrograph_G" style="width:60px;"></div>
-                                                </div>
-                                                <p class="dataitemitalics">760 <span class="dataitemlight dataitemsmaller ">hrs</span></p>
                                             </td>
-                                            <td class="tdright tdlightestgrey tdborderleftstrong"><span id="hrs_R1_W1">40</span><input id="txt_R1_W1" type="text" value="40" class="fctext" style="display:none;" /><div class="dataitemlighter">40</div></td>
-                                            <td class="tdright tdlightestgrey"><span id="hrs_R1_W2">40</span><input id="txt_R1_W2" type="text" value="40" class="fctext" style="display:none;" /><div class="dataitemlighter">40</div></td>
-                                            <td class="tdright tdactiveweek"><span id="hrs_R1_W3">40</span><input id="txt_R1_W3" type="text" value="40" class="fctext" style="display:none;" /><div class="dataitemlighter">40</div></td>
-                                            <td class="tdright"><span id="hrs_R1_W4">40</span><input id="txt_R1_W4" type="text" value="40" class="fctext" style="display:none;" /><div class="dataitemlighter">40</div></td>
-                                            <td class="tdright"><span id="hrs_R1_W5">40</span><input id="txt_R1_W5" type="text" value="40" class="fctext" style="display:none;" /><div class="dataitemlighter">40</div></td>
-                                            <td class="tdright"><span id="hrs_R1_W6">40</span><input id="txt_R1_W6" type="text" value="40" class="fctext" style="display:none;" /><div class="dataitemlighter">40</div></td>
-                                            <td class="tdright"><span id="hrs_R1_W7">40</span><input id="txt_R1_W7" type="text" value="40" class="fctext" style="display:none;" /><div class="dataitemlighter">40</div></td>
-                                            <td class="tdright"><span id="hrs_R1_W8">40</span><input id="txt_R1_W8" type="text" value="40" class="fctext" style="display:none;" /><div class="dataitemlighter">40</div></td>
-                                            <td class="tdright"><span id="hrs_R1_W9">40</span><input id="txt_R1_W9" type="text" value="40" class="fctext" style="display:none;" /><div class="dataitemlighter">40</div></td>
-                                            <td class="tdright"><span id="hrs_R1_W10">40</span><input id="txt_R1_W10" type="text" value="40" class="fctext" style="display:none;" /><div class="dataitemlighter">40</div></td>
-                                            <td class="tdright"><span id="hrs_R1_W11">40</span><input id="txt_R1_W11" type="text" value="40" class="fctext" style="display:none;" /><div class="dataitemlighter">40</div></td>
-                                            <td class="tdright"><span id="hrs_R1_W12">40</span><input id="txt_R1_W12" type="text" value="40" class="fctext" style="display:none;" /><div class="dataitemlighter">40</div></td>
+                                            <td class="tdright tdlightestgrey tdborderleftstrong"><span id="hrs_R1_W1">40</span><input id="txt_R1_W1" type="text" value="40" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright tdlightestgrey"><span id="hrs_R1_W2">40</span><input id="txt_R1_W2" type="text" value="40" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright tdactiveweek"><span id="hrs_R1_W3">40</span><input id="txt_R1_W3" type="text" value="40" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright"><span id="hrs_R1_W4">40</span><input id="txt_R1_W4" type="text" value="40" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright"><span id="hrs_R1_W5">40</span><input id="txt_R1_W5" type="text" value="40" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright"><span id="hrs_R1_W6">40</span><input id="txt_R1_W6" type="text" value="40" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright"><span id="hrs_R1_W7">40</span><input id="txt_R1_W7" type="text" value="40" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright"><span id="hrs_R1_W8">40</span><input id="txt_R1_W8" type="text" value="40" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright"><span id="hrs_R1_W9">40</span><input id="txt_R1_W9" type="text" value="40" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright"><span id="hrs_R1_W10">40</span><input id="txt_R1_W10" type="text" value="40" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright"><span id="hrs_R1_W11">40</span><input id="txt_R1_W11" type="text" value="40" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright"><span id="hrs_R1_W12">40</span><input id="txt_R1_W12" type="text" value="40" class="fctext" style="display:none;" /></td>
                                         </tr>
                                         <tr class="trsubrows" id="rowResource_1_1" style="display:none;">
                                             <td class="tdwhite">&nbsp;</td>
                                             <td class="tdright"><p>Cost (USD)</p></td>
                                             <td class="tdright">
                                                 <p>121,673</p>
-                                                <div class="micrographbg">
-                                                    <div class="micrograph_G" style="width:60px;"></div>
-                                                </div>
-                                                <p class="dataitemitalics">121,673</p>
                                             </td>
-                                            <td class="tdborderleftstrong tdright">6,402<div class="dataitemlighter">6,402</div></td>
-                                            <td class="tdright">6,402<div class="dataitemlighter">6,402</div></td>
-                                            <td class="tdright tdactiveweek">6,402<div class="dataitemlighter">6,402</div></td>
-                                            <td class="tdright">6,402<div class="dataitemlighter">6,402</div></td>
-                                            <td class="tdright">6,402<div class="dataitemlighter">6,402</div></td>
-                                            <td class="tdright">6,402<div class="dataitemlighter">6,402</div></td>
-                                            <td class="tdright">6,402<div class="dataitemlighter">6,402</div></td>
-                                            <td class="tdright">6,402<div class="dataitemlighter">6,402</div></td>
-                                            <td class="tdright">6,402<div class="dataitemlighter">6,402</div></td>
-                                            <td class="tdright">6,402<div class="dataitemlighter">6,402</div></td>
-                                            <td class="tdright">6,402<div class="dataitemlighter">6,402</div></td>
-                                            <td class="tdright">6,402<div class="dataitemlighter">6,402</div></td>
+                                            <td class="tdborderleftstrong tdright">6,402</td>
+                                            <td class="tdright">6,402</td>
+                                            <td class="tdright tdactiveweek">6,402</td>
+                                            <td class="tdright">6,402</td>
+                                            <td class="tdright">6,402</td>
+                                            <td class="tdright">6,402</td>
+                                            <td class="tdright">6,402</td>
+                                            <td class="tdright">6,402</td>
+                                            <td class="tdright">6,402</td>
+                                            <td class="tdright">6,402</td>
+                                            <td class="tdright">6,402</td>
+                                            <td class="tdright">6,402</td>
                                         </tr>
                                         <tr class="trsubrows" id="rowResource_1_2" style="display:none;">
                                             <td class="tdwhite">&nbsp;</td>
                                             <td class="tdright"><p>Revenue (USD)</p></td>
                                             <td class="tdright">
                                                 <p>167,202</p>
-                                                <div class="micrographbg">
-                                                    <div class="micrograph_G" style="width:60px;"></div>
-                                                </div>
-                                                <p class="dataitemitalics">167,202</p>
                                             </td>
-                                            <td class="tdborderleftstrong tdright">8,816<div class="dataitemlighter">8,816</div></td>
-                                            <td class="tdright">8,816<div class="dataitemlighter">8,816</div></td>
-                                            <td class="tdright tdactiveweek">8,816<div class="dataitemlighter">8,816</div></td>
-                                            <td class="tdright">8,816<div class="dataitemlighter">8,816</div></td>
-                                            <td class="tdright">8,816<div class="dataitemlighter">8,816</div></td>
-                                            <td class="tdright">8,816<div class="dataitemlighter">8,816</div></td>
-                                            <td class="tdright">8,816<div class="dataitemlighter">8,816</div></td>
-                                            <td class="tdright">8,816<div class="dataitemlighter">8,816</div></td>
-                                            <td class="tdright">8,816<div class="dataitemlighter">8,816</div></td>
-                                            <td class="tdright">8,816<div class="dataitemlighter">8,816</div></td>
-                                            <td class="tdright">8,816<div class="dataitemlighter">8,816</div></td>
-                                            <td class="tdright">8,816<div class="dataitemlighter">8,816</div></td>
+                                            <td class="tdborderleftstrong tdright">8,816</td>
+                                            <td class="tdright">8,816</td>
+                                            <td class="tdright tdactiveweek">8,816</td>
+                                            <td class="tdright">8,816</td>
+                                            <td class="tdright">8,816</td>
+                                            <td class="tdright">8,816</td>
+                                            <td class="tdright">8,816</td>
+                                            <td class="tdright">8,816</td>
+                                            <td class="tdright">8,816</td>
+                                            <td class="tdright">8,816</td>
+                                            <td class="tdright">8,816</td>
+                                            <td class="tdright">8,816</td>
                                         </tr>
-                                        <tr>
+                                        <tr id="trDemand_2">
+                                            <td colspan="2" class="tdindentL_3">
+                                                <div class="icoMenuOverflow">&#xE10C;</div>
+                                                <div id="btnMenuOverflowDEM_2" class="icoMenuOverflow icoMenuOverflowCir">&#xEA3A;</div>
+                                                <p class="dataitembold">Demand: Senior Consultant</p>
+                                                <p class="dataitemsmall dataitemlight">Demand ID: 12345690</p>
+                                            </td>
+                                            <td class="tdright">
+                                                <p>690 <span class="dataitemlight dataitemsmaller">hrs</span></p>
+                                            </td>
+                                            <td class="tdright tdborderleftstrong tdtotal tdlightestgrey">40</td>
+                                            <td class="tdright tdtotal tdlightestgrey">40</td>
+                                            <td class="tdright tdtotal tdactiveweek">40</td>
+                                            <td class="tdright tdtotal">40</td>
+                                            <td class="tdright tdtotal">40</td>
+                                            <td class="tdright tdtotal">40</td>
+                                            <td class="tdright tdtotal">40</td>
+                                            <td class="tdright tdtotal">70</td>
+                                            <td class="tdright tdtotal">80</td>
+                                            <td class="tdright tdtotal">80</td>
+                                            <td class="tdright tdtotal">80</td>
+                                            <td class="tdright tdtotal">80</td>
+                                        </tr>
+                                        <tr style="display:none;">
                                             <td onclick="ShowHideRows('Resource_2')" style="cursor:pointer;" class="tdwhite tdright"><span id="pdResource_2" style="font-family:'Segoe MDL2 Assets';padding-right:5px;">&#xE011;</span></td>
                                             <td class="tdFTE">
                                                 <div class="icoMenuOverflow">&#xE10C;</div>
@@ -1167,146 +1276,59 @@
                                             </td>
                                             <td class="tdright">
                                                 <p>580 <span class="dataitemlight dataitemsmaller">hrs</span></p>
-                                                <div class="micrographbg">
-                                                    <div class="micrograph_R" style="width:60px;"></div>
-                                                </div>
-                                                <p class="dataitemitalics">600 <span class="dataitemlight dataitemsmaller ">hrs</span></p>
                                             </td>
-                                            <td class="tdright tdlightestgrey tdborderleftstrong"><span id="hrs_R2_W1">40</span><input id="txt_R2_W1" type="text" value="40" class="fctext" style="display:none;" /><div class="dataitemlighter">40</div></td>
-                                            <td class="tdright tdlightestgrey"><span id="hrs_R2_W2">40</span><input id="txt_R2_W2" type="text" value="40" class="fctext" style="display:none;" /><div class="dataitemlighter">40</div></td>
-                                            <td class="tdright tdactiveweek"><span id="hrs_R2_W3">40</span><input id="txt_R2_W3" type="text" value="40" class="fctext" style="display:none;" /><div class="dataitemlighter">40</div></td>
-                                            <td class="tdright"><span id="hrs_R2_W4">40</span><input id="txt_R2_W4" type="text" value="40" class="fctext" style="display:none;" /><div class="dataitemlighter">40</div></td>
-                                            <td class="tdright"><span id="hrs_R2_W5">40</span><input id="txt_R2_W5" type="text" value="40" class="fctext" style="display:none;" /><div class="dataitemlighter">40</div></td>
-                                            <td class="tdright"><span id="hrs_R2_W6">40</span><input id="txt_R2_W6" type="text" value="40" class="fctext" style="display:none;" /><div class="dataitemlighter">40</div></td>
-                                            <td class="tdright"><span id="hrs_R2_W7">40</span><input id="txt_R2_W7" type="text" value="40" class="fctext" style="display:none;" /><div class="dataitemlighter">40</div></td>
-                                            <td class="tdright"><span id="hrs_R2_W8">40</span><input id="txt_R2_W8" type="text" value="40" class="fctext" style="display:none;" /><div class="dataitemlighter">40</div></td>
-                                            <td class="tdright"><span id="hrs_R2_W9">40</span><input id="txt_R2_W9" type="text" value="40" class="fctext" style="display:none;" /><div class="dataitemlighter">40</div></td>
-                                            <td class="tdright"><span id="hrs_R2_W10">40</span><input id="txt_R2_W10" type="text" value="40" class="fctext" style="display:none;" /><div class="dataitemlighter">40</div></td>
-                                            <td class="tdright"><span id="hrs_R2_W11">40</span><input id="txt_R2_W11" type="text" value="40" class="fctext" style="display:none;" /><div class="dataitemlighter">40</div></td>
-                                            <td class="tdright"><span id="hrs_R2_W12">40</span><input id="txt_R2_W12" type="text" value="40" class="fctext" style="display:none;" /><div class="dataitemlighter">40</div></td>
-
+                                            <td class="tdright tdlightestgrey tdborderleftstrong"><span id="hrs_R2_W1">40</span><input id="txt_R2_W1" type="text" value="40" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright tdlightestgrey"><span id="hrs_R2_W2">40</span><input id="txt_R2_W2" type="text" value="40" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright tdactiveweek"><span id="hrs_R2_W3">40</span><input id="txt_R2_W3" type="text" value="40" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright"><span id="hrs_R2_W4">40</span><input id="txt_R2_W4" type="text" value="40" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright"><span id="hrs_R2_W5">40</span><input id="txt_R2_W5" type="text" value="40" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright"><span id="hrs_R2_W6">40</span><input id="txt_R2_W6" type="text" value="40" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright"><span id="hrs_R2_W7">40</span><input id="txt_R2_W7" type="text" value="40" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright"><span id="hrs_R2_W8">40</span><input id="txt_R2_W8" type="text" value="40" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright"><span id="hrs_R2_W9">40</span><input id="txt_R2_W9" type="text" value="40" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright"><span id="hrs_R2_W10">40</span><input id="txt_R2_W10" type="text" value="40" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright"><span id="hrs_R2_W11">40</span><input id="txt_R2_W11" type="text" value="40" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright"><span id="hrs_R2_W12">40</span><input id="txt_R2_W12" type="text" value="40" class="fctext" style="display:none;" /></td>
                                         </tr>
                                         <tr class="trsubrows" id="rowResource_2_1" style="display:none;">
                                             <td class="tdwhite">&nbsp;</td>
                                             <td class="tdright"><p>Cost (USD)</p></td>
                                             <td class="tdright">
                                                 <p>92,866</p>
-                                                <div class="micrographbg">
-                                                    <div class="micrograph_R" style="width:60px;"></div>
-                                                </div>
-                                                <p class="dataitemitalics">96,149</p>
                                             </td>
-                                            <td class="tdborderleftstrong tdright">6,402<div class="dataitemlighter">6,402</div></td>
-                                            <td class="tdright">6,402<div class="dataitemlighter">6,402</div></td>
-                                            <td class="tdright tdactiveweek">6,402<div class="dataitemlighter">6,402</div></td>
-                                            <td class="tdright">6,402<div class="dataitemlighter">6,402</div></td>
-                                            <td class="tdright">6,402<div class="dataitemlighter">6,402</div></td>
-                                            <td class="tdright">6,402<div class="dataitemlighter">6,402</div></td>
-                                            <td class="tdright">6,402<div class="dataitemlighter">6,402</div></td>
-                                            <td class="tdright">6,402<div class="dataitemlighter">6,402</div></td>
-                                            <td class="tdright">6,402<div class="dataitemlighter">6,402</div></td>
-                                            <td class="tdright">6,402<div class="dataitemlighter">6,402</div></td>
-                                            <td class="tdright">6,402<div class="dataitemlighter">6,402</div></td>
-                                            <td class="tdright">6,402<div class="dataitemlighter">6,402</div></td>
+                                            <td class="tdborderleftstrong tdright">6,402</td>
+                                            <td class="tdright">6,402</td>
+                                            <td class="tdright tdactiveweek">6,402</td>
+                                            <td class="tdright">6,402</td>
+                                            <td class="tdright">6,402</td>
+                                            <td class="tdright">6,402</td>
+                                            <td class="tdright">6,402</td>
+                                            <td class="tdright">6,402</td>
+                                            <td class="tdright">6,402</td>
+                                            <td class="tdright">6,402</td>
+                                            <td class="tdright">6,402</td>
+                                            <td class="tdright">6,402</td>
                                         </tr>
                                         <tr class="trsubrows" id="rowResource_2_2" style="display:none;">
                                             <td class="tdwhite">&nbsp;</td>
                                             <td class="tdright"><p>Revenue (USD)</p></td>
                                             <td class="tdright">
                                                 <p>127,652</p>
-                                                <div class="micrographbg">
-                                                    <div class="micrograph_R" style="width:60px;"></div>
-                                                </div>
-                                                <p class="dataitemitalics">132,333</p>
                                             </td>
-                                            <td class="tdborderleftstrong tdright">8,816<div class="dataitemlighter">8,816</div></td>
-                                            <td class="tdright">8,816<div class="dataitemlighter">8,816</div></td>
-                                            <td class="tdright tdactiveweek">8,816<div class="dataitemlighter">8,816</div></td>
-                                            <td class="tdright">8,816<div class="dataitemlighter">8,816</div></td>
-                                            <td class="tdright">8,816<div class="dataitemlighter">8,816</div></td>
-                                            <td class="tdright">8,816<div class="dataitemlighter">8,816</div></td>
-                                            <td class="tdright">8,816<div class="dataitemlighter">8,816</div></td>
-                                            <td class="tdright">8,816<div class="dataitemlighter">8,816</div></td>
-                                            <td class="tdright">8,816<div class="dataitemlighter">8,816</div></td>
-                                            <td class="tdright">8,816<div class="dataitemlighter">8,816</div></td>
-                                            <td class="tdright">8,816<div class="dataitemlighter">8,816</div></td>
-                                            <td class="tdright">8,816<div class="dataitemlighter">8,816</div></td>
+                                            <td class="tdborderleftstrong tdright">8,816</td>
+                                            <td class="tdright">8,816</td>
+                                            <td class="tdright tdactiveweek">8,816</td>
+                                            <td class="tdright">8,816</td>
+                                            <td class="tdright">8,816</td>
+                                            <td class="tdright">8,816</td>
+                                            <td class="tdright">8,816</td>
+                                            <td class="tdright">8,816</td>
+                                            <td class="tdright">8,816</td>
+                                            <td class="tdright">8,816</td>
+                                            <td class="tdright">8,816</td>
+                                            <td class="tdright">8,816</td>
                                         </tr>
-                                        <tr>
-                                            <td onclick="ShowHideRows('Resource_3')" style="cursor:pointer;" class="tdwhite tdright"><span id="pdResource_3" style="font-family:'Segoe MDL2 Assets';padding-right:5px;">&#xE011;</span></td>
-                                            <td class="tdCS">
-                                                <div class="icoMenuOverflow">&#xE10C;</div>
-                                                <div id="btnMenuOverflow_6" class="icoMenuOverflow icoMenuOverflowCir">&#xEA3A;</div>
-                                                <p class="dataitembold">Billy Bob Thornton</p>
-                                                <p class="dataitemsmall">SUBCONTRACTOR <font class="textdarkred">(Non-billable)</font></p>
-                                            </td>
-                                            <td class="tdright">
-                                                <p>300 <span class="dataitemlight dataitemsmaller">hrs</span></p>
-                                                <div class="micrographbg">
-                                                    <div class="micrograph_G" style="width:38px;"></div>
-                                                </div>
-                                                <p class="dataitemitalics">220 <span class="dataitemlight dataitemsmaller ">hrs</span></p>
-                                            </td>
-                                            <td class="tdright tdlightestgrey tdborderleftstrong"><span id="hrs_R3_W1">40</span><input id="txt_R3_W1" type="text" value="40" class="fctext" style="display:none;" /><div class="dataitemlighter">40</div></td>
-                                            <td class="tdright tdlightestgrey"><span id="hrs_R3_W2">40</span><input id="txt_R3_W2" type="text" value="40" class="fctext" style="display:none;" /><div class="dataitemlighter">40</div></td>
-                                            <td class="tdright tdactiveweek"><span id="hrs_R3_W3">40</span><input id="txt_R3_W3" type="text" value="40" class="fctext" style="display:none;" /><div class="dataitemlighter">40</div></td>
-                                            <td class="tdright"><span id="hrs_R3_W4">40</span><input id="txt_R3_W4" type="text" value="40" class="fctext" style="display:none;" /><div class="dataitemlighter">40</div></td>
-                                            <td class="tdright"><span id="hrs_R3_W5">40</span><input id="txt_R3_W5" type="text" value="40" class="fctext" style="display:none;" /><div class="dataitemlighter">40</div></td>
-                                            <td class="tdright"><span id="hrs_R3_W6">40</span><input id="txt_R3_W6" type="text" value="40" class="fctext" style="display:none;" /><div class="dataitemlighter">24</div></td>
-                                            <td class="tdright"><span id="hrs_R3_W7">40</span><input id="txt_R3_W7" type="text" value="40" class="fctext" style="display:none;" /><div class="dataitemlighter">0</div></td>
-                                            <td class="tdright"><span id="hrs_R3_W8">40</span><input id="txt_R3_W8" type="text" value="40" class="fctext" style="display:none;" /><div class="dataitemlighter">0</div></td>
-                                            <td class="tdright"><span id="hrs_R3_W9">40</span><input id="txt_R3_W9" type="text" value="40" class="fctext" style="display:none;" /><div class="dataitemlighter">0</div></td>
-                                            <td class="tdright"><span id="hrs_R3_W10">40</span><input id="txt_R3_W10" type="text" value="40" class="fctext" style="display:none;" /><div class="dataitemlighter">0</div></td>
-                                            <td class="tdright"><span id="hrs_R3_W11">40</span><input id="txt_R3_W11" type="text" value="40" class="fctext" style="display:none;" /><div class="dataitemlighter">0</div></td>
-                                            <td class="tdright"><span id="hrs_R3_W12">40</span><input id="txt_R3_W12" type="text" value="40" class="fctext" style="display:none;" /><div class="dataitemlighter">0</div></td>
-                                        </tr>
-                                        <tr class="trsubrows" id="rowResource_3_1" style="display:none;">
-                                            <td class="tdwhite">&nbsp;</td>
-                                            <td class="tdright"><p>Cost (USD)</p></td>
-                                            <td class="tdright">
-                                                <p>36,159</p>
-                                                <div class="micrographbg">
-                                                    <div class="micrograph_G" style="width:38px;"></div>
-                                                </div>
-                                                <p class="dataitemitalics">14,523</p>
-                                            </td>
-                                            <td class="tdright tdborderleftstrong">4,805<div class="dataitemlighter">4,805</div></td>
-                                            <td class="tdright">4,805<div class="dataitemlighter">4,805</div></td>
-                                            <td class="tdright tdactiveweek">4,805<div class="dataitemlighter">4,805</div></td>
-                                            <td class="tdright">4,805<div class="dataitemlighter">4,805</div></td>
-                                            <td class="tdright">4,805<div class="dataitemlighter">4,805</div></td>
-                                            <td class="tdright">4,805<div class="dataitemlighter">2,891</div></td>
-                                            <td class="tdright">4,805<div class="dataitemlighter">0</div></td>
-                                            <td class="tdright">4,805<div class="dataitemlighter">0</div></td>
-                                            <td class="tdright">4,805<div class="dataitemlighter">0</div></td>
-                                            <td class="tdright">4,805<div class="dataitemlighter">0</div></td>
-                                            <td class="tdright">4,805<div class="dataitemlighter">0</div></td>
-                                            <td class="tdright">4,805<div class="dataitemlighter">0</div></td>
-                                        </tr>
-                                        <tr class="trsubrows" id="rowResource_3_2" style="display:none;">
-                                            <td class="tdwhite">&nbsp;</td>
-                                            <td class="tdright"><p>Revenue (USD)</p></td>
-                                            <td class="tdright">
-                                                <p>0</p>
-                                                <div class="micrographbg">
-                                                    <div class="micrograph_K" style="width:1px;"></div>
-                                                </div>
-                                                <p class="dataitemitalics">0</p>
-                                            </td>
-                                            <td class="tdright tdborderleftstrong">0<div class="dataitemlighter">0</div></td>
-                                            <td class="tdright">0<div class="dataitemlighter">0</div></td>
-                                            <td class="tdright tdactiveweek">0<div class="dataitemlighter">0</div></td>
-                                            <td class="tdright">0<div class="dataitemlighter">0</div></td>
-                                            <td class="tdright">0<div class="dataitemlighter">0</div></td>
-                                            <td class="tdright">0<div class="dataitemlighter">0</div></td>
-                                            <td class="tdright">0<div class="dataitemlighter">0</div></td>
-                                            <td class="tdright">0<div class="dataitemlighter">0</div></td>
-                                            <td class="tdright">0<div class="dataitemlighter">0</div></td>
-                                            <td class="tdright">0<div class="dataitemlighter">0</div></td>
-                                            <td class="tdright">0<div class="dataitemlighter">0</div></td>
-                                            <td class="tdright">0<div class="dataitemlighter">0</div></td>
-                                        </tr>
-                                        <tr>
+                                        <tr style="display:none;">
                                             <td onclick="ShowHideRows('Resource_4')" style="cursor:pointer;" class="tdwhite tdright"><span id="pdResource_4" style="font-family:'Segoe MDL2 Assets';padding-right:5px;">&#xE011;</span></td>
                                             <td class="tdUnassigned">
                                                 <div class="icoMenuOverflow">&#xE10C;</div>
@@ -1316,100 +1338,166 @@
                                             </td>
                                             <td class="tdright">
                                                 <p>110 <span class="dataitemlight dataitemsmaller">hrs</span></p>
-                                                <div class="micrographbg">
-                                                    <div class="micrograph_K" style="width:0px;"></div>
-                                                </div>
-                                                <p class="dataitemitalics">0 <span class="dataitemlight dataitemsmaller ">hrs</span></p>
                                             </td>
-                                            <td class="tdright tdlightestgrey tdborderleftstrong"><span id="hrs_R4_W1">0</span><input id="txt_R4_W1" type="text" value="0" class="fctext" style="display:none;" /><div class="dataitemlighter">0</div></td>
-                                            <td class="tdright tdlightestgrey"><span id="hrs_R4_W2">0</span><input id="txt_R4_W2" type="text" value="0" class="fctext" style="display:none;" /><div class="dataitemlighter">0</div></td>
-                                            <td class="tdright tdactiveweek"><span id="hrs_R4_W3">0</span><input id="txt_R4_W3" type="text" value="0" class="fctext" style="display:none;" /><div class="dataitemlighter">0</div></td>
-                                            <td class="tdright"><span id="hrs_R4_W4">0</span><input id="txt_R4_W4" type="text" value="0" class="fctext" style="display:none;" /><div class="dataitemlighter">0</div></td>
-                                            <td class="tdright"><span id="hrs_R4_W5">0</span><input id="txt_R4_W5" type="text" value="0" class="fctext" style="display:none;" /><div class="dataitemlighter">0</div></td>
-                                            <td class="tdright"><span id="hrs_R4_W6">0</span><input id="txt_R4_W6" type="text" value="0" class="fctext" style="display:none;" /><div class="dataitemlighter">0</div></td>
-                                            <td class="tdright"><span id="hrs_R4_W7">0</span><input id="txt_R4_W7" type="text" value="0" class="fctext" style="display:none;" /><div class="dataitemlighter">0</div></td>
-                                            <td class="tdright"><span id="hrs_R4_W8">30</span><input id="txt_R4_W8" type="text" value="30" class="fctext" style="display:none;" /><div class="dataitemlighter">0</div></td>
-                                            <td class="tdright"><span id="hrs_R4_W9">40</span><input id="txt_R4_W9" type="text" value="40" class="fctext" style="display:none;" /><div class="dataitemlighter">0</div></td>
-                                            <td class="tdright"><span id="hrs_R4_W10">40</span><input id="txt_R4_W10" type="text" value="40" class="fctext" style="display:none;" /><div class="dataitemlighter">0</div></td>
-                                            <td class="tdright"><span id="hrs_R4_W11">40</span><input id="txt_R4_W11" type="text" value="40" class="fctext" style="display:none;" /><div class="dataitemlighter">0</div></td>
-                                            <td class="tdright"><span id="hrs_R4_W12">40</span><input id="txt_R4_W12" type="text" value="40" class="fctext" style="display:none;" /><div class="dataitemlighter">0</div></td>
+                                            <td class="tdright tdlightestgrey tdborderleftstrong"><span id="hrs_R4_W1">0</span><input id="txt_R4_W1" type="text" value="0" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright tdlightestgrey"><span id="hrs_R4_W2">0</span><input id="txt_R4_W2" type="text" value="0" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright tdactiveweek"><span id="hrs_R4_W3">0</span><input id="txt_R4_W3" type="text" value="0" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright"><span id="hrs_R4_W4">0</span><input id="txt_R4_W4" type="text" value="0" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright"><span id="hrs_R4_W5">0</span><input id="txt_R4_W5" type="text" value="0" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright"><span id="hrs_R4_W6">0</span><input id="txt_R4_W6" type="text" value="0" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright"><span id="hrs_R4_W7">0</span><input id="txt_R4_W7" type="text" value="0" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright"><span id="hrs_R4_W8">30</span><input id="txt_R4_W8" type="text" value="30" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright"><span id="hrs_R4_W9">40</span><input id="txt_R4_W9" type="text" value="40" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright"><span id="hrs_R4_W10">40</span><input id="txt_R4_W10" type="text" value="40" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright"><span id="hrs_R4_W11">40</span><input id="txt_R4_W11" type="text" value="40" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright"><span id="hrs_R4_W12">40</span><input id="txt_R4_W12" type="text" value="40" class="fctext" style="display:none;" /></td>
                                         </tr>
                                         <tr class="trsubrows" id="rowResource_4_1" style="display:none;">
                                             <td class="tdwhite">&nbsp;</td>
                                             <td class="tdright"><p>Cost (USD)</p></td>
                                             <td class="tdright">
                                                 <p>17,658</p>
-                                                <div class="micrographbg">
-                                                    <div class="micrograph_G" style="width:1px;"></div>
-                                                </div>
-                                                <p class="dataitemitalics">0</p>
                                             </td>
-                                            <td class="tdright tdborderleftstrong">0<div class="dataitemlighter">0</div></td>
-                                            <td class="tdright">0<div class="dataitemlighter">0</div></td>
-                                            <td class="tdright tdactiveweek">0<div class="dataitemlighter">0</div></td>
-                                            <td class="tdright">0<div class="dataitemlighter">0</div></td>
-                                            <td class="tdright">0<div class="dataitemlighter">0</div></td>
-                                            <td class="tdright">0<div class="dataitemlighter">0</div></td>
-                                            <td class="tdright">0<div class="dataitemlighter">0</div></td>
-                                            <td class="tdright">4,955<div class="dataitemlighter">0</div></td>
-                                            <td class="tdright">6,402<div class="dataitemlighter">0</div></td>
-                                            <td class="tdright">6,402<div class="dataitemlighter">0</div></td>
-                                            <td class="tdright">6,402<div class="dataitemlighter">0</div></td>
-                                            <td class="tdright">6,402<div class="dataitemlighter">0</div></td>
+                                            <td class="tdright tdborderleftstrong">0</td>
+                                            <td class="tdright">0</td>
+                                            <td class="tdright tdactiveweek">0</td>
+                                            <td class="tdright">0</td>
+                                            <td class="tdright">0</td>
+                                            <td class="tdright">0</td>
+                                            <td class="tdright">0</td>
+                                            <td class="tdright">4,955</td>
+                                            <td class="tdright">6,402</td>
+                                            <td class="tdright">6,402</td>
+                                            <td class="tdright">6,402</td>
+                                            <td class="tdright">6,402</td>
                                         </tr>
                                         <tr class="trsubrows" id="rowResource_4_2" style="display:none;">
                                             <td class="tdwhite">&nbsp;</td>
                                             <td class="tdright"><p>Revenue (USD)</p></td>
                                             <td class="tdright">
                                                 <p>24,299</p>
-                                                <div class="micrographbg">
-                                                    <div class="micrograph_G" style="width:1px;"></div>
-                                                </div>
-                                                <p class="dataitemitalics">0</p>
                                             </td>
-                                            <td class="tdright tdborderleftstrong">0<div class="dataitemlighter">0</div></td>
-                                            <td class="tdright">0<div class="dataitemlighter">0</div></td>
-                                            <td class="tdright tdactiveweek">0<div class="dataitemlighter">0</div></td>
-                                            <td class="tdright">0<div class="dataitemlighter">0</div></td>
-                                            <td class="tdright">0<div class="dataitemlighter">0</div></td>
-                                            <td class="tdright">0<div class="dataitemlighter">0</div></td>
-                                            <td class="tdright">0<div class="dataitemlighter">0</div></td>
-                                            <td class="tdright">6,936<div class="dataitemlighter">0</div></td>
-                                            <td class="tdright">8,816<div class="dataitemlighter">0</div></td>
-                                            <td class="tdright">8,816<div class="dataitemlighter">0</div></td>
-                                            <td class="tdright">8,816<div class="dataitemlighter">0</div></td>
-                                            <td class="tdright">8,816<div class="dataitemlighter">0</div></td>
+                                            <td class="tdright tdborderleftstrong">0</td>
+                                            <td class="tdright">0</td>
+                                            <td class="tdright tdactiveweek">0</td>
+                                            <td class="tdright">0</td>
+                                            <td class="tdright">0</td>
+                                            <td class="tdright">0</td>
+                                            <td class="tdright">0</td>
+                                            <td class="tdright">6,936</td>
+                                            <td class="tdright">8,816</td>
+                                            <td class="tdright">8,816</td>
+                                            <td class="tdright">8,816</td>
+                                            <td class="tdright">8,816</td>
                                         </tr>
+                                        <tr style="display:none;">
+                                            <td onclick="ShowHideRows('Resource_3')" style="cursor:pointer;" class="tdwhite tdright"><span id="pdResource_3" style="font-family:'Segoe MDL2 Assets';padding-right:5px;">&#xE011;</span></td>
+                                            <td class="tdCS">
+                                                <div class="icoMenuOverflow">&#xE10C;</div>
+                                                <div id="btnMenuOverflow_6" class="icoMenuOverflow icoMenuOverflowCir">&#xEA3A;</div>
+                                                <p class="dataitembold">Billy Bob Thornton</p>
+                                                <p class="dataitemsmall">SUBCONTRACTOR <font class="textdarkred">(Non-billable)</font></p>
+                                            </td>
+                                            <td class="tdright">
+                                                <p>300 <span class="dataitemlight dataitemsmaller">hrs</span></p>
+                                            </td>
+                                            <td class="tdright tdlightestgrey tdborderleftstrong"><span id="hrs_R3_W1">40</span><input id="txt_R3_W1" type="text" value="40" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright tdlightestgrey"><span id="hrs_R3_W2">40</span><input id="txt_R3_W2" type="text" value="40" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright tdactiveweek"><span id="hrs_R3_W3">40</span><input id="txt_R3_W3" type="text" value="40" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright"><span id="hrs_R3_W4">40</span><input id="txt_R3_W4" type="text" value="40" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright"><span id="hrs_R3_W5">40</span><input id="txt_R3_W5" type="text" value="40" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright"><span id="hrs_R3_W6">40</span><input id="txt_R3_W6" type="text" value="40" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright"><span id="hrs_R3_W7">40</span><input id="txt_R3_W7" type="text" value="40" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright"><span id="hrs_R3_W8">40</span><input id="txt_R3_W8" type="text" value="40" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright"><span id="hrs_R3_W9">40</span><input id="txt_R3_W9" type="text" value="40" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright"><span id="hrs_R3_W10">40</span><input id="txt_R3_W10" type="text" value="40" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright"><span id="hrs_R3_W11">40</span><input id="txt_R3_W11" type="text" value="40" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright"><span id="hrs_R3_W12">40</span><input id="txt_R3_W12" type="text" value="40" class="fctext" style="display:none;" /></td>
+                                        </tr>
+                                        <tr class="trsubrows" id="rowResource_3_1" style="display:none;">
+                                            <td class="tdwhite">&nbsp;</td>
+                                            <td class="tdright"><p>Cost (USD)</p></td>
+                                            <td class="tdright">
+                                                <p>36,159</p>
+                                            </td>
+                                            <td class="tdright tdborderleftstrong">4,805</td>
+                                            <td class="tdright">4,805</td>
+                                            <td class="tdright tdactiveweek">4,805</td>
+                                            <td class="tdright">4,805</td>
+                                            <td class="tdright">4,805</td>
+                                            <td class="tdright">4,805</td>
+                                            <td class="tdright">4,805</td>
+                                            <td class="tdright">4,805</td>
+                                            <td class="tdright">4,805</td>
+                                            <td class="tdright">4,805</td>
+                                            <td class="tdright">4,805</td>
+                                            <td class="tdright">4,805</td>
+                                        </tr>
+                                        <tr class="trsubrows" id="rowResource_3_2" style="display:none;">
+                                            <td class="tdwhite">&nbsp;</td>
+                                            <td class="tdright"><p>Revenue (USD)</p></td>
+                                            <td class="tdright">
+                                                <p>0</p>
+                                            </td>
+                                            <td class="tdright tdborderleftstrong">0</td>
+                                            <td class="tdright">0</td>
+                                            <td class="tdright tdactiveweek">0</td>
+                                            <td class="tdright">0</td>
+                                            <td class="tdright">0</td>
+                                            <td class="tdright">0</td>
+                                            <td class="tdright">0</td>
+                                            <td class="tdright">0</td>
+                                            <td class="tdright">0</td>
+                                            <td class="tdright">0</td>
+                                            <td class="tdright">0</td>
+                                            <td class="tdright">0</td>
+                                        </tr>
+
                                         <tr id="trTask_2">
                                             <td colspan="2" class="tdindentL_2">
-                                                <!--
-                            <div class="icoMenuOverflow">&#xE10C;</div>
-                            <div id="btnMenuOverflow_8" class="icoMenuOverflow icoMenuOverflowCir">&#xEA3A;</div>
-                                                                        -->
                                                 <p class="dataitembold">Task: Risk Reserve</p>
                                                 <p class="dataitemsmall dataitemlight">EBS: C.6908001200358.001000.02</p>
                                             </td>
                                             <td class="tdright">
                                                 <p>180 <span class="dataitemlight dataitemsmaller">hrs</span></p>
-                                                <div class="micrographbg">
-                                                    <div class="micrograph_G" style="width:40px;"></div>
-                                                </div>
-                                                <p class="dataitemitalics">120 <span class="dataitemlight dataitemsmaller ">hrs</span></p>
                                             </td>
-                                            <td class="tdright tdlightestgrey tdborderleftstrong tdtotal">8<div class="dataitemlighter">8</div></td>
-                                            <td class="tdright tdlightestgrey tdtotal">8<div class="dataitemlighter">8</div></td>
-                                            <td class="tdright tdactiveweek tdtotal">8<div class="dataitemlighter">8</div></td>
-                                            <td class="tdright tdtotal">8<div class="dataitemlighter">8</div></td>
-                                            <td class="tdright tdtotal">8<div class="dataitemlighter">8</div></td>
-                                            <td class="tdright tdtotal">8<div class="dataitemlighter">8</div></td>
-                                            <td class="tdright tdtotal">8<div class="dataitemlighter">8</div></td>
-                                            <td class="tdright tdtotal">8<div class="dataitemlighter">8</div></td>
-                                            <td class="tdright tdtotal">8<div class="dataitemlighter">8</div></td>
-                                            <td class="tdright tdtotal">8<div class="dataitemlighter">8</div></td>
-                                            <td class="tdright tdtotal">8<div class="dataitemlighter">8</div></td>
-                                            <td class="tdright tdtotal">8<div class="dataitemlighter">8</div></td>
+                                            <td class="tdright tdlightestgrey tdborderleftstrong tdtotal">8</td>
+                                            <td class="tdright tdlightestgrey tdtotal">8</td>
+                                            <td class="tdright tdactiveweek tdtotal">8</td>
+                                            <td class="tdright tdtotal">8</td>
+                                            <td class="tdright tdtotal">8</td>
+                                            <td class="tdright tdtotal">8</td>
+                                            <td class="tdright tdtotal">8</td>
+                                            <td class="tdright tdtotal">8</td>
+                                            <td class="tdright tdtotal">8</td>
+                                            <td class="tdright tdtotal">8</td>
+                                            <td class="tdright tdtotal">8</td>
+                                            <td class="tdright tdtotal">8</td>
                                         </tr>
-                                        <tr>
+                                        <tr id="trDemand_3">
+                                            <td colspan="2" class="tdindentL_3">
+                                                <div class="icoMenuOverflow">&#xE10C;</div>
+                                                <div id="btnMenuOverflowDEM_3" class="icoMenuOverflow icoMenuOverflowCir">&#xEA3A;</div>
+                                                <p class="dataitembold">Demand: Senior Consultant</p>
+                                                <p class="dataitemsmall dataitemlight">Demand ID: 12345800</p>
+                                            </td>
+                                            <td class="tdright">
+                                                <p>180 <span class="dataitemlight dataitemsmaller">hrs</span></p>
+                                            </td>
+                                            <td class="tdright tdborderleftstrong tdtotal tdlightestgrey">8</td>
+                                            <td class="tdright tdtotal tdlightestgrey">8</td>
+                                            <td class="tdright tdtotal tdactiveweek">8</td>
+                                            <td class="tdright tdtotal">8</td>
+                                            <td class="tdright tdtotal">8</td>
+                                            <td class="tdright tdtotal">8</td>
+                                            <td class="tdright tdtotal">8</td>
+                                            <td class="tdright tdtotal">8</td>
+                                            <td class="tdright tdtotal">8</td>
+                                            <td class="tdright tdtotal">8</td>
+                                            <td class="tdright tdtotal">8</td>
+                                            <td class="tdright tdtotal">8</td>
+                                        </tr>
+                                        <tr style="display:none;">
                                             <td onclick="ShowHideRows('Resource_5')" style="cursor:pointer;" class="tdwhite tdright"><span id="pdResource_5" style="font-family:'Segoe MDL2 Assets';padding-right:5px;">&#xE011;</span></td>
                                             <td class="tdFTE">
                                                 <div class="icoMenuOverflow">&#xE10C;</div>
@@ -1419,69 +1507,57 @@
                                             </td>
                                             <td class="tdright">
                                                 <p>180 <span class="dataitemlight dataitemsmaller">hrs</span></p>
-                                                <div class="micrographbg">
-                                                    <div class="micrograph_G" style="width:40px;"></div>
-                                                </div>
-                                                <p class="dataitemitalics">120 <span class="dataitemlight dataitemsmaller ">hrs</span></p>
                                             </td>
-                                            <td class="tdright tdlightestgrey tdborderleftstrong"><span id="hrs_R5_W1">8</span><input id="txt_R5_W1" type="text" value="8" class="fctext" style="display:none;" /><div class="dataitemlighter">8</div></td>
-                                            <td class="tdright tdlightestgrey"><span id="hrs_R5_W2">8</span><input id="txt_R5_W2" type="text" value="8" class="fctext" style="display:none;" /><div class="dataitemlighter">8</div></td>
-                                            <td class="tdright tdactiveweek"><span id="hrs_R5_W3">8</span><input id="txt_R5_W3" type="text" value="8" class="fctext" style="display:none;" /><div class="dataitemlighter">8</div></td>
-                                            <td class="tdright"><span id="hrs_R5_W4">8</span><input id="txt_R5_W4" type="text" value="8" class="fctext" style="display:none;" /><div class="dataitemlighter">8</div></td>
-                                            <td class="tdright"><span id="hrs_R5_W5">8</span><input id="txt_R5_W5" type="text" value="8" class="fctext" style="display:none;" /><div class="dataitemlighter">8</div></td>
-                                            <td class="tdright"><span id="hrs_R5_W6">8</span><input id="txt_R5_W6" type="text" value="8" class="fctext" style="display:none;" /><div class="dataitemlighter">8</div></td>
-                                            <td class="tdright"><span id="hrs_R5_W7">8</span><input id="txt_R5_W7" type="text" value="8" class="fctext" style="display:none;" /><div class="dataitemlighter">8</div></td>
-                                            <td class="tdright"><span id="hrs_R5_W8">8</span><input id="txt_R5_W8" type="text" value="8" class="fctext" style="display:none;" /><div class="dataitemlighter">8</div></td>
-                                            <td class="tdright"><span id="hrs_R5_W9">8</span><input id="txt_R5_W9" type="text" value="8" class="fctext" style="display:none;" /><div class="dataitemlighter">8</div></td>
-                                            <td class="tdright"><span id="hrs_R5_W10">8</span><input id="txt_R5_W10" type="text" value="8" class="fctext" style="display:none;" /><div class="dataitemlighter">8</div></td>
-                                            <td class="tdright"><span id="hrs_R5_W11">8</span><input id="txt_R5_W11" type="text" value="8" class="fctext" style="display:none;" /><div class="dataitemlighter">8</div></td>
-                                            <td class="tdright"><span id="hrs_R5_W12">8</span><input id="txt_R5_W12" type="text" value="8" class="fctext" style="display:none;" /><div class="dataitemlighter">8</div></td>
+                                            <td class="tdright tdlightestgrey tdborderleftstrong"><span id="hrs_R5_W1">8</span><input id="txt_R5_W1" type="text" value="8" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright tdlightestgrey"><span id="hrs_R5_W2">8</span><input id="txt_R5_W2" type="text" value="8" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright tdactiveweek"><span id="hrs_R5_W3">8</span><input id="txt_R5_W3" type="text" value="8" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright"><span id="hrs_R5_W4">8</span><input id="txt_R5_W4" type="text" value="8" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright"><span id="hrs_R5_W5">8</span><input id="txt_R5_W5" type="text" value="8" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright"><span id="hrs_R5_W6">8</span><input id="txt_R5_W6" type="text" value="8" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright"><span id="hrs_R5_W7">8</span><input id="txt_R5_W7" type="text" value="8" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright"><span id="hrs_R5_W8">8</span><input id="txt_R5_W8" type="text" value="8" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright"><span id="hrs_R5_W9">8</span><input id="txt_R5_W9" type="text" value="8" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright"><span id="hrs_R5_W10">8</span><input id="txt_R5_W10" type="text" value="8" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright"><span id="hrs_R5_W11">8</span><input id="txt_R5_W11" type="text" value="8" class="fctext" style="display:none;" /></td>
+                                            <td class="tdright"><span id="hrs_R5_W12">8</span><input id="txt_R5_W12" type="text" value="8" class="fctext" style="display:none;" /></td>
                                         </tr>
                                         <tr class="trsubrows" id="rowResource_5_1" style="display:none;">
                                             <td class="tdwhite">&nbsp;</td>
                                             <td class="tdright"><p>Cost (USD)</p></td>
                                             <td class="tdright">
                                                 <p>28,881</p>
-                                                <div class="micrographbg">
-                                                    <div class="micrograph_G" style="width:40px;"></div>
-                                                </div>
-                                                <p class="dataitemitalics">19,250</p>
                                             </td>
-                                            <td class="tdborderleftstrong tdright">1,302<div class="dataitemlighter">1,302</div></td>
-                                            <td class="tdright">1,302<div class="dataitemlighter">1,302</div></td>
-                                            <td class="tdright tdactiveweek">1,302<div class="dataitemlighter">1,302</div></td>
-                                            <td class="tdright">1,302<div class="dataitemlighter">1,302</div></td>
-                                            <td class="tdright">1,302<div class="dataitemlighter">1,302</div></td>
-                                            <td class="tdright">1,302<div class="dataitemlighter">1,302</div></td>
-                                            <td class="tdright">1,302<div class="dataitemlighter">1,302</div></td>
-                                            <td class="tdright">1,302<div class="dataitemlighter">1,302</div></td>
-                                            <td class="tdright">1,302<div class="dataitemlighter">1,302</div></td>
-                                            <td class="tdright">1,302<div class="dataitemlighter">1,302</div></td>
-                                            <td class="tdright">1,302<div class="dataitemlighter">1,302</div></td>
-                                            <td class="tdright">1,302<div class="dataitemlighter">1,302</div></td>
+                                            <td class="tdborderleftstrong tdright">1,302</td>
+                                            <td class="tdright">1,302</td>
+                                            <td class="tdright tdactiveweek">1,302</td>
+                                            <td class="tdright">1,302</td>
+                                            <td class="tdright">1,302</td>
+                                            <td class="tdright">1,302</td>
+                                            <td class="tdright">1,302</td>
+                                            <td class="tdright">1,302</td>
+                                            <td class="tdright">1,302</td>
+                                            <td class="tdright">1,302</td>
+                                            <td class="tdright">1,302</td>
+                                            <td class="tdright">1,302</td>
                                         </tr>
                                         <tr class="trsubrows" id="rowResource_5_2" style="display:none;">
                                             <td class="tdwhite">&nbsp;</td>
                                             <td class="tdright"><p>Revenue (USD)</p></td>
                                             <td class="tdright">
                                                 <p>39,697</p>
-                                                <div class="micrographbg">
-                                                    <div class="micrograph_G" style="width:40px;"></div>
-                                                </div>
-                                                <p class="dataitemitalics">19,270</p>
                                             </td>
-                                            <td class="tdborderleftstrong tdright">1,766<div class="dataitemlighter">1,766</div></td>
-                                            <td class="tdright">1,766<div class="dataitemlighter">1,766</div></td>
-                                            <td class="tdright tdactiveweek">1,766<div class="dataitemlighter">1,766</div></td>
-                                            <td class="tdright">1,766<div class="dataitemlighter">1,766</div></td>
-                                            <td class="tdright">1,766<div class="dataitemlighter">1,766</div></td>
-                                            <td class="tdright">1,766<div class="dataitemlighter">1,766</div></td>
-                                            <td class="tdright">1,766<div class="dataitemlighter">1,766</div></td>
-                                            <td class="tdright">1,766<div class="dataitemlighter">1,766</div></td>
-                                            <td class="tdright">1,766<div class="dataitemlighter">1,766</div></td>
-                                            <td class="tdright">1,766<div class="dataitemlighter">1,766</div></td>
-                                            <td class="tdright">1,766<div class="dataitemlighter">1,766</div></td>
-                                            <td class="tdright">1,766<div class="dataitemlighter">1,766</div></td>
+                                            <td class="tdborderleftstrong tdright">1,766</td>
+                                            <td class="tdright">1,766</td>
+                                            <td class="tdright tdactiveweek">1,766</td>
+                                            <td class="tdright">1,766</td>
+                                            <td class="tdright">1,766</td>
+                                            <td class="tdright">1,766</td>
+                                            <td class="tdright">1,766</td>
+                                            <td class="tdright">1,766</td>
+                                            <td class="tdright">1,766</td>
+                                            <td class="tdright">1,766</td>
+                                            <td class="tdright">1,766</td>
+                                            <td class="tdright">1,766</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -1598,9 +1674,9 @@
                                             <td onclick="ShowHideRows('SubconFF_1')" style="cursor:pointer;" class="tdwhite tdright"><span id="pdSubconFF_1" style="font-family:'Segoe MDL2 Assets';padding-right:5px;">&#xE011;</span></td>
                                             <td>
                                                 <!--
-                            <div class="icoMenuOverflow">&#xE10C;</div>
-                            <div id="btnMenuOverflowEXP_10" class="icoMenuOverflow icoMenuOverflowCir">&#xEA3A;</div>
-                                                                        -->
+                                            <div class="icoMenuOverflow">&#xE10C;</div>
+                                            <div id="btnMenuOverflowEXP_10" class="icoMenuOverflow icoMenuOverflowCir">&#xEA3A;</div>
+                                                                                        -->
                                                 <p class="dataitembold">PO 90001234</p>
                                                 <p class="dataitemsmall">Line item: 10</p>
                                             </td>
@@ -1648,9 +1724,9 @@
                                             <td onclick="ShowHideRows('SubconFF_2')" style="cursor:pointer;" class="tdwhite tdright"><span id="pdSubconFF_2" style="font-family:'Segoe MDL2 Assets';padding-right:5px;">&#xE011;</span></td>
                                             <td>
                                                 <!--
-                            <div class="icoMenuOverflow">&#xE10C;</div>
-                            <div id="btnMenuOverflowEXP_11" class="icoMenuOverflow icoMenuOverflowCir">&#xEA3A;</div>
-                                                                        -->
+                                            <div class="icoMenuOverflow">&#xE10C;</div>
+                                            <div id="btnMenuOverflowEXP_11" class="icoMenuOverflow icoMenuOverflowCir">&#xEA3A;</div>
+                                                                                        -->
                                                 <p class="dataitembold">PO 90001234</p>
                                                 <p class="dataitemsmall">Line Item: 20</p>
                                             </td>
@@ -1722,9 +1798,9 @@
                                             <td onclick="ShowHideRows('SubconFF_3')" style="cursor:pointer;" class="tdwhite tdright"><span id="pdSubconFF_3" style="font-family:'Segoe MDL2 Assets';padding-right:5px;">&#xE011;</span></td>
                                             <td>
                                                 <!--
-                            <div class="icoMenuOverflow">&#xE10C;</div>
-                            <div id="btnMenuOverflowEXP_12" class="icoMenuOverflow icoMenuOverflowCir">&#xEA3A;</div>
-                                                                        -->
+                                            <div class="icoMenuOverflow">&#xE10C;</div>
+                                            <div id="btnMenuOverflowEXP_12" class="icoMenuOverflow icoMenuOverflowCir">&#xEA3A;</div>
+                                                                                        -->
                                                 <p class="dataitembold">PO 90001255</p>
                                                 <p class="dataitemsmall">Line Item: 10</p>
                                             </td>
@@ -1883,9 +1959,9 @@
                                             <td onclick="ShowHideRows('Expense_1')" style="cursor:pointer;" class="tdwhite tdright"><span id="pdExpense_1" style="font-family:'Segoe MDL2 Assets';padding-right:5px;">&#xE011;</span></td>
                                             <td>
                                                 <!--
-                            <div class="icoMenuOverflow">&#xE10C;</div>
-                            <div id="btnMenuOverflowEXP_10" class="icoMenuOverflow icoMenuOverflowCir">&#xEA3A;</div>
-                                                                        -->
+                                            <div class="icoMenuOverflow">&#xE10C;</div>
+                                            <div id="btnMenuOverflowEXP_10" class="icoMenuOverflow icoMenuOverflowCir">&#xEA3A;</div>
+                                                                                        -->
                                                 <p class="dataitembold">Expenses</p>
                                                 <p class="dataitemsmall">(Billable)</p>
                                             </td>
@@ -1933,9 +2009,9 @@
                                             <td class="tdwhite">&nbsp;</td>
                                             <td>
                                                 <!--
-                            <div class="icoMenuOverflow">&#xE10C;</div>
-                            <div id="btnMenuOverflowEXP_11" class="icoMenuOverflow icoMenuOverflowCir">&#xEA3A;</div>
-                                                                        -->
+                                            <div class="icoMenuOverflow">&#xE10C;</div>
+                                            <div id="btnMenuOverflowEXP_11" class="icoMenuOverflow icoMenuOverflowCir">&#xEA3A;</div>
+                                                                                        -->
                                                 <p class="dataitembold">Expenses</p>
                                                 <p class="dataitemsmall textdarkred">(Non-billable)</p>
                                             </td>
@@ -1986,9 +2062,9 @@
                                             <td onclick="ShowHideRows('Expense_3')" style="cursor:pointer;" class="tdwhite tdright"><span id="pdExpense_3" style="font-family:'Segoe MDL2 Assets';padding-right:5px;">&#xE011;</span></td>
                                             <td>
                                                 <!--
-                            <div class="icoMenuOverflow">&#xE10C;</div>
-                            <div id="btnMenuOverflowEXP_12" class="icoMenuOverflow icoMenuOverflowCir">&#xEA3A;</div>
-                                                                        -->
+                                            <div class="icoMenuOverflow">&#xE10C;</div>
+                                            <div id="btnMenuOverflowEXP_12" class="icoMenuOverflow icoMenuOverflowCir">&#xEA3A;</div>
+                                                                                        -->
                                                 <p class="dataitembold">Materials</p>
                                                 <p class="dataitemsmall">(Billable)</p>
                                             </td>
@@ -2036,9 +2112,9 @@
                                             <td class="tdwhite">&nbsp;</td>
                                             <td>
                                                 <!--
-                            <div class="icoMenuOverflow">&#xE10C;</div>
-                            <div id="btnMenuOverflowEXP_13" class="icoMenuOverflow icoMenuOverflowCir">&#xEA3A;</div>
-                                                                        -->
+                                            <div class="icoMenuOverflow">&#xE10C;</div>
+                                            <div id="btnMenuOverflowEXP_13" class="icoMenuOverflow icoMenuOverflowCir">&#xEA3A;</div>
+                                                                                        -->
                                                 <p class="dataitembold">Materials</p>
                                                 <p class="dataitemsmall textdarkred">(Non-billable)</p>
                                             </td>

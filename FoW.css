@@ -50,7 +50,7 @@ a:hover {
 .calendaricon {
     position: relative;
     float: right;
-    left: -40px;
+    left: -100px;
     top: 0px;
     height: 26px;
     width: 36px;
@@ -357,6 +357,10 @@ th.tdSummaryActive > div.tooltipicon {
     padding-left: 50px !important;
 }
 
+.tdindentL_3 {
+    padding-left: 75px !important;
+}
+
 .tdVcenter {
     padding-top: 18px !important;
 }
@@ -591,7 +595,7 @@ th.tdSummaryActive > div.tooltipicon {
     background-color: #FFF;
     margin: auto;
     border: 1px solid #0078D7;
-    width: 25%;
+    width: 550px;
     box-shadow: 0 2px 20px 0 rgba(0,0,0,0.2),0 4px 8px 0 rgba(0,0,0,0.2);
     -webkit-animation-name: animatetop;
     -webkit-animation-duration: 0.4s;
