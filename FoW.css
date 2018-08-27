@@ -521,6 +521,11 @@ th.tdSummaryActive > div.tooltipicon {
     height: 10px;
 }
 
+.micrograph_Y {
+    background-color: orange;
+    height: 10px;
+}
+
 .micrograph_R {
     background-color: red;
     height: 10px;
